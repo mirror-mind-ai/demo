@@ -78,6 +78,11 @@ fi
 echo "Installing $SLUG into $HOME_PATH"
 echo ""
 
+# Force every uv subprocess invoked below to target this home, regardless of
+# what the workspace .env or the shell environment defaults to.
+export MIRROR_HOME="$HOME_PATH"
+unset MIRROR_USER
+
 # --- Wipe (unless --keep) ----------------------------------------------------
 
 if [ "$KEEP" = false ] && [ -d "$HOME_PATH" ]; then

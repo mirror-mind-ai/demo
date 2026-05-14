@@ -45,15 +45,24 @@ Personagens de demonstração vivem em um Mirror home separado
 (`~/.mirror-demo/`) para não se misturarem com seu Mirror pessoal
 (`~/.mirror/`).
 
-1. Clonar este repositório.
-2. Ter um workspace de framework Mirror Mind clonado em outro lugar
-   (ex: `~/Code/lucas-mirror`), com `uv sync` rodado e
-   `OPENROUTER_API_KEY` no `.env`.
-3. Rodar o install script de dentro do workspace:
+Este repositório é um workspace Python autônomo: traz o framework Mirror
+Mind como dependência via `pyproject.toml`. Você não precisa de outro
+clone do framework.
+
+1. Clonar este repositório em `~/Code/mirror-demo/`.
+2. Configurar:
 
    ```bash
-   cd ~/Code/lucas-mirror
-   /path/to/mirror-mind-demo/scripts/install.sh <slug>
+   cd ~/Code/mirror-demo
+   uv sync                              # instala o framework como dependência
+   cp .env.example .env                 # se houver; senão crie
+   # Edite .env e ponha OPENROUTER_API_KEY=...
+   ```
+
+3. Instalar um personagem:
+
+   ```bash
+   ./scripts/install.sh <slug>
    ```
 
    O script apaga o home existente em `~/.mirror-demo/<slug>` e
@@ -63,10 +72,14 @@ Personagens de demonstração vivem em um Mirror home separado
 4. Validar:
 
    ```bash
-   DB_PATH=~/.mirror-demo/<slug>/memory.db \
+   MIRROR_HOME=~/.mirror-demo/<slug> \
      uv run python -m memory mirror load \
      --query "me fale sobre quem é você"
    ```
+
+5. Para uma experiência interativa via Pi, use um script wrapper como
+   `~/mirror-demo.sh <slug>` que faz `cd` para este workspace, exporta
+   `MIRROR_HOME` para o personagem, e executa `pi`.
 
 ## Por que este repo é privado por enquanto
 

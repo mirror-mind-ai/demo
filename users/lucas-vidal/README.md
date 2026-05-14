@@ -50,9 +50,8 @@ existente (a menos que você passe `--keep`) e reconstrói tudo do zero a
 partir dos YAMLs e markdowns deste repositório.
 
 ```bash
-# A partir de um workspace de framework Mirror Mind (onde `uv run python -m memory` funciona):
-cd ~/Code/lucas-mirror
-~/Code/mirror-mind-demo/scripts/install.sh lucas-vidal
+cd ~/Code/mirror-demo
+./scripts/install.sh lucas-vidal
 ```
 
 Depois disso, valide:

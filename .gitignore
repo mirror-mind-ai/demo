@@ -1,0 +1,15 @@
+# Secrets and per-machine config
+.env
+
+# uv / Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Mac
+.DS_Store
+
+# uv lock file is committed (helps reproducibility)
+# uv.lock
