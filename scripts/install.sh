@@ -1,167 +1,17 @@
 #!/usr/bin/env bash
-# install.sh — install a character from this repo into a fresh demo home.
+# install.sh — thin wrapper that forwards to install.py.
 #
-# Wipes the target home and rebuilds it from the YAML/markdown sources in
-# users/<slug>/. Idempotent. Safe to run repeatedly.
+# All install logic lives in scripts/install.py. This wrapper exists for
+# muscle memory and parity with talk.sh.
 #
-# Usage (from inside a Mirror Mind framework workspace, where
-# `uv run python -m memory` works):
-#   /path/to/demo/scripts/install.sh <slug>                  # default home: ~/.mirror-demo/<slug>
-#   /path/to/demo/scripts/install.sh <slug> --home <path>    # explicit home
-#   /path/to/demo/scripts/install.sh <slug> --keep           # don't wipe existing data
-#
-# Examples:
-#   cd ~/Code/lucas-mirror && ~/Code/mirror-mind-demo/scripts/install.sh lucas-vidal
+# Usage:
+#   ./scripts/install.sh <slug>
+#   ./scripts/install.sh <slug> --home <path>
+#   ./scripts/install.sh <slug> --keep
 
 set -e
 
-# --- Args --------------------------------------------------------------------
-
-SLUG=""
-HOME_PATH=""
-KEEP=false
-
-while [ $# -gt 0 ]; do
-  case "$1" in
-    --home)
-      HOME_PATH="$2"
-      shift 2
-      ;;
-    --keep)
-      KEEP=true
-      shift
-      ;;
-    -h|--help)
-      grep "^#" "$0" | head -n 20 | sed 's/^# \{0,1\}//'
-      exit 0
-      ;;
-    *)
-      if [ -z "$SLUG" ]; then
-        SLUG="$1"
-      else
-        echo "ERROR: unexpected argument: $1" >&2
-        exit 2
-      fi
-      shift
-      ;;
-  esac
-done
-
-if [ -z "$SLUG" ]; then
-  echo "Usage: scripts/install.sh <slug> [--home <path>] [--keep]" >&2
-  exit 2
-fi
-
-# --- Resolve paths -----------------------------------------------------------
-
-# Resolve demo repo by script location (absolute), but stay in the caller's
-# cwd so `uv run python -m memory` runs against the active framework workspace.
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
 
-USER_DIR="$REPO_ROOT/users/$SLUG"
-if [ ! -d "$USER_DIR" ]; then
-  echo "ERROR: character not found: $USER_DIR" >&2
-  exit 1
-fi
-
-# Sanity: confirm we're in a framework workspace.
-if ! uv run python -c "import memory" 2>/dev/null; then
-  echo "ERROR: this directory is not a Mirror Mind framework workspace." >&2
-  echo "       Run 'uv sync' from the repo root first." >&2
-  exit 1
-fi
-
-# Preflight: verify the OpenRouter API key works before doing any heavy work.
-# Embeddings for memories and attachments depend on a valid key. Failing fast
-# here is much friendlier than a Python traceback halfway through the install.
-echo "Checking OpenRouter API key..."
-if ! uv run python -m memory consult credits >/dev/null 2>&1; then
-  cat >&2 <<'EOF'
-
-ERROR: OpenRouter API key check failed.
-
-The install needs a valid OPENROUTER_API_KEY to generate embeddings for
-memories and attachments. Set it in one of two places:
-
-  - .env in the repo root (recommended): OPENROUTER_API_KEY=sk-or-v1-...
-  - or as a shell environment variable:  export OPENROUTER_API_KEY=sk-or-v1-...
-
-Get a key at https://openrouter.ai/keys (a small credit balance covers
-many demo installs; this run will spend less than one cent).
-
-If the key is already set, double-check it: no typos, no placeholder
-values like "sk-or-v1-your-key-here", and the account must have credit.
-
-EOF
-  exit 1
-fi
-echo "OK."
-echo ""
-
-if [ -z "$HOME_PATH" ]; then
-  HOME_PATH="$HOME/.mirror-demo/$SLUG"
-fi
-
-echo "Installing $SLUG into $HOME_PATH"
-echo ""
-
-# Force every uv subprocess invoked below to target this home, regardless of
-# what the workspace .env or the shell environment defaults to.
-export MIRROR_HOME="$HOME_PATH"
-unset MIRROR_USER
-
-# --- Wipe (unless --keep) ----------------------------------------------------
-
-if [ "$KEEP" = false ] && [ -d "$HOME_PATH" ]; then
-  echo "Wiping existing home..."
-  rm -rf "$HOME_PATH"
-fi
-
-mkdir -p "$HOME_PATH"
-
-# --- Identity ---------------------------------------------------------------
-
-echo "Copying identity files..."
-cp -R "$USER_DIR/identity" "$HOME_PATH/identity"
-
-echo "Seeding identity into database..."
-uv run python -m memory seed --mirror-home "$HOME_PATH"
-echo ""
-
-# --- Memories ---------------------------------------------------------------
-
-if [ -f "$USER_DIR/memories/seed.yaml" ]; then
-  echo "Planting memories..."
-  uv run python "$REPO_ROOT/scripts/seed-memories.py" \
-    "$USER_DIR/memories/seed.yaml" \
-    --mirror-home "$HOME_PATH"
-  echo ""
-fi
-
-# --- Attachments (subfolder per journey) ------------------------------------
-
-if [ -d "$USER_DIR/attachments" ]; then
-  for journey_dir in "$USER_DIR/attachments"/*/; do
-    [ -d "$journey_dir" ] || continue
-    journey_id="$(basename "$journey_dir")"
-    md_count="$(find "$journey_dir" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')"
-    if [ "$md_count" = "0" ]; then
-      continue
-    fi
-    echo "Ingesting attachments for journey '$journey_id' ($md_count files)..."
-    uv run python "$REPO_ROOT/scripts/seed-attachments.py" \
-      --journey "$journey_id" \
-      --dir "$journey_dir" \
-      --mirror-home "$HOME_PATH"
-    echo ""
-  done
-fi
-
-# --- Done -------------------------------------------------------------------
-
-echo "Installed $SLUG."
-echo "  Home:    $HOME_PATH"
-echo "  DB:      $HOME_PATH/memory.db"
-echo ""
-echo "Validate with:"
-echo "  ./scripts/talk.sh $SLUG \"me fale sobre quem é você\""
+exec uv run python scripts/install.py "$@"
