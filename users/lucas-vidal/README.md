@@ -58,9 +58,7 @@ Da raiz deste repositório clonado:
 Depois disso, valide:
 
 ```bash
-MIRROR_HOME=~/.mirror-demo/lucas-vidal \
-  uv run python -m memory mirror load \
-  --query "me fale sobre quem é você"
+./scripts/talk.sh lucas-vidal "me fale sobre quem é você"
 ```
 
 ## Decisão central que ele está atravessando

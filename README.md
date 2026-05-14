@@ -71,9 +71,7 @@ clone do framework.
 4. Validar:
 
    ```bash
-   MIRROR_HOME=~/.mirror-demo/<slug> \
-     uv run python -m memory mirror load \
-     --query "me fale sobre quem é você"
+   ./scripts/talk.sh <slug> "me fale sobre quem é você"
    ```
 
 5. Para uma experiência interativa via Pi, escreva um script wrapper
