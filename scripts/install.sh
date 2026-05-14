@@ -66,10 +66,37 @@ fi
 
 # Sanity: confirm we're in a framework workspace.
 if ! uv run python -c "import memory" 2>/dev/null; then
-  echo "ERROR: cwd is not a Mirror Mind framework workspace." >&2
-  echo "       cd into a workspace (e.g., ~/Code/lucas-mirror) first." >&2
+  echo "ERROR: this directory is not a Mirror Mind framework workspace." >&2
+  echo "       Run 'uv sync' from the repo root first." >&2
   exit 1
 fi
+
+# Preflight: verify the OpenRouter API key works before doing any heavy work.
+# Embeddings for memories and attachments depend on a valid key. Failing fast
+# here is much friendlier than a Python traceback halfway through the install.
+echo "Checking OpenRouter API key..."
+if ! uv run python -m memory consult credits >/dev/null 2>&1; then
+  cat >&2 <<'EOF'
+
+ERROR: OpenRouter API key check failed.
+
+The install needs a valid OPENROUTER_API_KEY to generate embeddings for
+memories and attachments. Set it in one of two places:
+
+  - .env in the repo root (recommended): OPENROUTER_API_KEY=sk-or-v1-...
+  - or as a shell environment variable:  export OPENROUTER_API_KEY=sk-or-v1-...
+
+Get a key at https://openrouter.ai/keys (a small credit balance covers
+many demo installs; this run will spend less than one cent).
+
+If the key is already set, double-check it: no typos, no placeholder
+values like "sk-or-v1-your-key-here", and the account must have credit.
+
+EOF
+  exit 1
+fi
+echo "OK."
+echo ""
 
 if [ -z "$HOME_PATH" ]; then
   HOME_PATH="$HOME/.mirror-demo/$SLUG"
