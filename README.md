@@ -1,7 +1,6 @@
 # Mirror Mind Demo
 
-Galeria de personagens fictícios para demonstrar o Mirror Mind sem expor dados
-pessoais reais. Cada personagem é um Mirror inteiro: identidade densa,
+Galeria de personagens fictícios para demonstrar o Mirror Mind. Cada personagem é um Mirror inteiro: identidade densa,
 Travessias ativas, memórias plantadas, anexos. Você clona, copia para
 `~/.mirror/<personagem>/`, roda o seed e tem uma instalação funcional para
 explorar.
@@ -10,7 +9,7 @@ explorar.
 
 | Personagem | Idioma base | Perfil |
 |---|---|---|
-| [`lucas-vidal`](users/lucas-vidal/) | pt-BR | Consultor independente em engenharia de software e liderança técnica, em transição da corporação para um modelo próprio de oferta. Construído para a demo do encontro Mirror Mind com Vinicius Teles em 17/05/2026. |
+| [`lucas-vidal`](users/lucas-vidal/) | pt-BR | Consultor independente em engenharia de software e liderança técnica, em transição da corporação para um modelo próprio de oferta. |
 
 Novos personagens podem ser adicionados em outros idiomas e perfis sob
 `users/<slug>/`.
@@ -40,41 +39,41 @@ A pasta `users/<slug>/` mapeia 1:1 com a estrutura de runtime
 
 ## Como rodar um personagem
 
+Personagens de demonstração vivem em um Mirror home separado
+(`~/.mirror-demo/`) para não se misturarem com seu Mirror pessoal
+(`~/.mirror/`).
+
 (Detalhes em construção. Procedimento previsto:)
 
 1. Clonar este repositório.
-2. Inicializar o Mirror home do personagem escolhido:
+2. Copiar a identidade do repo para o home de demos:
 
    ```bash
-   mirror init <slug>
+   mkdir -p ~/.mirror-demo/<slug>
+   cp -R users/<slug>/identity/ ~/.mirror-demo/<slug>/identity/
    ```
 
-3. Copiar a identidade do repo para o home:
+3. Rodar o seed para popular o banco:
 
    ```bash
-   cp -R users/<slug>/identity/ ~/.mirror/<slug>/identity/
+   MIRROR_HOME=~/.mirror-demo MIRROR_USER=<slug> \
+     uv run python -m memory seed
    ```
 
-4. Rodar o seed para popular o banco:
-
-   ```bash
-   MIRROR_USER=<slug> uv run python -m memory seed
-   ```
-
-5. Rodar os scripts complementares (memórias, anexos) que vivem em
+4. Rodar os scripts complementares (memórias, anexos) que vivem em
    `scripts/`.
 
-6. Validar com:
+5. Validar com:
 
    ```bash
-   MIRROR_USER=<slug> uv run python -m memory mirror load \
+   MIRROR_HOME=~/.mirror-demo MIRROR_USER=<slug> \
+     uv run python -m memory mirror load \
      --query "me fale sobre quem é você"
    ```
 
 ## Por que este repo é privado por enquanto
 
-Este repositório nasceu para suportar a demo do encontro de 17 de maio de
-2026. Vai virar público depois do encontro, quando os scripts e a documentação
+Este repositório vai virar público quando os scripts e a documentação
 estiverem maduros o bastante para que qualquer pessoa curiosa possa clonar e
 experimentar o Mirror Mind com uma identidade já populada, antes de construir
 a própria.

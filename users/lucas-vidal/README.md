@@ -2,8 +2,7 @@
 
 Consultor independente em engenharia de software e liderança técnica, em
 transição da corporação para um modelo próprio de oferta. Personagem fictício
-em pt-BR, construído para a demo do Mirror Mind com Vinicius Teles em
-17 de maio de 2026.
+em pt-BR.
 
 ## Quem é em uma frase
 
@@ -42,20 +41,31 @@ Todos os YAMLs de identidade derivam dele.
 
 ## Como instalar só o Lucas
 
+O Lucas é um personagem de demonstração, então vai morar em um Mirror
+home separado (`~/.mirror-demo/`) para não se misturar com seu Mirror
+pessoal.
+
 ```bash
-# Inicializar o home
-mirror init lucas-vidal
+# Criar o home dele
+mkdir -p ~/.mirror-demo/lucas-vidal
 
 # Copiar a identidade
-cp -R users/lucas-vidal/identity/ ~/.mirror/lucas-vidal/identity/
+cp -R users/lucas-vidal/identity/ ~/.mirror-demo/lucas-vidal/identity/
 
-# Popular o banco
-MIRROR_USER=lucas-vidal uv run python -m memory seed
+# Popular o banco com a identidade
+MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
+  uv run python -m memory seed
 
-# (Próximo passo: rodar scripts de memória e anexos quando disponíveis.)
+# Plantar as memórias
+MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
+  python scripts/seed-memories.py users/lucas-vidal/memories/seed.yaml
+
+# Ingerir os anexos do blog (quando disponíveis)
+# (próximo passo)
 
 # Validar
-MIRROR_USER=lucas-vidal uv run python -m memory mirror load \
+MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
+  uv run python -m memory mirror load \
   --query "me fale sobre quem é você"
 ```
 

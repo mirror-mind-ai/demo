@@ -1,0 +1,566 @@
+# seed.yaml
+# Memórias plantadas para Lucas Vidal, distribuídas em camadas e Travessias
+# ao longo dos últimos dezessete meses (desde a demissão em dezembro de 2024).
+#
+# Schema por memória:
+#   title:       título curto
+#   content:     conteúdo (markdown permitido)
+#   type:        decision | insight | tension | learning | pattern | commitment | reflection | journal
+#   layer:       self | ego | shadow
+#   journey:     (opcional) slug da Travessia
+#   persona:     (opcional) slug da persona
+#   tags:        (opcional) lista de tags
+#   created_at:  ISO 8601 UTC
+
+memories:
+
+  # =====================================================================
+  # SELF layer — realizações profundas de identidade, propósito, valores
+  # =====================================================================
+
+  - title: "Sair foi alívio, não dúvida"
+    content: |
+      Pedi demissão hoje. Esperava sentir medo ou luto. Senti alívio físico.
+      O corpo desceu de marcha pela primeira vez em três anos. Isso me diz
+      algo sobre o que eu estava sustentando sem perceber.
+    type: insight
+    layer: self
+    journey: pos-corporativo
+    tags: [demissão, corpo, transição]
+    created_at: "2024-12-18T19:30:00Z"
+
+  - title: "Não quero ser CTO de coisa nenhuma"
+    content: |
+      Conversa com Daniel hoje me confrontou com o óbvio: tenho recusado
+      ofertas de CTO há meses sem perceber que estou recusando. Não é
+      tática, é direção. Não quero esse papel, e isso muda o desenho da
+      próxima década.
+    type: insight
+    layer: self
+    journey: pos-corporativo
+    persona: thinker
+    tags: [identidade, direção]
+    created_at: "2025-02-09T22:10:00Z"
+
+  - title: "Ofício importa mais que título"
+    content: |
+      Voltei a ler refatoração do Fowler nesse fim de semana. O que me
+      moveu nele aos 23 é o mesmo que me move agora. Os papéis mudaram,
+      o ofício não. Isso é mais raiz do que eu admitia.
+    type: reflection
+    layer: self
+    persona: engineer
+    tags: [ofício, raiz]
+    created_at: "2025-04-26T17:45:00Z"
+
+  - title: "Família não é variável de ajuste"
+    content: |
+      Saí da terapia com Marina hoje com uma frase que não me larga:
+      "qualquer decisão de carreira é decisão familiar". Não é
+      sentimentalismo. É restrição estrutural. Aprendi isso tarde demais
+      pra fingir que não aprendi.
+    type: insight
+    layer: self
+    journey: vida-familiar
+    tags: [Marina, terapia, restrição]
+    created_at: "2025-11-22T20:00:00Z"
+
+  - title: "Construtor, não consultor"
+    content: |
+      A palavra "consultor" não cabe inteira na minha boca. Não é falsa
+      modéstia, é incômodo real com o que ela carrega. A palavra que
+      cabe melhor é "construtor", mesmo que ainda não tenha audiência
+      pra ela. Pelo menos sei o que estou recusando.
+    type: insight
+    layer: self
+    journey: pos-corporativo
+    persona: thinker
+    tags: [identidade, linguagem]
+    created_at: "2026-02-14T11:20:00Z"
+
+  - title: "Solidão é parte do caminho, não defeito"
+    content: |
+      Achei que construir sozinho fosse fase, algo a ser superado quando
+      a Conjunto crescesse. Não é fase. Construir solo tem uma solidão
+      própria, e tratá-la como problema a resolver me leva pra escolhas
+      ruins. Aceitar ela como parte abre o problema diferente.
+    type: insight
+    layer: self
+    journey: conjunto
+    persona: thinker
+    tags: [solidão, construção]
+    created_at: "2026-03-18T14:30:00Z"
+
+  - title: "Sustentação vence intensidade"
+    content: |
+      O dia em que escrevi mais e melhor no blog não foi o dia em que
+      acordei inspirado. Foi o dia em que dormi nove horas, almocei com
+      Marina, e sentei às 14h descansado. Intensidade queima. Sustentação
+      constrói. Esse é o eixo.
+    type: pattern
+    layer: self
+    tags: [ritmo, sustentação]
+    created_at: "2025-09-08T16:00:00Z"
+
+  - title: "Atalho que sai caro não é atalho"
+    content: |
+      Já vi isso em código, em time, em carreira. Toda vez que aceitei o
+      atalho aparente, paguei depois. A maturidade é reconhecer o atalho
+      pela forma, não pelo nome. Quando algo parece bom demais pra ser
+      verdade na engenharia, geralmente é dívida vestindo roupa nova.
+    type: insight
+    layer: self
+    persona: engineer
+    tags: [dívida, decisão]
+    created_at: "2025-07-03T10:15:00Z"
+
+  # =====================================================================
+  # EGO layer — decisões operacionais, observações do dia a dia
+  # =====================================================================
+
+  - title: "Limite de doze pessoas por encontro do Sustentação"
+    content: |
+      Tentei abrir um grupo de quatorze em março e foi pior pra todos.
+      Conversas fragmentadas, casos sem profundidade. Voltei pra sete.
+      Limite operacional do grupo é doze. Acima disso vira plateia.
+    type: decision
+    layer: ego
+    journey: sustentacao
+    persona: mentor
+    tags: [grupo, limite]
+    created_at: "2025-04-12T13:00:00Z"
+
+  - title: "Sexta-feira tarde, livre, não negociável"
+    content: |
+      Coloquei na cláusula da Klar. Sexta-feira tarde é minha. Marina
+      reage bem quando ela existe. Reage pior quando ela some. Disciplina
+      operacional, não preferência pessoal.
+    type: commitment
+    layer: ego
+    journey: vida-familiar
+    tags: [tempo, Marina]
+    created_at: "2026-01-15T08:00:00Z"
+
+  - title: "Sustentação custa R$ 1.800/mês por pessoa"
+    content: |
+      Comecei a R$ 1.200 em junho de 2025. Subi pra R$ 1.500 em outubro.
+      Subi pra R$ 1.800 em fevereiro de 2026 com os atuais (André, Carla
+      e Eduardo continuaram sem piscar). Próxima entrada será a R$ 2.200.
+      Preço cobre tempo, repertório e curadoria, não horas.
+    type: decision
+    layer: ego
+    journey: sustentacao
+    persona: strategist
+    tags: [preço, sustentação]
+    created_at: "2026-02-20T09:30:00Z"
+
+  - title: "Recusei a Antunes Capital"
+    content: |
+      Eles queriam que eu desenhasse o time de engenharia inteiro deles
+      e ficasse seis meses. R$ 200k no contrato. Recusei. Não era pelo
+      dinheiro; era porque o problema deles é falta de fundador técnico,
+      e isso não se resolve por consultor externo. Honesto com eles, e
+      o coordenador agradeceu.
+    type: decision
+    layer: ego
+    persona: strategist
+    tags: [recusa, proposta, antunes]
+    created_at: "2025-04-08T16:00:00Z"
+
+  - title: "Conjunto não vai ter app mobile"
+    content: |
+      Tirei do escopo permanentemente. Mobile web atende, app nativo
+      multiplica complexidade por três sem agregar valor pro tipo de
+      uso (encontros pré-agendados, fios de conversa assíncronos). Foco
+      é o que distingue construção solo de pessoa só com tempo.
+    type: decision
+    layer: ego
+    journey: conjunto
+    persona: engineer
+    tags: [escopo, simplicidade]
+    created_at: "2026-02-03T15:00:00Z"
+
+  - title: "Stripe e não Pagar.me na Conjunto"
+    content: |
+      Avaliei os dois. Pagar.me ganha em UX BR e em custos sobre PIX.
+      Stripe ganha em previsibilidade de produto, qualidade de docs,
+      gestão de subscription. Para os primeiros doze meses com base
+      pequena, previsibilidade vale mais. Posso reavaliar com escala.
+    type: decision
+    layer: ego
+    journey: conjunto
+    persona: engineer
+    tags: [pagamento, conjunto]
+    created_at: "2026-03-22T11:00:00Z"
+
+  - title: "NestJS para os serviços novos da Klar"
+    content: |
+      Avaliei Fastify direto, Hono, e NestJS. NestJS foi a escolha pela
+      estrutura clara, decorators familiares pra um time que vem de
+      Spring/Rails, e fricção menor de onboarding. Não é a opção mais
+      enxuta tecnicamente; é a opção que paga em adoção pelo time.
+    type: decision
+    layer: ego
+    journey: klar
+    persona: engineer
+    tags: [klar, nestjs, decisão arquitetural]
+    created_at: "2026-01-23T14:30:00Z"
+
+  - title: "Carla Diniz vai virar tech lead com peso"
+    content: |
+      Depois do code review hoje, vi com clareza. Ela explica decisão
+      arquitetural sem precisar usar a palavra "arquitetura". Mostra,
+      não cita. Em seis meses, é candidata natural a engineering manager
+      da Klar. Vou falar com Rafael (CTO) na próxima 1:1.
+    type: observation
+    layer: ego
+    journey: klar
+    persona: mentor
+    tags: [klar, carla, mentoria]
+    created_at: "2026-03-29T17:45:00Z"
+
+  - title: "Parei de fazer 1:1 obrigatórias na fintech"
+    content: |
+      Decisão mais impopular do meu período como head, e a mais
+      acertada. Obrigatoriedade matava a qualidade. Substituí por: cada
+      pessoa decide a cadência, eu garanto disponibilidade. Funcionou.
+      Virou post no blog dois anos depois.
+    type: decision
+    layer: ego
+    persona: mentor
+    tags: [fintech, 1:1, liderança]
+    created_at: "2025-08-30T09:15:00Z"
+
+  - title: "Sem gravação dos encontros do Sustentação"
+    content: |
+      Decisão deliberada. Encontro fica em sigilo porque os casos são
+      confidenciais. Gravar mudaria o que cada um traz. O custo é não
+      poder reaproveitar; o ganho é a profundidade real do que aparece.
+      Mantenho.
+    type: decision
+    layer: ego
+    journey: sustentacao
+    tags: [confidencialidade, sustentação]
+    created_at: "2025-07-20T12:00:00Z"
+
+  - title: "Boring stack ganha quando o builder é solo"
+    content: |
+      Quase fui pra Remix + Drizzle por modernidade. Voltei pra Next.js
+      + Prisma porque construir solo significa que cada peça tem que
+      caber na minha cabeça em três meses. Boring stack tem
+      documentação, tem Stack Overflow, tem AI razoavelmente treinada
+      em cima. Stack novo é luxo de time grande.
+    type: insight
+    layer: ego
+    journey: conjunto
+    persona: engineer
+    tags: [stack, conjunto, simplicidade]
+    created_at: "2025-12-28T10:30:00Z"
+
+  - title: "Decisão técnica geralmente é decisão política disfarçada"
+    content: |
+      Reunião na Klar hoje. Discussão era sobre RabbitMQ vs Kafka. Em
+      duas horas, percebi que a discussão real era quem ia operar a
+      infra. Quando alguém defende a opção mais complexa sem benefício
+      claro, a pergunta nunca é técnica. Aprendi a perguntar "quem
+      cuida disso depois?" antes de qualquer decisão de plataforma.
+    type: pattern
+    layer: ego
+    journey: klar
+    persona: engineer
+    tags: [klar, decisão, política]
+    created_at: "2026-02-26T18:00:00Z"
+
+  - title: "Tatiana quer entrar na Conjunto como sócia"
+    content: |
+      Café hoje à tarde. Ela trouxe a proposta organizada: 30% por entrada
+      em produto e design, no longo prazo. Não fechei. Vou pensar até o
+      fim de maio. Pontos a checar: alinhamento de visão (B2C, não B2B),
+      ritmo (ela vive em SP, eu em Floripa), e o que isso muda na
+      narrativa fundadora pros sete.
+    type: tension
+    layer: ego
+    journey: conjunto
+    persona: strategist
+    tags: [conjunto, tatiana, sociedade]
+    created_at: "2026-04-30T15:00:00Z"
+
+  - title: "Daniel sobre posicionamento da Conjunto"
+    content: |
+      Ligação de uma hora com Daniel. Frase que ficou: "não venda o
+      tamanho do grupo, venda o ritmo da sustentação". Mudei o draft
+      da landing essa noite. Tem razão, e ele me cutucou no ponto
+      certo: eu estava vendendo escassez, não substância.
+    type: learning
+    layer: ego
+    journey: conjunto
+    persona: strategist
+    tags: [daniel, posicionamento, landing]
+    created_at: "2026-03-11T22:30:00Z"
+
+  - title: "Recusei CTO interino na BlueCargo"
+    content: |
+      Floripa, quatro meses, R$ 45k/mês. Marina sabia, conversamos. Eu
+      disse não. Senti orgulho na hora, pânico duas semanas depois.
+      Continuo achando que foi certo, mas vou registrar que o pânico
+      foi real, pra reconhecer se ele voltar com a Klar.
+    type: decision
+    layer: ego
+    journey: pos-corporativo
+    persona: strategist
+    tags: [recusa, CTO, bluecargo]
+    created_at: "2025-07-15T19:00:00Z"
+
+  - title: "Caio Furtado provavelmente sai da empresa em junho"
+    content: |
+      Sessão individual hoje, ele falou pela primeira vez que está
+      considerando sair. Empresa em ritmo insustentável, time sem
+      proteção. Não corri pra aconselhar. Devolvi a pergunta dele
+      organizada e perguntei o que ele veria como saída honrosa.
+      Próxima sessão em três semanas.
+    type: observation
+    layer: ego
+    journey: sustentacao
+    persona: mentor
+    tags: [sustentação, caio, transição]
+    created_at: "2026-05-02T11:30:00Z"
+
+  - title: "Diego pediu standby de fim de semana"
+    content: |
+      Engineering manager da Klar pediu pra eu ficar disponível em fim
+      de semana de migração crítica em junho. Recusei. Cláusula
+      contratual prevê. Ofereci alternativa: passar a quinta-feira
+      inteira de revisão antes, e estar online em horário comercial
+      sexta. Aceitaram.
+    type: decision
+    layer: ego
+    journey: klar
+    tags: [klar, limite, fim de semana]
+    created_at: "2026-04-21T09:00:00Z"
+
+  - title: "Por que escrevo mensal, não semanal"
+    content: |
+      Tentei cadência semanal em julho de 2025. Quebrei em quatro
+      semanas. Mensal me permite escrever com peso, revisitar, deixar
+      descansar. Tração é menor, qualidade é maior. Audiência atual
+      veio dessa qualidade. Mantenho.
+    type: decision
+    layer: ego
+    journey: blog
+    persona: writer
+    tags: [blog, cadência]
+    created_at: "2025-08-22T14:00:00Z"
+
+  - title: "Conversa com Rafael sobre a renovação"
+    content: |
+      Rafael me passou a proposta de renovação por doze meses. R$ 18k/mês.
+      Foi direto: "preciso de você até o fim de 2027". Não decidi na
+      hora. Pedi até 31 de maio. Ele entendeu. Vamos conversar de novo
+      no dia 26.
+    type: tension
+    layer: ego
+    journey: klar
+    persona: strategist
+    tags: [klar, renovação, decisão pendente]
+    created_at: "2026-05-08T16:30:00Z"
+
+  - title: "Tema do próximo post pode ser sobre solidão de construção"
+    content: |
+      Insight do fim de semana. A solidão de construir solo é tema
+      pouco escrito, e eu vivi nas últimas seis semanas. Vou rascunhar
+      essa semana, deixar descansar duas semanas, e ver se sobrevive.
+      Tem risco de soar lamento; preciso encontrar o ângulo
+      operacional.
+    type: idea
+    layer: ego
+    journey: blog
+    persona: writer
+    tags: [blog, próximo post, solidão]
+    created_at: "2026-04-14T09:00:00Z"
+
+  - title: "Acordo de jantar em família às 19h30"
+    content: |
+      Estabelecido na quinta sessão de terapia. Sem celular, sem
+      laptop, sem trabalho na cabeça. Olívia pediu, Marina apoiou, eu
+      acatei. Tem semanas que escapa, mas a estrutura ajuda a voltar
+      pro centro.
+    type: commitment
+    layer: ego
+    journey: vida-familiar
+    tags: [jantar, rotina, Marina]
+    created_at: "2025-12-05T20:00:00Z"
+
+  - title: "Trama, gata, adotada"
+    content: |
+      Olívia escolheu o nome. Eu queria algo curto e neutro; ela quis
+      "Trama" porque "ela faz tramas, pai". Não argumentei. Marca de
+      como a filha já tem voz nas decisões da casa.
+    type: journal
+    layer: ego
+    journey: vida-familiar
+    tags: [Olívia, Trama, família]
+    created_at: "2023-05-14T18:00:00Z"
+
+  - title: "Decidi escrever a doc de decisões pra Klar ficar"
+    content: |
+      Vou escrever um documento de decisões arquiteturais (ADRs no
+      espírito, não no formato rígido) que fica no projeto depois que
+      eu sair. Cada decisão tomada no projeto, com contexto. Vai dar
+      trabalho, mas é a única forma do conhecimento não escapar com
+      a pessoa.
+    type: commitment
+    layer: ego
+    journey: klar
+    persona: engineer
+    tags: [klar, doc, ADR]
+    created_at: "2026-02-12T10:00:00Z"
+
+  - title: "Primeira venda recorrente fechada"
+    content: |
+      André entrou como primeiro membro do Sustentação em junho de
+      2025. Foi a primeira receita recorrente que faturei como solo.
+      Senti algo desproporcional pelo valor (R$ 1.200). Era o sinal:
+      modelo recorrente muda a relação com receita.
+    type: insight
+    layer: ego
+    journey: sustentacao
+    persona: strategist
+    tags: [sustentação, andré, recorrência]
+    created_at: "2025-06-04T12:00:00Z"
+
+  - title: "Helena escolhida como Psi de casal"
+    content: |
+      Marina e eu visitamos três antes. Escolhemos Helena Coelho. Ela
+      não tem método rígido, ouve longo, devolve com poucas palavras.
+      Mantemos com ela até hoje, sessão mensal. Vale cada centavo.
+    type: decision
+    layer: ego
+    journey: vida-familiar
+    tags: [terapia, helena, Marina]
+    created_at: "2025-12-08T11:00:00Z"
+
+  - title: "Decidi não usar emojis no blog"
+    content: |
+      Tentei dois posts com emojis em 2025 (eram comuns na newsletter).
+      Audiência me deu sinais sutis: menos compartilhamento, mais
+      contestação. Voltei pro texto sem emoji. Combina com o tom. Não
+      é regra moral, é leitura de audiência.
+    type: decision
+    layer: ego
+    journey: blog
+    persona: writer
+    tags: [blog, estética, emoji]
+    created_at: "2025-09-30T15:30:00Z"
+
+  - title: "Decisão de não cobrar em horas"
+    content: |
+      Saiu virou post depois. Cobrava R$ 350/hora em fevereiro. Mudei
+      pra cobrar por escopo/entrega em maio, com fórmula simples
+      (média de duração esperada x meta de receita por mês). Em três
+      contratos, faturei mais e trabalhei menos. Tema fica claro: hora
+      ancora você no input, escopo ancora no resultado.
+    type: insight
+    layer: ego
+    persona: strategist
+    tags: [precificação, modelo]
+    created_at: "2025-05-22T17:00:00Z"
+
+  - title: "Newsletter passou de mil assinantes"
+    content: |
+      Marco simbólico. Demorou onze meses pra chegar lá. Crescimento
+      veio do blog, não de aquisição paga. Sinal que o tom funciona
+      pro tipo certo de pessoa.
+    type: observation
+    layer: ego
+    journey: blog
+    persona: writer
+    tags: [blog, newsletter, marco]
+    created_at: "2025-11-18T08:00:00Z"
+
+  - title: "Olívia perguntou o que é 'consultor'"
+    content: |
+      "Pai, consultor é o quê?" Tive que explicar pra uma criança de
+      sete anos. A explicação que me saiu, organizada, soou mais
+      verdade do que a que eu dou pra adulto. "Ajudo gente que faz
+      software a fazer melhor, sem fazer pra eles." Vou usar essa.
+    type: insight
+    layer: ego
+    persona: thinker
+    tags: [Olívia, identidade]
+    created_at: "2025-10-19T19:30:00Z"
+
+  - title: "Investimento em hardware bom"
+    content: |
+      Comprei novo monitor 4K, cadeira boa, fones decentes em janeiro
+      de 2025. Foi caro (R$ 12k somando tudo). Marina relutou, eu
+      argumentei: oito horas por dia, todo dia, por anos. Pagou em
+      conforto físico no primeiro mês. Decisão de equipar quem você
+      paga, e quem paga é você.
+    type: decision
+    layer: ego
+    tags: [setup, casa]
+    created_at: "2025-01-25T10:00:00Z"
+
+  # =====================================================================
+  # SHADOW layer — tensões recorrentes, pontos cegos, padrões evitados
+  # =====================================================================
+
+  - title: "Comparação compulsiva com ex-colegas no LinkedIn"
+    content: |
+      Reparei essa semana que abri o LinkedIn três vezes pra olhar
+      perfil de Henrique (ex-colega virou CTO de unicórnio). Não tem
+      relação com a Conjunto, não tem relação com decisão. É puro
+      eco. Estou nomeando pra não fingir que não acontece.
+    type: tension
+    layer: shadow
+    journey: pos-corporativo
+    tags: [linkedin, comparação, ego]
+    created_at: "2026-03-25T22:00:00Z"
+
+  - title: "Trabalho mais quando me sinto financeiramente inseguro"
+    content: |
+      Padrão claro. Quando a reserva fica mais fina (saída de cliente,
+      mês com despesa imprevista), eu compenso trabalhando mais, não
+      cortando gasto ou ajustando rota. Marina já apontou. Não estou
+      mudando o padrão; estou pelo menos vendo.
+    type: pattern
+    layer: shadow
+    tags: [trabalho, dinheiro, padrão]
+    created_at: "2025-10-26T16:45:00Z"
+
+  - title: "Evito conversas sobre preço com clientes novos"
+    content: |
+      Aconteceu de novo na proposta do PicPay subsidiária. Demorei
+      seis dias pra mandar o orçamento. Demoro sempre. É medo de
+      desvalorizar, ou medo de ouvir não, ou as duas coisas. Vou
+      cronometrar a próxima e ver se consigo no mesmo dia.
+    type: tension
+    layer: shadow
+    persona: strategist
+    tags: [preço, evitamento, padrão]
+    created_at: "2025-09-15T11:30:00Z"
+
+  - title: "Escrevo demais quando me sinto perdido"
+    content: |
+      Padrão visível agora. Fases mais nubladas no negócio (final de
+      2024, julho de 2025, fevereiro de 2026), produzi mais conteúdo
+      que o normal. Escrever vira lugar seguro. Não é ruim em si, mas
+      esconde que algo está me escapando.
+    type: pattern
+    layer: shadow
+    persona: writer
+    tags: [escrita, evitamento, padrão]
+    created_at: "2026-03-30T20:00:00Z"
+
+  - title: "Hesito em afirmar a Conjunto pra quem não é do meio"
+    content: |
+      Encontrei uns amigos da Marina no aniversário. Ninguém do meio.
+      Quando perguntaram do que eu vivo, falei "consultoria" e desviei
+      da Conjunto inteiro. Tenho dificuldade em afirmar algo que ainda
+      não fatura. Preciso ver se isso vai sumir quando faturar, ou se
+      é uma dificuldade mais funda.
+    type: tension
+    layer: shadow
+    journey: pos-corporativo
+    tags: [identidade, conjunto, vergonha]
+    created_at: "2026-04-05T23:15:00Z"
