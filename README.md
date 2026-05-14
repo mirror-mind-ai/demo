@@ -161,9 +161,15 @@ O personagem aparecerá automaticamente quando `./install.sh` for executado sem 
 
 ---
 
-## Por que este repositório é privado por enquanto
+## Sobre este repositório
 
-Vai virar público quando os scripts e a documentação estiverem maduros
-o bastante para que qualquer pessoa curiosa possa clonar e experimentar
-o Mirror Mind com uma identidade já populada, antes de construir a
+Este é um repositório acompanhante do framework
+[Mirror Mind](https://github.com/viniciusteles/mirror). Existe para que
+qualquer pessoa curiosa possa clonar, rodar, e experimentar como uma IA
+com memória de identidade densa se comporta, antes de construir a
 própria.
+
+Os personagens aqui são ficcionais. Suas histórias, decisões,
+relacionamentos, projetos e tensões foram escritos como objetos
+literários para servir à demonstração. Qualquer semelhança com
+pessoas reais é coincidência.
