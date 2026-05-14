@@ -4,10 +4,10 @@ Ingest a directory of markdown files as attachments of a journey in the
 active Mirror home's database.
 
 Usage:
-    MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \\
-        python scripts/seed-attachments.py \\
+    python scripts/seed-attachments.py \\
         --journey blog \\
-        --dir users/lucas-vidal/attachments
+        --dir users/lucas-vidal/attachments \\
+        --mirror-home ~/.mirror-demo/lucas-vidal
 
 Each .md file becomes one attachment:
   - name: file stem (without .md), with hyphens kept
@@ -25,6 +25,7 @@ from pathlib import Path
 
 try:
     from memory import MemoryClient
+    from memory.config import default_db_path_for_home
 except ImportError:
     print(
         "ERROR: could not import 'memory'. Run with `uv run python ...` "
@@ -42,6 +43,15 @@ def parse_args() -> argparse.Namespace:
         required=True,
         type=Path,
         help="Directory containing .md files.",
+    )
+    p.add_argument(
+        "--mirror-home",
+        type=Path,
+        default=None,
+        help=(
+            "Explicit user home to write into. When set, the script writes to "
+            "<mirror_home>/memory.db regardless of MIRROR_HOME or DB_PATH."
+        ),
     )
     p.add_argument(
         "--dry-run",
@@ -77,7 +87,12 @@ def main() -> int:
     if args.dry_run:
         return 0
 
-    client = MemoryClient()
+    if args.mirror_home is not None:
+        db_path = default_db_path_for_home(args.mirror_home.expanduser())
+        client = MemoryClient(db_path=db_path)
+        print(f"Writing to: {db_path}")
+    else:
+        client = MemoryClient()
     ingested = 0
     for path in md_files:
         text = path.read_text(encoding="utf-8")

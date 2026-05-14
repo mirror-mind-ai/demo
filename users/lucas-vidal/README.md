@@ -53,18 +53,21 @@ mkdir -p ~/.mirror-demo/lucas-vidal
 cp -R users/lucas-vidal/identity/ ~/.mirror-demo/lucas-vidal/identity/
 
 # Popular o banco com a identidade
-MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
-  uv run python -m memory seed
+uv run python -m memory seed --mirror-home ~/.mirror-demo/lucas-vidal
 
 # Plantar as memórias
-MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
-  python scripts/seed-memories.py users/lucas-vidal/memories/seed.yaml
+uv run python scripts/seed-memories.py \
+  users/lucas-vidal/memories/seed.yaml \
+  --mirror-home ~/.mirror-demo/lucas-vidal
 
-# Ingerir os anexos do blog (quando disponíveis)
-# (próximo passo)
+# Ingerir os anexos do blog
+uv run python scripts/seed-attachments.py \
+  --journey blog \
+  --dir users/lucas-vidal/attachments \
+  --mirror-home ~/.mirror-demo/lucas-vidal
 
 # Validar
-MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \
+DB_PATH=~/.mirror-demo/lucas-vidal/memory.db \
   uv run python -m memory mirror load \
   --query "me fale sobre quem é você"
 ```

@@ -3,8 +3,8 @@
 Seed memories from a YAML file into the active Mirror home's database.
 
 Usage:
-    MIRROR_HOME=~/.mirror-demo MIRROR_USER=lucas-vidal \\
-        python scripts/seed-memories.py users/lucas-vidal/memories/seed.yaml
+    python scripts/seed-memories.py users/lucas-vidal/memories/seed.yaml \\
+        --mirror-home ~/.mirror-demo/lucas-vidal
 
 The YAML must conform to the schema documented in users/<slug>/memories/seed.yaml.
 
@@ -28,7 +28,7 @@ import yaml
 
 try:
     from memory import MemoryClient
-    from memory.storage import memories as memories_storage
+    from memory.config import default_db_path_for_home
 except ImportError:
     print(
         "ERROR: could not import 'memory'. Make sure you ran this with "
@@ -58,6 +58,15 @@ VALID_LAYERS = {"self", "ego", "shadow"}
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("seed_file", type=Path, help="Path to the YAML seed file.")
+    p.add_argument(
+        "--mirror-home",
+        type=Path,
+        default=None,
+        help=(
+            "Explicit user home to write into. When set, the script writes to "
+            "<mirror_home>/memory.db regardless of MIRROR_HOME or DB_PATH."
+        ),
+    )
     p.add_argument(
         "--dry-run",
         action="store_true",
@@ -114,7 +123,12 @@ def main() -> int:
         print(f"By type:  {dict(types)}")
         return 0
 
-    client = MemoryClient()
+    if args.mirror_home is not None:
+        db_path = default_db_path_for_home(args.mirror_home.expanduser())
+        client = MemoryClient(db_path=db_path)
+        print(f"Writing to: {db_path}")
+    else:
+        client = MemoryClient()
     inserted = 0
     layer_counts: Counter[str] = Counter()
     for m in memories:

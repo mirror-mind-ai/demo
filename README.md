@@ -56,17 +56,16 @@ Personagens de demonstração vivem em um Mirror home separado
 3. Rodar o seed para popular o banco:
 
    ```bash
-   MIRROR_HOME=~/.mirror-demo MIRROR_USER=<slug> \
-     uv run python -m memory seed
+   uv run python -m memory seed --mirror-home ~/.mirror-demo/<slug>
    ```
 
-4. Rodar os scripts complementares (memórias, anexos) que vivem em
-   `scripts/`.
+4. Rodar os scripts complementares (memórias, anexos) em `scripts/`,
+   apontando para o mesmo home com `--mirror-home`.
 
 5. Validar com:
 
    ```bash
-   MIRROR_HOME=~/.mirror-demo MIRROR_USER=<slug> \
+   DB_PATH=~/.mirror-demo/<slug>/memory.db \
      uv run python -m memory mirror load \
      --query "me fale sobre quem é você"
    ```
