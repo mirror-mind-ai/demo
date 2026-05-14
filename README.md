@@ -29,7 +29,9 @@ users/
       user/                     Perfil biográfico.
       personas/                 Lentes ativadas por roteamento.
       journeys/                 Travessias ativas.
-    attachments/                Anexos para ingestão (artigos, documentos).
+    attachments/                Anexos para ingestão, organizados por journey.
+      <journey-id>/             Subpasta = journey de destino dos anexos.
+        *.md                    Cada arquivo vira um attachment.
     memories/                   Memórias plantadas para popular o banco.
 ```
 
@@ -43,26 +45,22 @@ Personagens de demonstração vivem em um Mirror home separado
 (`~/.mirror-demo/`) para não se misturarem com seu Mirror pessoal
 (`~/.mirror/`).
 
-(Detalhes em construção. Procedimento previsto:)
-
 1. Clonar este repositório.
-2. Copiar a identidade do repo para o home de demos:
+2. Ter um workspace de framework Mirror Mind clonado em outro lugar
+   (ex: `~/Code/lucas-mirror`), com `uv sync` rodado e
+   `OPENROUTER_API_KEY` no `.env`.
+3. Rodar o install script de dentro do workspace:
 
    ```bash
-   mkdir -p ~/.mirror-demo/<slug>
-   cp -R users/<slug>/identity/ ~/.mirror-demo/<slug>/identity/
+   cd ~/Code/lucas-mirror
+   /path/to/mirror-mind-demo/scripts/install.sh <slug>
    ```
 
-3. Rodar o seed para popular o banco:
+   O script apaga o home existente em `~/.mirror-demo/<slug>` e
+   reconstrói tudo do zero: identidade, memórias, anexos. Passe
+   `--keep` se quiser preservar dados acumulados.
 
-   ```bash
-   uv run python -m memory seed --mirror-home ~/.mirror-demo/<slug>
-   ```
-
-4. Rodar os scripts complementares (memórias, anexos) em `scripts/`,
-   apontando para o mesmo home com `--mirror-home`.
-
-5. Validar com:
+4. Validar:
 
    ```bash
    DB_PATH=~/.mirror-demo/<slug>/memory.db \

@@ -45,28 +45,19 @@ O Lucas é um personagem de demonstração, então vai morar em um Mirror
 home separado (`~/.mirror-demo/`) para não se misturar com seu Mirror
 pessoal.
 
+A forma mais simples é rodar o script de install. Ele apaga o home
+existente (a menos que você passe `--keep`) e reconstrói tudo do zero a
+partir dos YAMLs e markdowns deste repositório.
+
 ```bash
-# Criar o home dele
-mkdir -p ~/.mirror-demo/lucas-vidal
+# A partir de um workspace de framework Mirror Mind (onde `uv run python -m memory` funciona):
+cd ~/Code/lucas-mirror
+~/Code/mirror-mind-demo/scripts/install.sh lucas-vidal
+```
 
-# Copiar a identidade
-cp -R users/lucas-vidal/identity/ ~/.mirror-demo/lucas-vidal/identity/
+Depois disso, valide:
 
-# Popular o banco com a identidade
-uv run python -m memory seed --mirror-home ~/.mirror-demo/lucas-vidal
-
-# Plantar as memórias
-uv run python scripts/seed-memories.py \
-  users/lucas-vidal/memories/seed.yaml \
-  --mirror-home ~/.mirror-demo/lucas-vidal
-
-# Ingerir os anexos do blog
-uv run python scripts/seed-attachments.py \
-  --journey blog \
-  --dir users/lucas-vidal/attachments \
-  --mirror-home ~/.mirror-demo/lucas-vidal
-
-# Validar
+```bash
 DB_PATH=~/.mirror-demo/lucas-vidal/memory.db \
   uv run python -m memory mirror load \
   --query "me fale sobre quem é você"
