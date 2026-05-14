@@ -9,7 +9,7 @@ Usage (from inside this repo's workspace, where `uv sync` was run):
     uv run python scripts/install.py <slug> --home <path>
     uv run python scripts/install.py <slug> --keep
 
-For convenience, the thin wrapper ./scripts/install.sh forwards to this script.
+For convenience, the thin wrapper ./install.sh forwards to this script.
 """
 
 from __future__ import annotations
@@ -244,22 +244,13 @@ def ingest_attachments(user_dir: Path) -> int:
 # Orchestration
 # ---------------------------------------------------------------------------
 
-def install(slug: str, home: Path | None, keep: bool) -> None:
+def install(slug: str, home: Path, keep: bool) -> None:
     user_dir = REPO_ROOT / "users" / slug
     if not user_dir.is_dir():
         sys.stderr.write(f"ERROR: character not found: {user_dir}\n")
         sys.exit(1)
 
-    if home is None:
-        home = Path.home() / ".mirror-demo" / slug
-    home = home.expanduser().resolve()
-
     print(f"Installing {slug} into {home}\n")
-
-    # Configure env so every subsequent framework call targets this home,
-    # regardless of what the workspace .env or the shell sets.
-    os.environ["MIRROR_HOME"] = str(home)
-    os.environ.pop("MIRROR_USER", None)
 
     if not keep and home.exists():
         print("Wiping existing home...")
@@ -282,13 +273,23 @@ def install(slug: str, home: Path | None, keep: bool) -> None:
         print(f"  Attachments: {attachments_total}")
     print()
     print("Validate with:")
-    print(f"  ./scripts/talk.sh {slug} \"me fale sobre quem é você\"")
+    print(f"  ./talk.sh {slug} \"me fale sobre quem é você\"")
 
 
 def main() -> int:
     args = parse_args()
+
+    # Resolve the runtime home and pin MIRROR_HOME BEFORE any import of the
+    # memory framework. memory.config computes DB_PATH at module load time,
+    # so the env var must be set first or the install will write to the
+    # wrong database.
+    home = args.home if args.home is not None else Path.home() / ".mirror-demo" / args.slug
+    home = home.expanduser().resolve()
+    os.environ["MIRROR_HOME"] = str(home)
+    os.environ.pop("MIRROR_USER", None)
+
     preflight_api_key()
-    install(args.slug, args.home, args.keep)
+    install(args.slug, home, args.keep)
     return 0
 
 

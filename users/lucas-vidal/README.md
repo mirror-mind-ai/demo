@@ -52,13 +52,13 @@ partir dos YAMLs e markdowns deste repositório.
 Da raiz deste repositório clonado:
 
 ```bash
-./scripts/install.sh lucas-vidal
+./install.sh lucas-vidal
 ```
 
 Depois disso, valide:
 
 ```bash
-./scripts/talk.sh lucas-vidal "me fale sobre quem é você"
+./talk.sh lucas-vidal "me fale sobre quem é você"
 ```
 
 ## Decisão central que ele está atravessando

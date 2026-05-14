@@ -5,16 +5,16 @@
 # specific question without opening an interactive Pi session.
 #
 # Usage:
-#   ./scripts/talk.sh <slug> "<query>"
+#   ./talk.sh <slug> "<query>"
 #
 # Examples:
-#   ./scripts/talk.sh lucas-vidal "me fale sobre quem é você"
-#   ./scripts/talk.sh lucas-vidal "quais são minhas Travessias?"
+#   ./talk.sh lucas-vidal "me fale sobre quem é você"
+#   ./talk.sh lucas-vidal "quais são minhas Travessias?"
 
 set -e
 
 if [ $# -lt 2 ]; then
-  echo "Usage: ./scripts/talk.sh <slug> \"<query>\"" >&2
+  echo "Usage: ./talk.sh <slug> \"<query>\"" >&2
   exit 2
 fi
 
@@ -22,12 +22,12 @@ SLUG="$1"
 shift
 QUERY="$*"
 
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 HOME_PATH="$HOME/.mirror-demo/$SLUG"
 
 if [ ! -d "$HOME_PATH" ] || [ ! -f "$HOME_PATH/memory.db" ]; then
   echo "ERROR: $SLUG is not installed at $HOME_PATH." >&2
-  echo "       Run: ./scripts/install.sh $SLUG" >&2
+  echo "       Run: ./install.sh $SLUG" >&2
   exit 1
 fi
 

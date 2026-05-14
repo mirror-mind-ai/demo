@@ -18,7 +18,10 @@ Novos personagens podem ser adicionados em outros idiomas e perfis sob
 
 ```text
 README.md                       Este arquivo. Galeria, instruções gerais.
-scripts/                        Scripts compartilhados (install, seed, valida).
+install.sh                      Wrapper que chama scripts/install.py.
+talk.sh                         Faz uma pergunta para um personagem.
+scripts/
+  install.py                    Lógica do install (preflight, seed, anexos).
 users/
   <slug>/                       Uma instalação completa por personagem.
     README.md                   Quem é, como instalar só esse personagem.
@@ -61,7 +64,7 @@ clone do framework.
 3. Instalar um personagem:
 
    ```bash
-   ./scripts/install.sh <slug>
+   ./install.sh <slug>
    ```
 
    O script apaga o home existente em `~/.mirror-demo/<slug>` e
@@ -71,7 +74,7 @@ clone do framework.
 4. Validar:
 
    ```bash
-   ./scripts/talk.sh <slug> "me fale sobre quem é você"
+   ./talk.sh <slug> "me fale sobre quem é você"
    ```
 
 5. Para uma experiência interativa via Pi, escreva um script wrapper
