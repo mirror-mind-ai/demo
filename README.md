@@ -1,9 +1,9 @@
 # Mirror Mind Demo
 
-Galeria de personagens fictícios para demonstrar o Mirror Mind. Cada personagem é um Mirror inteiro: identidade densa,
-Travessias ativas, memórias plantadas, anexos. Você clona, copia para
-`~/.mirror/<personagem>/`, roda o seed e tem uma instalação funcional para
-explorar.
+Galeria de personagens fictícios para demonstrar o Mirror Mind. Cada
+personagem é um Mirror inteiro: identidade densa, Travessias ativas,
+memórias plantadas, anexos. Você clona, roda dois comandos, e tem uma
+instalação funcional para explorar.
 
 ## Personagens disponíveis
 
@@ -14,77 +14,156 @@ explorar.
 Novos personagens podem ser adicionados em outros idiomas e perfis sob
 `users/<slug>/`.
 
+---
+
+## Pré-requisitos
+
+Você precisa de três coisas instaladas antes de começar:
+
+- **`uv`**, gerenciador de pacotes Python.
+- **`git`**, já presente na maior parte dos sistemas.
+- **Uma chave da API do OpenRouter** (`sk-or-v1-...`).
+
+Detalhes de instalação, verificação, custo estimado e como criar a chave
+estão em [`docs/prerequisites.md`](docs/prerequisites.md). Se você já
+está confortável com `uv` e tem uma chave OpenRouter à mão, pode pular
+essa leitura e seguir direto.
+
+## Instalação
+
+Da raiz do diretório onde você gosta de manter seus projetos:
+
+```bash
+# 1. Clonar o repositório
+git clone https://github.com/mirror-mind-ai/demo.git mirror-demo
+cd mirror-demo
+
+# 2. Instalar as dependências (baixa o framework Mirror Mind)
+uv sync
+
+# 3. Configurar a chave da API
+echo 'OPENROUTER_API_KEY=sk-or-v1-sua-chave-real-aqui' > .env
+
+# 4. Instalar um personagem
+./install.sh lucas-vidal
+
+# 5. Validar
+./talk.sh lucas-vidal "me fale sobre quem é você"
+```
+
+Se o passo 5 retornar o Mirror Mode ativo e a identidade do personagem
+carregada, está pronto.
+
+---
+
+## Comandos
+
+### `./install.sh <slug>`
+
+Instala (ou reinstala) um personagem. Cria o home runtime em
+`~/.mirror-demo/<slug>/`, copia a identidade do repositório, popula o
+banco de dados, planta as memórias e ingere os anexos.
+
+```bash
+./install.sh <slug>                    # padrão: apaga o home e reconstrói
+./install.sh <slug> --keep             # mantém o home existente, só adiciona o que faltar
+./install.sh <slug> --home <path>      # usa outro diretório como home runtime
+```
+
+O install é idempotente. Por padrão, apaga o home anterior antes de
+recomeçar, então você pode rodar quantas vezes quiser sem acumular
+sujeira. Use `--keep` se quiser preservar dados que foram acumulados
+durante o uso (conversas, memórias geradas em runtime, etc).
+
+Antes de qualquer trabalho pesado, o install verifica se a chave da API
+do OpenRouter está válida. Se não estiver, falha em meio segundo com
+mensagem clara.
+
+### `./talk.sh <slug> "<query>"`
+
+Envia uma pergunta única para o Mirror de um personagem, sem abrir
+sessão interativa. Útil para validar a instalação ou testar como o
+personagem responde a uma pergunta específica.
+
+```bash
+./talk.sh lucas-vidal "me fale sobre quem é você"
+./talk.sh lucas-vidal "quais são minhas Travessias?"
+```
+
+### Sessão interativa via Pi
+
+Para conversas longas ou demonstrações ao vivo, abra o
+[Pi](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent)
+configurado para o personagem. A forma mais simples é criar um wrapper
+na sua máquina:
+
+```bash
+#!/usr/bin/env bash
+# ~/mirror-demo.sh — abre o Pi como um personagem do demo
+cd /caminho/para/mirror-demo
+export MIRROR_HOME="$HOME/.mirror-demo/$1"
+unset MIRROR_USER
+shift
+exec pi "$@"
+```
+
+Aí basta:
+
+```bash
+~/mirror-demo.sh lucas-vidal
+```
+
+---
+
 ## Estrutura do repositório
 
 ```text
-README.md                       Este arquivo. Galeria, instruções gerais.
-install.sh                      Wrapper que chama scripts/install.py.
-talk.sh                         Faz uma pergunta para um personagem.
+README.md                       Este arquivo.
+install.sh                      Ponto de entrada para instalar um personagem.
+talk.sh                         Ponto de entrada para fazer uma pergunta.
+pyproject.toml                  Declara o framework Mirror Mind como dependência.
+docs/
+  prerequisites.md              O que ter instalado antes de começar.
 scripts/
-  install.py                    Lógica do install (preflight, seed, anexos).
+  install.py                    Lógica completa do install.
 users/
   <slug>/                       Uma instalação completa por personagem.
-    README.md                   Quem é, como instalar só esse personagem.
-    docs/biografia.md           Documento-fonte que gera toda a identidade.
+    README.md                   Quem é o personagem, como instalar.
+    docs/biografia.md           Documento-fonte que origina toda a identidade.
     identity/                   Estrutura espelhada de ~/.mirror/<slug>/identity/.
-      self/                     Soul, config.
+      self/                     Soul e config.
       ego/                      Behavior, identity, constraints.
       user/                     Perfil biográfico.
       personas/                 Lentes ativadas por roteamento.
       journeys/                 Travessias ativas.
     attachments/                Anexos para ingestão, organizados por journey.
-      <journey-id>/             Subpasta = journey de destino dos anexos.
-        *.md                    Cada arquivo vira um attachment.
+      <journey-id>/             Subpasta cujo nome é o ID da journey de destino.
+        *.md                    Cada arquivo vira um attachment buscável.
     memories/                   Memórias plantadas para popular o banco.
+      seed.yaml                 Arquivo único com a lista de memórias.
 ```
 
 A pasta `users/<slug>/` mapeia 1:1 com a estrutura de runtime
-`~/.mirror/<slug>/`. Para instalar um personagem, basta copiar
-`users/<slug>/identity/` para `~/.mirror/<slug>/identity/` e rodar `mirror seed`.
+`~/.mirror-demo/<slug>/`. O `install.sh` faz essa cópia e os passos
+adicionais de seed.
 
-## Como rodar um personagem
+---
 
-Personagens de demonstração vivem em um Mirror home separado
-(`~/.mirror-demo/`) para não se misturarem com seu Mirror pessoal
-(`~/.mirror/`).
+## Adicionar um novo personagem
 
-Este repositório é um workspace Python autônomo: traz o framework Mirror
-Mind como dependência via `pyproject.toml`. Você não precisa de outro
-clone do framework.
+1. Criar `users/<seu-slug>/` com a mesma estrutura interna usada pelo `lucas-vidal`.
+2. Editar os YAMLs de `identity/` (self, ego, user, personas, journeys).
+3. Opcionalmente, popular `memories/seed.yaml` e `attachments/<journey>/*.md`.
+4. Rodar `./install.sh <seu-slug>`.
+5. Validar com `./talk.sh <seu-slug> "uma pergunta"`.
 
-1. Clonar este repositório em qualquer lugar da sua máquina.
-2. Configurar (a partir da raiz do repositório clonado):
+O personagem aparecerá automaticamente quando `./install.sh` for executado sem argumentos.
 
-   ```bash
-   uv sync                              # instala o framework como dependência
-   cp .env.example .env                 # se houver; senão crie
-   # Edite .env e ponha OPENROUTER_API_KEY=...
-   ```
+---
 
-3. Instalar um personagem:
+## Por que este repositório é privado por enquanto
 
-   ```bash
-   ./install.sh <slug>
-   ```
-
-   O script apaga o home existente em `~/.mirror-demo/<slug>` e
-   reconstrói tudo do zero: identidade, memórias, anexos. Passe
-   `--keep` se quiser preservar dados acumulados.
-
-4. Validar:
-
-   ```bash
-   ./talk.sh <slug> "me fale sobre quem é você"
-   ```
-
-5. Para uma experiência interativa via Pi, escreva um script wrapper
-   na sua máquina (ex: `mirror-demo.sh <slug>`) que faz `cd` para este
-   repositório, exporta `MIRROR_HOME=~/.mirror-demo/<slug>`, e executa
-   `pi`.
-
-## Por que este repo é privado por enquanto
-
-Este repositório vai virar público quando os scripts e a documentação
-estiverem maduros o bastante para que qualquer pessoa curiosa possa clonar e
-experimentar o Mirror Mind com uma identidade já populada, antes de construir
-a própria.
+Vai virar público quando os scripts e a documentação estiverem maduros
+o bastante para que qualquer pessoa curiosa possa clonar e experimentar
+o Mirror Mind com uma identidade já populada, antes de construir a
+própria.
