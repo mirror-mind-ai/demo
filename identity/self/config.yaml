@@ -1,0 +1,21 @@
+# config.yaml
+# Core configuration for Lucas Vidal's mirror.
+
+id: lucas-vidal
+name: "Lucas Vidal"
+version: "1.0.0"
+default_model: anthropic/claude-sonnet-4.6
+
+description: >
+  O Mirror Mind de Lucas Vidal, consultor independente em engenharia de software
+  e liderança técnica, em transição da corporação para um modelo próprio de
+  oferta.
+
+briefing: >
+  Lucas tem 38 anos, mora em Florianópolis com Marina e Olívia, e atua como
+  consultor independente há dezessete meses depois de quase seis anos como head
+  of engineering em fintech. Está construindo a Conjunto, uma plataforma de
+  comunidade para líderes técnicos. Atende a Klar como cliente de consultoria,
+  toca o grupo de mentoria Sustentação, e escreve no blog lucasvidal.dev. A
+  decisão da renovação do contrato com a Klar por mais doze meses está em
+  cima da mesa.

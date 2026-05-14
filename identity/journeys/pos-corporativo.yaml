@@ -1,0 +1,110 @@
+# pos-corporativo.yaml
+# Travessia existencial da identidade pós-corporativa.
+
+journey_id: pos-corporativo
+name: Identidade pós-corporativa
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia existencial dos dezessete meses depois de Lucas deixar a posição de
+  head of engineering. Reconstrução da identidade profissional fora da estrutura
+  corporativa, sem perder o que aprendeu lá dentro.
+
+briefing: >
+  Ativa para questões de identidade ("quem eu sou agora"), comparação com
+  ex-colegas, dúvida sobre o caminho escolhido, sensação de descompasso entre
+  o que faz e o que dizia querer, ou momentos em que a Conjunto soa
+  desproporcional (pequena ou grande demais).
+
+context: |
+  # Identidade pós-corporativa
+
+  **Etapa atual:** dezessete meses fora. Já passou da fase inicial de
+  euforia e da fase mais aguda de dúvida. Está num platô onde a identidade
+  como consultor já cabe melhor, mas ainda não cabe inteira.
+
+  ## A travessia
+
+  Lucas pediu demissão da fintech em dezembro de 2024. A saída foi
+  consciente, planejada, mas o impacto sobre identidade foi maior do que
+  ele previu.
+
+  Por quase seis anos, "Lucas Vidal, head of engineering da [fintech]"
+  foi como ele se apresentava, como o mercado o reconhecia, e como ele
+  se via. Tirar essa camada deixou um vazio que ele aprendeu a
+  atravessar, mas que volta em ondas.
+
+  ## Marcos da travessia
+
+  - **Dezembro de 2024:** demissão. Sentimento dominante: alívio físico.
+  - **Janeiro a março de 2025:** vazio produtivo. Escreveu muito, fez
+    quase nenhuma reunião, recuperou o gosto pelo ofício. Período
+    financeiramente confortável (FGTS + reserva).
+  - **Abril a junho de 2025:** primeiros clientes. Aprendizado em
+    venda, precificação, contrato. Insegurança real: "será que tenho
+    público fora do nome da empresa?"
+  - **Julho de 2025:** primeira proposta recusada (CTO interino numa
+    startup local, paga muito bem). Recusou pela Conjunto. Sentiu
+    orgulho seguido de pânico.
+  - **Agosto a novembro de 2025:** fase difícil com Marina. Excesso de
+    trabalho, sensação dela de carregar a casa. Terapia de casal.
+    Recalibração.
+  - **Dezembro de 2025:** começou a esboçar a Conjunto. Primeiro
+    momento em que a transição deixou de ser "saída de algo" e virou
+    "construção de algo".
+  - **Janeiro de 2026:** entrou na Klar. Quatro dias por semana,
+    contrato bom. Lastro financeiro com tempo para a Conjunto.
+  - **Maio de 2026 (agora):** renovação da Klar em cima da mesa.
+    Tensão central.
+
+  ## Tensões internas
+
+  ### Comparação com ex-colegas
+
+  Vários ex-colegas seguiram dentro do mundo corporativo e viraram CTOs
+  de empresas grandes. LinkedIn os mostra com títulos pesados, salários
+  inferíveis, posições de influência. Lucas oscila entre "não estou
+  nisso" (orgulho) e "não estou nisso?" (dúvida).
+
+  A dúvida não é sobre dinheiro (ele saiu sabendo o custo). É sobre
+  legitimidade. Consultor que toca um grupo de mentoria e está
+  rascunhando uma plataforma soa, na voz dura interna, "menor" do que
+  CTO. Soa, em voz mais calma, mais coerente com o que ele decidiu
+  ser. As duas vozes coexistem.
+
+  ### A palavra "consultor"
+
+  Lucas ainda hesita um segundo antes de se apresentar como consultor.
+  A palavra é tecnicamente correta, mas culturalmente carrega coisas
+  que ele recusa (PowerPoint, Big Four, recomendações genéricas). Ele
+  não tem um substituto pronto. "Engenheiro independente" é
+  insuficiente. "Mentor" é parcial. "Construtor da Conjunto" ainda
+  não chegou.
+
+  ### Estrutura ausente
+
+  O mundo corporativo dava estrutura externa que ele não precisava
+  fabricar: reuniões fixas, urgências do produto, OKRs, ritmo do time.
+  Como solo, a estrutura toda é fabricada. Isso é liberdade real e
+  custo real ao mesmo tempo. Algumas semanas ele acorda sem rota
+  clara e leva manhãs para construir a rota daquele dia.
+
+  ## O que já foi atravessado
+
+  - O medo inicial de "será que tenho público?" foi respondido pela
+    tração do blog e pela demanda recorrente de mentoria.
+  - A pergunta "será que mantenho o ofício técnico vivo sem ter time?"
+    foi respondida pela Klar e pelo trabalho na Conjunto.
+  - A pergunta "será que isso aqui é coerente com Marina e Olívia?"
+    foi atravessada com terapia. Não está resolvida para sempre, mas
+    está atravessada.
+
+  ## O que ainda está aberto
+
+  - A identidade nova. Como ele se apresenta quando alguém pergunta
+    "o que você faz?" e ele tem cinco segundos para responder.
+  - A relação com o reconhecimento externo. Quanto disso ainda
+    importa, quanto disso já largou.
+  - A pergunta "quanto tempo é razoável para a Conjunto pegar
+    tração?" antes de ele se perguntar se errou o caminho.

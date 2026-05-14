@@ -1,0 +1,115 @@
+# conjunto.yaml
+# A plataforma de comunidade para líderes técnicos que Lucas está construindo.
+
+journey_id: conjunto
+name: Conjunto
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia de construção da Conjunto, plataforma de comunidade fechada e curada
+  para líderes técnicos brasileiros (tech leads, engineering managers, heads de
+  engenharia). Mais residência do que comunidade aberta, mais grupo do que curso.
+
+briefing: >
+  Ativa para qualquer pergunta sobre a plataforma Conjunto: roadmap, código,
+  arquitetura, decisões de produto, modelo de oferta, preço, posicionamento, ou
+  próximo passo. É a aposta de longo prazo de Lucas e a frente que mais carrega
+  esperança e dúvida.
+
+context: |
+  # Conjunto
+
+  **Etapa atual:** desenvolvimento de MVP, sem usuários pagantes ainda.
+  **Próximo marco:** abrir para os sete do Sustentação como fundadores em
+  julho de 2026 (cinco a oito semanas a contar de hoje).
+
+  ## O que é
+
+  Plataforma de comunidade fechada e curada para líderes técnicos. Membros
+  pagam mensalidade. Em troca, têm acesso a três coisas:
+
+  - Encontros mensais ao vivo, em grupo pequeno, conduzidos por Lucas, com
+    foco em casos reais que cada um traz.
+  - Biblioteca curada de conteúdo (artigos próprios e selecionados,
+    transcrições de encontros anteriores, notas de leitura).
+  - Espaço assíncrono de conversa entre os membros, moderado pelo Lucas,
+    estruturado por tema (não tem timeline tipo feed; tem fios que
+    persistem).
+
+  Não é Slack aberto. Não é curso. Não é newsletter premium. O equivalente
+  mais próximo seria uma residência intelectual mensal com pares.
+
+  ## Stack técnico
+
+  - Frontend: Next.js (App Router), hospedado em Vercel.
+  - Backend: tRPC sobre Next.js para a maior parte; serviços auxiliares
+    (jobs assíncronos, ingestão de conteúdo, notificações) em Fly.io.
+  - Banco: PostgreSQL com Prisma.
+  - Auth: próprio, baseado em magic link via email.
+  - Pagamento: Stripe.
+
+  ## Decisões já tomadas
+
+  - **Stack escolhido** (Next.js + tRPC + Prisma): boring stack
+    contemporâneo. Construído solo, em três meses, precisa caber na
+    cabeça de uma pessoa.
+  - **Modelo de membership recorrente**, não venda única.
+  - **Comunidade fechada**, com curadoria de entrada (entrevista
+    rápida), não open signup.
+  - **Sem feed**, sem timeline. Conversa é em fios temáticos.
+  - **Encontros não ficam gravados**. Decisão deliberada para preservar
+    a natureza efêmera e a confidencialidade.
+  - **Tamanho de cada grupo limitado a doze pessoas** por encontro.
+  - **Preço inicial não decidido**, mas faixa estudada é R$ 290 a R$ 490
+    mensais.
+
+  ## Decisões em aberto
+
+  - **Preço final** (faixa estudada, mas não cravada).
+  - **Lançamento como B2C ou B2B**. B2C é mais coerente com o que Lucas
+    quer servir. B2B (empresas pagando por seus líderes) traz volume mas
+    distorce a relação.
+  - **Sócia ou solo.** Tatiana Lara, designer de produto, é candidata a
+    sócia. Conversa em andamento, sem decisão.
+  - **Quando abrir inscrições para fora do Sustentação.** Os sete são
+    fundadores. Depois disso, abrir para a lista do blog em ondas? Por
+    referência? Convite direto?
+  - **Velocidade de produção de conteúdo curado**, dado que Lucas é a
+    fonte e tem outras frentes ativas.
+
+  ## Tensões internas
+
+  A maior é o conflito entre a Conjunto e a Klar. A Klar paga as contas;
+  a Conjunto é a aposta. A renovação da Klar em cima da mesa amplifica a
+  tensão: se ele aceitar, a Conjunto fica em ritmo mínimo por mais um
+  ano.
+
+  A segunda é solidão de construção. Construir sozinho deixa cada decisão
+  pendente em loop interno, sem voz que contraponha. Daniel Marques é
+  presença ocasional. Tatiana, se entrar, mudaria isso.
+
+  A terceira é o conflito entre coerência e tração. Cada vez que Lucas
+  pensa em acelerar a Conjunto (mais marketing, mais conteúdo, mais
+  tamanho de grupo, mais sessões por mês), bate na tensão de que isso
+  empurraria a oferta para um lugar que ele recusa: comunidade-produto
+  de consumo, em vez de residência intelectual.
+
+  ## Roadmap de curto prazo
+
+  - **Semana 1-2:** fechar fluxo de cadastro com magic link + Stripe.
+  - **Semana 3:** ingestão de conteúdo (artigos do blog + transcrições
+    de encontros anteriores) com indexação semântica.
+  - **Semana 4:** estrutura de fios temáticos. Modelo de dados, página
+    de listagem, página de fio individual, criação de fio, resposta em
+    fio.
+  - **Semana 5-6:** preparação do convite aos sete do Sustentação.
+    Onboarding, primeiros fios sementes, pagamento.
+  - **Julho/26:** abertura aos fundadores.
+
+  ## O que está fora do escopo
+
+  - Mobile nativo. Mobile web suficiente.
+  - Feed de notificações por push. Email basta.
+  - Chat em tempo real. Conversa é assíncrona em fios.
+  - Vídeo gravado dos encontros. Decisão explícita, não falta.

@@ -1,0 +1,99 @@
+# sustentacao.yaml
+# O grupo de mentoria recorrente para líderes técnicos.
+
+journey_id: sustentacao
+name: Sustentação
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia do grupo de mentoria recorrente para líderes técnicos brasileiros.
+  Sete membros, encontro mensal em grupo + sessão individual mensal.
+  Onze meses de operação contínua.
+
+briefing: >
+  Ativa para qualquer assunto relacionado ao grupo Sustentação: preparação
+  ou síntese de encontro, casos trazidos pelos mentorados, evolução individual
+  de cada um, dinâmica do grupo, ou expansão da oferta.
+
+context: |
+  # Sustentação
+
+  **Etapa atual:** operação estável, onze meses contínuos. Modelo provado,
+  margem decente, satisfação alta. Núcleo de validação da Conjunto.
+
+  ## O que é
+
+  Grupo de mentoria recorrente para sete líderes técnicos brasileiros
+  (tech leads, engineering managers, heads de engenharia em scale-ups
+  e empresas médias).
+
+  Cada membro paga R$ 1.800/mês por:
+
+  - Um encontro mensal em grupo de duas horas, conduzido pelo Lucas.
+  - Uma sessão individual mensal de uma hora.
+  - Acesso assíncrono ao Lucas via WhatsApp em janela limitada (uma
+    semana antes e uma depois de cada sessão).
+
+  Receita mensal: R$ 12.600. Custo operacional zero (a estrutura inteira
+  é o tempo do Lucas).
+
+  ## Os sete
+
+  - **André Lemos:** engineering manager numa scale-up de saúde
+    em São Paulo. Atravessando promoção a head pendente há quatro meses.
+    Sente que a empresa está adiando.
+  - **Beatriz Santos:** tech lead numa fintech de Floripa. Engenheira
+    forte, está aprendendo a delegar. Tem tendência a fazer o trabalho
+    em vez de cuidar de quem faz.
+  - **Caio Furtado:** head de plataforma numa empresa B2B em Belo
+    Horizonte. Time pequeno (oito pessoas), pressão alta. Está
+    considerando sair.
+  - **Diana Lopes:** engineering manager num produto SaaS em Curitiba.
+    Veio do produto, é a única do grupo que não começou como
+    engenheira. Carrega impostor síndrome técnico.
+  - **Eduardo Camargo:** tech lead numa empresa de cripto em Recife.
+    Tem mais energia que método. Trabalho excelente, sustentação
+    irregular.
+  - **Felipe Andrade:** head de engenharia numa scale-up de RH em São
+    Paulo. Mais experiente do grupo. Atravessando reorganização de
+    estrutura (quatro squads viraram dois).
+  - **Gabriela Mendes:** engineering manager numa edtech em Porto
+    Alegre. Está construindo time do zero, contratou cinco em três
+    meses. Está exausta.
+
+  ## Cadência
+
+  - **Encontro em grupo:** primeiro sábado do mês, 9h às 11h, Zoom.
+  - **Sessões individuais:** distribuídas ao longo do mês, agendadas
+    diretamente entre o Lucas e cada um.
+  - **Próximo encontro em grupo:** sábado, 6 de junho.
+
+  ## Modelo de condução
+
+  Encontros em grupo são em formato de roda. Cada membro chega com um
+  caso que está atravessando (não obrigatório, mas cultivado). Discussão
+  é entre eles, Lucas modera. Lucas só entra quando o grupo está
+  rodando em loop ou quando alguém precisa de provocação clara.
+
+  Sessões individuais são mais técnicas e operacionais. Cada um tem
+  sua tensão central, e Lucas trabalha em continuidade mês a mês.
+
+  ## Decisões em aberto
+
+  - **Expandir o grupo para mais sete?** Ofertas de mentoria chegam
+    com regularidade. Doze pessoas em um encontro é o limite que
+    Lucas estabeleceu. Abrir um segundo grupo é possível mas dobra a
+    carga.
+  - **Os sete viram fundadores da Conjunto?** Plano original. Mantido.
+  - **Preço sobe em 2027?** Discussão pendente.
+
+  ## Notas em curso
+
+  - O André está oscilando entre paciência e raiva pela promoção
+    adiada. Próxima sessão dele é 22 de maio.
+  - A Beatriz teve um avanço claro na última sessão sobre delegação.
+    Acompanhar.
+  - O Caio precisa decidir até junho se sai ou fica.
+  - A Gabriela precisa de um espaço de descompressão antes de
+    qualquer tema operacional.

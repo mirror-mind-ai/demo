@@ -1,0 +1,111 @@
+# klar.yaml
+# Travessia de consultoria atual com a Klar.
+
+journey_id: klar
+name: Klar
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia de consultoria com a Klar, scale-up de logística no Rio. Lucas
+  apoia a engenharia em migração de monólito Node.js em JavaScript legado
+  para serviços modulares em TypeScript com NestJS, sem parar entregas.
+
+briefing: >
+  Ativa para qualquer pergunta sobre o contrato com a Klar, a migração técnica
+  em curso, decisões de arquitetura desse cliente, pessoas do time deles, a
+  renovação de doze meses em cima da mesa, ou tensões da carga semanal.
+
+context: |
+  # Klar
+
+  **Etapa atual:** quarto mês de seis no contrato original. Renovação de
+  doze meses em cima da mesa, resposta pedida até o fim de maio de 2026.
+
+  ## Sobre o cliente
+
+  Scale-up brasileira de logística baseada no Rio. Operação consolidada,
+  receita recorrente, time de engenharia de cerca de 45 pessoas
+  distribuídas em quatro squads.
+
+  CTO é Rafael Sousa, ex-Globo Tech, conhecido na comunidade. Lucas
+  reporta direto pra ele. Tech lead da migração é Carla Diniz, sênior,
+  cinco anos de casa.
+
+  ## O problema técnico
+
+  Monólito Node.js + Express + JavaScript construído em 2018. Cresceu
+  para 380 mil linhas, atravessado por toda a operação. Está saudável
+  na maior parte, mas três regiões de domínio (faturamento, rota e
+  rastreamento) acumularam complexidade que trava entregas.
+
+  Decisão estratégica: extrair essas três regiões como serviços
+  modulares em TypeScript com NestJS, atrás de um gateway. Sem big bang,
+  sem freeze de produto. Strangler fig pattern.
+
+  ## Papel do Lucas
+
+  - Diagnóstico técnico inicial (feito em janeiro).
+  - Acompanhamento semanal das frentes de extração (faturamento foi
+    primeira, está em produção desde abril; rota é a próxima).
+  - Mentoria dos tech leads (Carla e dois pares dela).
+  - Code review estratégico em pontos de fronteira.
+  - Documento de decisões arquiteturais que vai ficar no projeto depois
+    da saída dele.
+
+  Carga: quatro dias por semana, oito horas por dia, remoto. Sexta-feira
+  livre por contrato. Trabalho denso, técnico, com pessoas boas.
+
+  ## Decisões arquiteturais tomadas
+
+  - **Strangler fig** em vez de reescrita.
+  - **NestJS** como framework dos novos serviços (familiar para o time,
+    estrutura clara, decorators sob controle, não experimento).
+  - **gRPC entre serviços, REST entre serviço e gateway**.
+  - **Contracts em proto compartilhado**, versionado.
+  - **PostgreSQL por serviço**, sem banco compartilhado entre os três.
+  - **Eventos em RabbitMQ** para integrações assíncronas, não Kafka
+    (volume não justifica, complexidade de operação justifica menos
+    ainda).
+  - **Testes de contrato** entre serviços antes de qualquer merge na
+    main.
+
+  ## Pessoas
+
+  - **Rafael Sousa (CTO):** decide. Direto, exigente, justo. Confia em
+    Lucas.
+  - **Carla Diniz (tech lead):** principal interlocutora. Talento real,
+    está crescendo na liderança. Lucas faz mentoria informal com ela em
+    paralelo (não cobrado).
+  - **Bruno Tavares e Helena Saito (tech leads dos outros pares):**
+    bons engenheiros, ainda em formação como líderes técnicos.
+  - **Diego Almeida (engineering manager geral):** ponto de contato
+    operacional. Inteligente, mas tem dificuldade de delegar.
+
+  ## Renovação em cima da mesa
+
+  Rafael propôs renovação por doze meses começando em agosto, com
+  reajuste para 18 mil/mês (hoje é 14 mil/mês). Carga igual: quatro
+  dias por semana, oito horas. Saída flexível com 30 dias se necessário.
+
+  **A favor:** lastro financeiro (216 mil em doze meses), problema
+  técnico continua interessante, time bom, mentoria com Carla rende.
+
+  **Contra:** congela a Conjunto pelo período. Renovar é, na prática,
+  adiar a transição para um modelo próprio por mais um ano.
+
+  Resposta pedida até 31 de maio.
+
+  ## Tensões internas
+
+  Cansaço acumulado de quatro meses denso. Quatro dias por semana de
+  oito horas é mais do que ele queria operar como solo. O modelo
+  original previa três dias.
+
+  Sensação ambígua de estar fazendo trabalho importante para uma
+  empresa que não é a dele. Bom para a carreira e a reputação, mas a
+  Conjunto fica órfã desse tempo.
+
+  Conversa pendente com Marina sobre essa renovação. Ela já sinalizou
+  que vê com cuidado: a renovação pagaria conforto, mas ela percebeu
+  ele mais leve nos últimos meses por estar mais perto da Conjunto.

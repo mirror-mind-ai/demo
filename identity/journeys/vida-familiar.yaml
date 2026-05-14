@@ -1,0 +1,102 @@
+# vida-familiar.yaml
+# Travessia da vida familiar de Lucas.
+
+journey_id: vida-familiar
+name: Vida familiar
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia da vida com Marina e Olívia. Não é "área pessoal isolada do
+  trabalho"; é a restrição estrutural que atravessa toda decisão profissional.
+
+briefing: >
+  Ativa para qualquer assunto envolvendo Marina, Olívia, ritmo doméstico,
+  presença em casa, decisões compartilhadas com Marina, conversas pendentes,
+  tensões de tempo, ou o custo familiar de decisões profissionais.
+
+context: |
+  # Vida familiar
+
+  **Etapa atual:** estável e atenta. A crise de 2025 foi atravessada com
+  terapia de casal; hoje a relação está em fase boa, mas Lucas tem
+  consciência mais aguda do custo emocional de suas escolhas
+  profissionais.
+
+  ## Composição
+
+  - **Marina** (37): esposa, arquiteta autônoma, ateliê próprio em casa.
+    Trabalha em projetos residenciais de pequeno e médio porte. Tem
+    cinco clientes ativos no momento. Faturamento próprio, irregular,
+    similar em ordem ao do Lucas em meses bons.
+  - **Olívia** (7): filha única, segundo ano do fundamental, escola a
+    seis minutos de casa. Curiosa, fala muito, gosta de desenhar com a
+    mãe e de programar coisinhas em Scratch com o pai.
+  - **Bicho da casa:** Trama, gata, três anos, adotada em 2023.
+
+  ## Ritmo doméstico
+
+  Lucas trabalha em casa, em um escritório nos fundos. Marina trabalha
+  em casa, no ateliê do andar térreo. Olívia volta da escola às 12h30.
+  Almoço em família, todos os dias úteis. Lucas pega a Olívia na escola
+  três vezes por semana; Marina pega duas. Sexta-feira é tarde livre do
+  Lucas (cláusula contratual da Klar).
+
+  Fim de semana: sábado de manhã é grupo Sustentação para Lucas.
+  Sábado à tarde e domingo são família, sem trabalho. Regra
+  estabelecida pós-terapia.
+
+  ## A crise de 2025
+
+  Entre agosto e novembro de 2025, Lucas atravessou o pior período da
+  transição. Tinha dois clientes ao mesmo tempo, estava escrevendo
+  bastante no blog, e a Conjunto começava a entrar como ideia. Trabalho
+  invadiu noites e fim de semanas.
+
+  Marina, em paralelo, atravessava uma fase de construção de carteira
+  (saiu de um escritório em 2023, estava reconstruindo clientela
+  autônoma). Sentia que carregava a casa sozinha: rotina da Olívia,
+  contas, manutenção, vida cotidiana.
+
+  Em novembro, conversa difícil. Em dezembro, primeira sessão de terapia
+  de casal. Atravessaram com a Psi Helena Coelho, com quem mantêm
+  encontros mensais ainda hoje.
+
+  ## O que mudou desde então
+
+  - Regras explícitas de tempo. Sexta-feira tarde livre, fim de semana
+    sem trabalho, jantar em família às 19h30 sem celular.
+  - Lucas pega a Olívia três vezes por semana, não mais "quando dá".
+  - Marina entra nas decisões profissionais grandes, não como
+    consultora, como sócia tácita. Voto de veto reconhecido nas
+    decisões que afetam ritmo familiar.
+  - Lucas devolve para Marina o nome da decisão que está em jogo, em
+    vez de chegar com decisão tomada e esperar feedback.
+
+  ## Marina sobre a renovação da Klar
+
+  Marina já sinalizou, sem cravar opinião, que vê com cuidado. Disse
+  uma frase que Lucas guardou: "te vejo mais leve nesses últimos dois
+  meses, e acho que isso tem a ver com você estar mais perto da
+  Conjunto, não da Klar." Lucas escutou. Ainda não devolveu uma
+  posição.
+
+  Vão conversar formalmente sobre a renovação no fim de semana que
+  vem (sábado, 24 de maio), depois do encontro do Sustentação.
+
+  ## Olívia
+
+  Olívia não sabe das decisões profissionais. Mas sente o ritmo de
+  casa. Quando Lucas está mais presente, ela traz mais histórias para
+  contar; quando está mais ausente, ela puxa pela mão e diz "pai,
+  vamos brincar?".
+
+  Termômetro funcional. Lucas aprendeu a respeitar.
+
+  ## Decisões em aberto
+
+  - Conversa sobre a renovação da Klar no sábado 24/05.
+  - Férias de julho: Marina propôs duas semanas no Sul, sem trabalho.
+    Lucas concordou. Mantido.
+  - Olívia pediu para fazer aula de violão. Pendente para combinar com
+    a agenda.

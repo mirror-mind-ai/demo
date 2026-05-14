@@ -1,0 +1,98 @@
+# blog.yaml
+# Travessia editorial do blog técnico de Lucas (lucasvidal.dev).
+
+journey_id: blog
+name: Blog (lucasvidal.dev)
+status: active
+version: "1.0.0"
+
+description: >
+  Travessia editorial do blog técnico de Lucas. Eixos: engenharia, liderança
+  técnica e vida prática de consultor solo. Cadência mensal aproximada.
+
+briefing: >
+  Ativa para qualquer assunto editorial: rascunhos de artigo, escolha de
+  título, revisão de texto, pauta, newsletter, planejamento de série de
+  posts, ou busca semântica em artigos anteriores.
+
+context: |
+  # Blog (lucasvidal.dev)
+
+  **Etapa atual:** operação estável, cadência mensal aproximada.
+
+  ## O que é
+
+  Blog técnico próprio em lucasvidal.dev. Conteúdo autoral, sem
+  publicidade, sem afiliação, sem chamada de oferta paga (a Conjunto e o
+  Sustentação são mencionados apenas em página separada, nunca dentro do
+  post).
+
+  ## Tração atual
+
+  - Oito mil leitores únicos por mês.
+  - Mil e quinhentos assinantes na newsletter.
+  - Comunidade pequena que comenta com critério.
+  - Maior parte da audiência veio organicamente, via compartilhamento
+    em comunidades técnicas brasileiras.
+
+  ## Eixos editoriais
+
+  - **Engenharia.** Refatoração, arquitetura, migração, testes,
+    decisões técnicas, código.
+  - **Liderança técnica.** Gestão de times, mentoria, decisão de
+    pessoas, diagnóstico organizacional, processos de desenvolvimento.
+  - **Vida de consultor solo.** Precificação, contrato, posicionamento,
+    construção de produto próprio, finanças irregulares, identidade
+    pós-corporativa.
+
+  ## Artigos plantados (anexos no banco)
+
+  - **"Refatorar arquitetura sem parar de entregar"** (engenharia)
+  - **"Quatro meses convertendo um monólito Node em serviços tipados"**
+    (engenharia, derivado da experiência com a Klar mas anonimizado)
+  - **"Decisões reversíveis e decisões irreversíveis"** (engenharia,
+    aplicado em código e em vida)
+  - **"Por que parei de fazer 1:1 obrigatórias"** (liderança técnica)
+  - **"Tech lead não é engineering manager pequeno"** (liderança técnica)
+  - **"O custo invisível da gerência sem método"** (liderança técnica)
+  - **"Por que parei de cobrar por hora"** (vida de consultor)
+  - **"A primeira proposta que recusei e por quê"** (vida de consultor)
+  - **"Identidade pós-corporativa, dezessete meses depois"** (vida de
+    consultor)
+
+  ## Próximos posts em rascunho
+
+  - Algo sobre o trade-off entre coerência editorial e tração (não
+    iniciado).
+  - Algo sobre a relação entre escrever e mentorar (rascunho de uma
+    página).
+  - Post sobre a Conjunto (planejado para quando lançar).
+
+  ## Princípios editoriais
+
+  - Toda peça começa por uma observação real, não por uma tese.
+  - Frases médias como base, frases curtas como pontuação de peso.
+  - Opinião com base, exemplo antes de princípio.
+  - Sem "em resumo", sem "três pontos importantes", sem CTA no fim.
+  - Negrito só para uma ideia central por bloco, no máximo duas no
+    artigo inteiro.
+  - Sem emojis em texto longo.
+  - Cita Beck, Fowler, Hunt quando o argumento precisa, nunca para
+    mostrar leitura.
+
+  ## Newsletter
+
+  Boletim mensal com o artigo do mês e uma nota curta de até trezentas
+  palavras com algo que Lucas está atravessando profissionalmente.
+  Lista de mil e quinhentos. Taxa de abertura de cerca de 52%, taxa de
+  clique de 18%.
+
+  ## Tensões editoriais
+
+  - Trade-off entre escrever sobre o que está vivo agora (a Conjunto,
+    a Klar, a transição) e proteger a privacidade dos envolvidos.
+    Resolvido até aqui por anonimização cuidadosa.
+  - Tentação de produzir mais para crescer tração, com custo na
+    qualidade. Resistida.
+  - Sensação ocasional de que está escrevendo para se convencer das
+    decisões que toma. Sinal de que precisa pausar antes de publicar.

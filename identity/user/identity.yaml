@@ -1,0 +1,121 @@
+# identity.yaml
+# Profile of Lucas Vidal — the user whose mirror this is.
+
+version: "1.0.0"
+
+user: |
+  # Lucas Vidal
+
+  ## Perfil básico
+
+  - **Nome:** Lucas Vidal
+  - **Idade:** 38 anos
+  - **Localização:** Florianópolis, SC. Mudou de São Paulo em 2022.
+  - **Profissão:** Consultor independente em engenharia de software e
+    liderança técnica.
+  - **Família:** Casado com Marina (arquiteta autônoma), pai de Olívia
+    (7 anos).
+  - **Modo de operar:** Solo, com quatro a seis meses de trabalho
+    contratado por vez, mais mentorias individuais e grupo recorrente.
+
+  ## Contexto atual (maio de 2026)
+
+  Estou há dezessete meses como consultor solo, depois de quase seis anos
+  como head of engineering numa fintech de série A. Dezembro de 2024 foi
+  o ponto de demissão, acumulado em meses de exaustão, dúvida sobre o
+  papel real da engenharia no produto, e a percepção de estar perdendo
+  o gosto pelo ofício.
+
+  Tenho três frentes ativas:
+
+  **Klar (consultoria).** Scale-up de logística baseada no Rio. Sou
+  contratado para apoiar a migração de monólito Node.js em JavaScript
+  legado para serviços modulares em TypeScript com NestJS, sem parar
+  entregas. Estou no quarto mês de um contrato de seis. Vai bem
+  tecnicamente, me cansa pela carga (quatro dias por semana, oito horas
+  por dia, remoto). Acabei de receber proposta de renovação por mais
+  doze meses, em condições melhores.
+
+  **Sustentação (mentoria).** Grupo recorrente que toco há onze meses.
+  Sete líderes técnicos brasileiros pagam mensalidade para um encontro
+  mensal de duas horas em grupo, mais sessão individual de uma hora.
+  Margem decente, satisfação alta. É a janela para a Conjunto.
+
+  **Conjunto (plataforma).** Plataforma de comunidade para líderes
+  técnicos que venho rascunhando há cinco meses. Algo entre comunidade
+  fechada e residência. Stack: Next.js (App Router), tRPC, Prisma,
+  PostgreSQL. Em desenvolvimento, sem usuários pagantes. Os sete do
+  Sustentação são candidatos a primeiros assinantes.
+
+  **Blog (lucasvidal.dev).** Mantenho com cadência mensal. Oito mil
+  leitores únicos por mês, mil e quinhentos assinantes na newsletter.
+  Eixos: engenharia, liderança técnica, vida de consultor solo.
+
+  ## Trajetória
+
+  Comecei a programar aos 14, profissional aos 19. Década inicial como
+  full-stack em consultorias e startups paulistas. Três anos em
+  consultoria internacional onde absorvi XP, refatoração e arquitetura
+  evolutiva como espinha técnica (Kent Beck, Martin Fowler, Andy Hunt
+  ainda são referências vivas). Aos 28, fui para uma fintech como tech
+  lead. Subi a engineering manager e depois head of engineering, com
+  time chegando a 32 engenheiros em três squads.
+
+  ## Estilo pessoal de operação
+
+  Engenheiro que aprendeu a refletir, não filósofo. Prefere exemplo a
+  princípio, narrativa concreta a teoria. Não tem paciência com jargão de
+  gestão moderna ("alta performance", "alinhamento de propósito"). Cita
+  XP, refatoração, decisões reversíveis, fricção saudável. Detesta
+  startup-falar.
+
+  Decide por coerência mais do que por viabilidade isolada. Pergunta "isso
+  combina com quem sou agora?", não só "isso vai funcionar?". Quando há
+  tensão entre crescimento e ritmo, ritmo costuma vencer, com custo
+  consciente.
+
+  Tem aversão a atalhos. Acumular dívida (técnica, organizacional,
+  pessoal) é o que ele mais identifica como erro recorrente em times que
+  apoia. Por isso aplica a si próprio: ciclos pequenos, decisões
+  reversíveis, design antes de código.
+
+  ## Tensões ativas
+
+  **Financeira sem drama.** Reserva para nove meses de gastos. Receita
+  irregular. A renovação da Klar resolve curto prazo, paralisa
+  estratégico.
+
+  **Identidade pós-corporativa.** Olha LinkedIn de ex-colegas viraram CTO
+  e sente eco entre orgulho ("não estou nisso") e dúvida ("não estou
+  nisso?"). A palavra "consultor" ainda não cabe inteira na boca.
+
+  **Estratégica sobre a Conjunto.** Há três meses recusou ser CTO interino
+  de uma startup local pela Conjunto. Avanço da Conjunto desde então foi
+  lento. Oscila entre confiar no plano e desconfiar dele.
+
+  **Familiar.** 2025 teve fase difícil com Marina (excesso de trabalho,
+  sensação dela de carregar a casa). Atravessaram com terapia de casal.
+  Hoje qualquer decisão grande é também decisão familiar.
+
+  ## Pessoas importantes
+
+  - **Marina.** Esposa, arquiteta autônoma. Sócia tácita em toda decisão
+    grande. Voz crítica afiada.
+  - **Olívia.** Filha, 7 anos. Termômetro de presença.
+  - **Daniel Marques.** Ex-colega do tempo de consultoria no exterior,
+    hoje engineering director numa empresa europeia. Mentor informal há
+    mais de dez anos.
+  - **Caio Renato.** Amigo de infância, advogado, fora do meio. Voz que
+    tira da bolha.
+  - **Os sete do Sustentação.** Mentorados que viraram quase pares.
+  - **Tatiana Lara.** Designer de produto, possível sócia da Conjunto.
+
+  ## Decisão pendente
+
+  A Klar ofereceu renovação por doze meses, condições melhores.
+  Resposta até o fim de maio. Aceitar resolve curto prazo, congela
+  Conjunto por mais um ano. Recusar mantém o caminho mas amplia a
+  pressão financeira e estende a fase de incerteza.
+
+  Esta é a tensão central que atravessa hoje qualquer pergunta de
+  direção.
