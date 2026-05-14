@@ -61,6 +61,13 @@ Depois disso, valide:
 ./talk.sh lucas-vidal "me fale sobre quem é você"
 ```
 
+## Para explorar
+
+Depois da instalação, veja [`exploring.md`](exploring.md) para um
+roteiro de perguntas organizado por categoria (identidade, decisões,
+blog, modo Builder, shadow, família, gerativas), com observações sobre
+o que esperar de cada resposta.
+
 ## Decisão central que ele está atravessando
 
 A Klar ofereceu renovação por doze meses com reajuste para R$ 18 mil/mês.
