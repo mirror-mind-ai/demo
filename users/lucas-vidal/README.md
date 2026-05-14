@@ -49,15 +49,16 @@ A forma mais simples é rodar o script de install. Ele apaga o home
 existente (a menos que você passe `--keep`) e reconstrói tudo do zero a
 partir dos YAMLs e markdowns deste repositório.
 
+Da raiz deste repositório clonado:
+
 ```bash
-cd ~/Code/mirror-demo
 ./scripts/install.sh lucas-vidal
 ```
 
 Depois disso, valide:
 
 ```bash
-DB_PATH=~/.mirror-demo/lucas-vidal/memory.db \
+MIRROR_HOME=~/.mirror-demo/lucas-vidal \
   uv run python -m memory mirror load \
   --query "me fale sobre quem é você"
 ```

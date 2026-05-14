@@ -49,11 +49,10 @@ Este repositório é um workspace Python autônomo: traz o framework Mirror
 Mind como dependência via `pyproject.toml`. Você não precisa de outro
 clone do framework.
 
-1. Clonar este repositório em `~/Code/mirror-demo/`.
-2. Configurar:
+1. Clonar este repositório em qualquer lugar da sua máquina.
+2. Configurar (a partir da raiz do repositório clonado):
 
    ```bash
-   cd ~/Code/mirror-demo
    uv sync                              # instala o framework como dependência
    cp .env.example .env                 # se houver; senão crie
    # Edite .env e ponha OPENROUTER_API_KEY=...
@@ -77,9 +76,10 @@ clone do framework.
      --query "me fale sobre quem é você"
    ```
 
-5. Para uma experiência interativa via Pi, use um script wrapper como
-   `~/mirror-demo.sh <slug>` que faz `cd` para este workspace, exporta
-   `MIRROR_HOME` para o personagem, e executa `pi`.
+5. Para uma experiência interativa via Pi, escreva um script wrapper
+   na sua máquina (ex: `mirror-demo.sh <slug>`) que faz `cd` para este
+   repositório, exporta `MIRROR_HOME=~/.mirror-demo/<slug>`, e executa
+   `pi`.
 
 ## Por que este repo é privado por enquanto
 
