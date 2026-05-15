@@ -515,19 +515,45 @@ const CSS = /* css */ `
     font-family: var(--sans);
   }
 
-  .who {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    padding: 0.55rem 0.85rem;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
+  /* Session footer: the simulated-auth member switcher used to live
+     as a prominent bar at the top of main. It's a debug affordance,
+     not a feature — decision D3 documents it as a trade-off of the
+     MVP. So it now sits quietly at the very bottom of the page,
+     soft-ink and small, claiming no editorial real estate. */
+  footer.session {
+    max-width: var(--max-width);
+    margin: 4rem auto 2rem;
+    padding: 1rem 1.5rem 0;
+    border-top: 1px solid var(--rule);
     font-family: var(--sans);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
   }
-  .who select { font-size: 0.9rem; padding: 0.2rem 0.4rem; }
+  footer.session .tag {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    opacity: 0.75;
+  }
+  footer.session form { display: inline; margin: 0; }
+  footer.session select {
+    font-family: inherit;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dashed var(--rule);
+    padding: 0.1rem 0.2rem;
+    cursor: pointer;
+  }
+  footer.session select:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink-soft);
+  }
 
   .breadcrumb {
     font-family: var(--sans);
@@ -653,10 +679,11 @@ export interface LayoutOpts {
 export function layout(opts: LayoutOpts): string {
   const whoBar = opts.allMembers
     ? `
-      <div class="who">
-        Você está vendo o Conjunto como
-        <form method="post" action="/auth/switch" style="display:inline">
-          <select name="member_id" onchange="this.form.submit()">
+      <footer class="session" aria-label="Sessão simulada">
+        <span class="tag">Sessão simulada</span>
+        <span>· vendo como</span>
+        <form method="post" action="/auth/switch">
+          <select name="member_id" onchange="this.form.submit()" aria-label="Trocar membro">
             ${opts.allMembers
               .map(
                 (m) =>
@@ -665,7 +692,7 @@ export function layout(opts: LayoutOpts): string {
               .join("")}
           </select>
         </form>
-      </div>
+      </footer>
     `
     : "";
 
@@ -699,10 +726,10 @@ export function layout(opts: LayoutOpts): string {
     </div>
   </header>
   <main${opts.wide ? ' class="wide"' : ""}>
-    ${whoBar}
     ${opts.body}
   </main>
   ${opts.sidebar ? `<aside class="page-sidebar">${opts.sidebar}</aside>` : ""}
+  ${whoBar}
 </body>
 </html>`;
 }
