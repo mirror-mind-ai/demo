@@ -4,6 +4,128 @@ Como construo o Conjunto. Esse documento captura o modelo de
 desenvolvimento herdado de XP e adaptado para um construtor solo
 trabalhando com Mirror Mind. É vivo, atualizado a cada ciclo.
 
+A mesma estrutura vale para qualquer projeto que adote essa
+conceitualização — o Conjunto é a primeira encarnação concreta, não
+uma exceção. Onde o texto fala de "Conjunto", leia "o projeto em
+questão"; onde fala de "membros", leia "o ecossistema que o projeto
+serve".
+
+---
+
+## Taxonomia: três níveis de progresso
+
+Antes dos princípios, antes do ciclo, antes da estrutura de pastas:
+precisa estar claro o que conta como progresso e em que nível.
+Trabalho de software acontece em três escalas distintas, e
+confundi-las é a causa raiz da maior parte da confusão de roadmap que
+eu já vi. Os três níveis são, em ordem ascendente de concretude e
+descendente de escopo:
+
+### 1. Unidade de Valor
+
+Um incremento de capacidade para o **ecossistema** que o projeto
+serve. Quando uma Unidade de Valor é alcançada ou melhorada, o
+ecossistema como um todo ganha — não um usuário individual, mas o
+tecido coletivo que o produto sustenta.
+
+O nome muda conforme a natureza do ecossistema:
+
+- **CV — Community Value**: para projetos que servem uma comunidade.
+  É o caso do Conjunto.
+- **BV — Business Value**: para projetos que servem um negócio.
+- Outras famílias são possíveis (OV — Organizational Value, PV —
+  Public Value) e seguem o mesmo padrão.
+
+Unidade de Valor responde à pergunta: *"o ecossistema mudou de
+estado?"*. Se a resposta for não, não foi uma Unidade de Valor — foi
+Progresso ou Trabalho. Exemplo no Conjunto: **"Membros conseguem
+encontrar uns aos outros e iniciar conversas no ritmo certo"** é um
+CV. **"O perfil mostra last seen"** não é — é Progresso dentro desse
+CV.
+
+### 2. Unidade de Progresso
+
+Um bloco que entrega valor ao **usuário individual** do produto e
+move o sistema em direção a uma Unidade de Valor. Conclusão de uma
+Unidade de Progresso significa duas coisas simultaneamente: (a) um
+usuário pode fazer algo novo ou melhor; (b) o projeto está mais
+perto da próxima Unidade de Valor.
+
+Unidades de Progresso estão **hierarquicamente associadas a uma
+Unidade de Valor**. Toda Unidade de Progresso pertence a um e
+apenas um CV/BV.
+
+No vocabulário herdado de XP, a Unidade de Progresso costuma se
+chamar **Epic**. Mas o rótulo é menos importante que a função: às
+vezes uma Story isolada já é uma Unidade de Progresso, quando ela
+sozinha entrega valor visível ao usuário sem precisar de um épico
+envolvente. A taxonomia é **por função, não por rótulo**.
+
+### 3. Unidade de Trabalho
+
+Uma ação real de mudança em uma ou mais dimensões da **tríade
+processo-projeto-produto**. É o nível mais concreto, o único onde
+algo de fato é alterado em um arquivo, em um banco, em um documento,
+em uma convenção.
+
+A tríade é a chave para entender por que esse nível existe como
+categoria própria:
+
+- **Processo** — como o trabalho é feito. Este `development-guide.md`
+  é processo. O `worklog.md` é processo. As convenções de Git são
+  processo.
+- **Projeto** — o mapa do que será feito e por quê. O roadmap, o
+  briefing, o `decisions.md`, os `plan.md` de cada story são projeto.
+- **Produto** — a coisa em si rodando para usuários reais. O código,
+  o schema, os assets, a infraestrutura.
+
+Toda Unidade de Trabalho atua em **uma ou mais** dessas três
+dimensões. Implementar a coluna `last_seen_at`: trabalho em produto.
+Registrar a decisão de não usar Next.js no MVP: trabalho em projeto.
+Reescrever este parágrafo: trabalho em processo. Uma mesma story
+frequentemente toca as três.
+
+No vocabulário herdado, Unidade de Trabalho aparece como **Story** ou
+**Task**. Story quando há narrativa de mudança; Task quando é
+fragmento sub-story sem pretensão narrativa.
+
+### Relação entre os três níveis
+
+```
+Unidade de Valor (CV / BV)
+  └── Unidade de Progresso (Epic, às vezes Story)
+        └── Unidade de Trabalho (Story, Task)
+```
+
+A hierarquia é **orientada, não estrita**:
+
+- Toda Unidade de Progresso pertence a uma Unidade de Valor.
+- A maior parte das Unidades de Trabalho pertence a uma Unidade de
+  Progresso. Mas existe Trabalho legítimo que não escala para
+  Progresso: manutenção, refator interno, ajuste de processo, fix
+  de tipagem, atualização desta documentação. Esse Trabalho é
+  reconhecido como categoria própria — não é Progresso disfarçado,
+  não é dívida, é o tecido vivo da tríade.
+- Uma Story pode aparecer em dois níveis dependendo do que carrega.
+  Se entrega valor ao usuário direto, é Progresso *e* Trabalho ao
+  mesmo tempo. Se é puramente interna, é só Trabalho.
+
+### Estrutura física no repositório
+
+A taxonomia se materializa na árvore de docs sob
+`docs/project/roadmap/`:
+
+| Nível | Pasta | Convenção de nome |
+|-------|-------|-------------------|
+| Unidade de Valor | `cvN-<slug>/` | `cv0-foundation`, `cv1-...` |
+| Unidade de Progresso | `cvN-eM-<slug>/` | `cv0-e2-engagement` |
+| Unidade de Trabalho | `cvN-eM-sK-<slug>/` | `cv0-e2-s1-last-seen` |
+
+Cada nível tem um `index.md` para navegação. Unidades de Trabalho
+que não pertencem a uma Unidade de Progresso vivem sob
+`docs/project/maintenance/` — explicitamente fora do mapa narrativo
+do roadmap, mas dentro do registro do projeto.
+
 ---
 
 ## Princípios
@@ -38,19 +160,6 @@ passando.
 Docs são o mapa, não burocracia. São atualizadas em cada ciclo, não
 depois. Se alguém abrir o repo amanhã, ele entende o que foi feito,
 por quê, e o que vem a seguir, sem precisar perguntar.
-
----
-
-## Hierarquia do roadmap
-
-| Nível | Nome | O que é |
-|-------|------|---------|
-| **CV** | Community Value | Estágio de entrega com valor claro para os membros |
-| **E** | Epic | Bloco coeso de trabalho com critério de "pronto" |
-| **S** | Story | Entrega atômica do ponto de vista do membro |
-
-Cada nível tem uma pasta sob `docs/project/roadmap/` com um
-`index.md` para navegação.
 
 ---
 

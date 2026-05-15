@@ -39,6 +39,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS threads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
+    slug TEXT UNIQUE,
     started_by INTEGER NOT NULL REFERENCES members(id) ON DELETE CASCADE,
     started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
@@ -68,6 +69,17 @@ db.exec(`
   );
 `);
 
+// Migration: legacy databases (created before the slug column) get the
+// column added in-place. Idempotent: if the column already exists,
+// PRAGMA table_info reports it and we skip the ALTER. The unique
+// index runs after the migration so legacy DBs and fresh ones converge
+// to the same final schema.
+const threadCols = db.prepare(`PRAGMA table_info(threads)`).all() as { name: string }[];
+if (!threadCols.some((c) => c.name === "slug")) {
+  db.exec(`ALTER TABLE threads ADD COLUMN slug TEXT`);
+}
+db.exec(`CREATE UNIQUE INDEX IF NOT EXISTS idx_threads_slug ON threads(slug)`);
+
 // ---------- Types ------------------------------------------------------------
 
 export interface Member {
@@ -83,6 +95,7 @@ export interface Member {
 export interface Thread {
   id: number;
   title: string;
+  slug: string | null;
   started_by: number;
   started_at: string;
 }
@@ -122,27 +135,29 @@ export function getThread(id: number): Thread | undefined {
 }
 
 /**
- * Returns the thread summary used by inline citations: title, author,
- * and the first sentence of the opening message. Designed for a
- * compact, sober card.
+ * Returns the thread summary used by inline citations, looked up by
+ * slug. Slug is human-readable, stable across reseeds, and safe to
+ * embed in raw markdown ([[fio:delegar-sem-gargalo]]).
  */
-export function getThreadSummary(
-  id: number
-): { id: number; title: string; author: string; opener: string } | undefined {
+export function getThreadSummaryBySlug(
+  slug: string
+): { id: number; slug: string; title: string; author: string; opener: string } | undefined {
   const row = db
     .prepare(
-      `SELECT t.id, t.title, m.name AS author,
+      `SELECT t.id, t.slug, t.title, m.name AS author,
               (SELECT body FROM messages
                 WHERE thread_id = t.id
                 ORDER BY posted_at ASC LIMIT 1) AS opener
        FROM threads t
        JOIN members m ON m.id = t.started_by
-       WHERE t.id = ?`
+       WHERE t.slug = ?`
     )
-    .get(id) as { id: number; title: string; author: string; opener: string | null } | undefined;
+    .get(slug) as
+    | { id: number; slug: string; title: string; author: string; opener: string | null }
+    | undefined;
   if (!row) return undefined;
   const opener = (row.opener ?? "").split(/[.!?](\s|$)/)[0]?.trim() ?? "";
-  return { id: row.id, title: row.title, author: row.author, opener };
+  return { id: row.id, slug: row.slug, title: row.title, author: row.author, opener };
 }
 
 /**

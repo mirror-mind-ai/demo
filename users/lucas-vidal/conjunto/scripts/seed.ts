@@ -9,6 +9,8 @@ import { db } from "../src/db.js";
 
 console.log("Limpando tabelas...");
 db.exec("DELETE FROM messages; DELETE FROM threads; DELETE FROM members;");
+// Reset autoincrement counters so ids are stable across reseeds.
+db.exec("DELETE FROM sqlite_sequence WHERE name IN ('members','threads','messages')");
 
 console.log("Inserindo membros...");
 
@@ -95,7 +97,7 @@ console.log(`  ${members.length} membros inseridos.`);
 console.log("Inserindo fios e mensagens...");
 
 const insertThread = db.prepare(`
-  INSERT INTO threads (title, started_by, started_at) VALUES (?, ?, ?)
+  INSERT INTO threads (title, slug, started_by, started_at) VALUES (?, ?, ?, ?)
 `);
 const insertMsg = db.prepare(`
   INSERT INTO messages (thread_id, author_id, body, posted_at) VALUES (?, ?, ?, ?)
@@ -103,6 +105,7 @@ const insertMsg = db.prepare(`
 
 interface ThreadSeed {
   title: string;
+  slug: string;
   startedBy: string;
   startedAt: string;
   messages: { author: string; body: string; postedAt: string }[];
@@ -111,6 +114,7 @@ interface ThreadSeed {
 const threadSeeds: ThreadSeed[] = [
   {
     title: "Promoção a head adiada: como conduzir a conversa com meu CTO?",
+    slug: "promocao-a-head-adiada",
     startedBy: "André Lemos",
     startedAt: "2026-05-02T14:00:00Z",
     messages: [
@@ -133,6 +137,7 @@ const threadSeeds: ThreadSeed[] = [
   },
   {
     title: "Delegar sem virar gargalo nem virar ausente",
+    slug: "delegar-sem-virar-gargalo",
     startedBy: "Beatriz Santos",
     startedAt: "2026-04-28T10:00:00Z",
     messages: [
@@ -153,13 +158,14 @@ const threadSeeds: ThreadSeed[] = [
       },
       {
         author: "Diana Lopes",
-        body: "Voltei a esse fio depois de uma semana. O padrão que a Bea descreve, de pegar o ticket no calor, eu reconheço de um ângulo um pouco diferente. Abri em paralelo, vale ler junto:\n\n[[fio:4]]\n\nA raiz pode ser a mesma: dificuldade de confiar que a coisa segue sem a gente pôr a mão.",
+        body: "Voltei a esse fio depois de uma semana. O padrão que a Bia descreve, de pegar o ticket no calor, eu reconheço de um ângulo um pouco diferente. Abri em paralelo, vale ler junto:\n\n[[fio:imposter-syndrome-tecnica]]\n\nA raiz pode ser a mesma: dificuldade de confiar que a coisa segue sem a gente pôr a mão.",
         postedAt: "2026-05-03T09:30:00Z",
       },
     ],
   },
   {
     title: "Sair de uma empresa que você ajudou a construir",
+    slug: "sair-de-empresa-que-construiu",
     startedBy: "Caio Furtado",
     startedAt: "2026-05-04T16:00:00Z",
     messages: [
@@ -177,6 +183,7 @@ const threadSeeds: ThreadSeed[] = [
   },
   {
     title: "Imposter syndrome técnica num cargo de liderança",
+    slug: "imposter-syndrome-tecnica",
     startedBy: "Diana Lopes",
     startedAt: "2026-05-01T09:00:00Z",
     messages: [
@@ -194,6 +201,7 @@ const threadSeeds: ThreadSeed[] = [
   },
   {
     title: "Reorganização de estrutura: de quatro squads para dois",
+    slug: "reorg-quatro-squads-para-dois",
     startedBy: "Felipe Andrade",
     startedAt: "2026-04-25T11:00:00Z",
     messages: [
@@ -212,7 +220,9 @@ const threadSeeds: ThreadSeed[] = [
 ];
 
 for (const t of threadSeeds) {
-  const tid = Number(insertThread.run(t.title, memberIds[t.startedBy], t.startedAt).lastInsertRowid);
+  const tid = Number(
+    insertThread.run(t.title, t.slug, memberIds[t.startedBy], t.startedAt).lastInsertRowid
+  );
   for (const msg of t.messages) {
     insertMsg.run(tid, memberIds[msg.author], msg.body, msg.postedAt);
   }

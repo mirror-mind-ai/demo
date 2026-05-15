@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import {
   getThread,
-  getThreadSummary,
+  getThreadSummaryBySlug,
   listMembers,
   listMessages,
   listThreads,
@@ -108,27 +108,34 @@ function formatReadMark(iso: string): string {
  * separate paragraphs; single line breaks become <br>. Keeps the body
  * server-rendered and safe (escapeHtml first).
  *
- * Extended syntax: [[fio:N]] on its own line renders an inline citation
- * card pointing at thread N. The card is rendered after escaping, using
- * trusted server-built HTML.
+ * Extended syntax: [[fio:slug]] on its own line renders an inline
+ * citation card pointing at the referenced thread. Slugs are human-
+ * readable and stable across reseeds, unlike numeric ids. The card is
+ * rendered after escaping, using trusted server-built HTML.
  */
 function renderBody(raw: string): string {
   return raw
     .split(/\n{2,}/)
     .map((p) => {
       const trimmed = p.trim();
-      const cite = trimmed.match(/^\[\[fio:(\d+)\]\]$/);
+      const cite = trimmed.match(/^\[\[fio:([a-z0-9][a-z0-9-]*)\]\]$/i);
       if (cite) {
-        const target = getThreadSummary(parseInt(cite[1], 10));
+        const target = getThreadSummaryBySlug(cite[1]);
         if (target) return renderCitation(target);
-        return `<p class="citation broken">[fio ${escapeHtml(cite[1])} não encontrado]</p>`;
+        return `<p class="citation broken">[fio “${escapeHtml(cite[1])}” não encontrado]</p>`;
       }
       return `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`;
     })
     .join("");
 }
 
-function renderCitation(t: { id: number; title: string; author: string; opener: string }): string {
+function renderCitation(t: {
+  id: number;
+  slug: string;
+  title: string;
+  author: string;
+  opener: string;
+}): string {
   return `
     <a class="citation" href="/threads/${t.id}">
       <span class="citation-label">Fio citado</span>
