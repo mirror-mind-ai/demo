@@ -24,12 +24,25 @@ members.get("/", (c) => {
     )
     .join("");
 
+  const groupPortrait = `
+    <div class="group-portrait" aria-label="O Conjunto">
+      ${all
+        .map(
+          (m) => `
+        <a class="portrait-figure" href="/members/${m.id}">
+          <img class="avatar" src="${avatarUrlFor(m, 160)}" alt="" loading="lazy">
+          <span class="portrait-name">${escapeHtml(firstName(m.name))}</span>
+        </a>`
+        )
+        .join("")}
+    </div>`;
+
   return c.html(
     layout({
       title: "Membros",
       currentMember: current ? { id: current.id, name: current.name } : null,
       allMembers: all.map((m) => ({ id: m.id, name: m.name })),
-      body: `<h1>Membros</h1><p class="lede">Os sete líderes técnicos que compõem o Conjunto.</p>${html}`,
+      body: `<h1>Membros</h1><p class="lede">Os ${all.length} líderes técnicos que compõem o Conjunto.</p>${groupPortrait}<h2>Cada um</h2>${html}`,
     })
   );
 });

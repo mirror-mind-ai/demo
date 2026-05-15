@@ -268,6 +268,43 @@ const CSS = /* css */ `
     height: 132px;
   }
 
+  /* Group portrait: a horizontal frieze of every member, first names
+     below each portrait. Used at the top of /members. Reinforces
+     'tamanho como restrição' visually — you see the entire room in
+     a single glance. Wraps cleanly to a second row on narrow widths. */
+  .group-portrait {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.2rem;
+    padding: 1.4rem 0 2rem;
+    margin: 0 0 1.5rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .portrait-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    flex: 0 0 auto;
+  }
+  .portrait-figure:hover { color: var(--ink); }
+  .portrait-figure .avatar {
+    width: 64px;
+    height: 64px;
+  }
+  .portrait-figure:hover .avatar {
+    filter: grayscale(60%) contrast(0.95) sepia(0.12) brightness(1.05);
+  }
+  .portrait-name {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
   /* Member listing row: avatar to the left of name + role. */
   .member-row {
     display: flex;
