@@ -157,6 +157,59 @@ const CSS = /* css */ `
     font-size: 0.95rem;
   }
 
+  /* Inline citation of another thread. Rendered as a sober block,
+     not a button or a chip: small-caps label, title in serif, author,
+     and the opening line in italic. Hovering tints the rule. */
+  a.citation {
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    border-left: 2px solid var(--rule);
+    padding: 0.7rem 1rem;
+    margin: 1.4rem 0;
+    background: transparent;
+    transition: border-color 120ms ease, background 120ms ease;
+  }
+  a.citation:hover {
+    border-left-color: var(--accent);
+    background: rgba(138, 51, 36, 0.03);
+  }
+  a.citation .citation-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 0.25rem;
+  }
+  a.citation .citation-title {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+  a.citation .citation-author {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+  }
+  a.citation .citation-opener {
+    display: block;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  p.citation.broken {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
   /* Read marker: a hairline rule across the column with a short note
      centered on it. Soft ink, sans, small caps. Never a badge or a
      counter — the principle is 'helps resume, not compete'. */

@@ -151,6 +151,11 @@ const threadSeeds: ThreadSeed[] = [
         body: "Há um exercício útil: por uma semana, registre cada vez que você pegou um ticket que poderia ter delegado, e por quê. Quase sempre o padrão é o mesmo (urgência percebida, dúvida sobre quem vai conseguir, querer fazer algo concreto num dia que está parecendo só reuniões). Identificar o padrão é mais útil do que tentar resistir ao impulso.",
         postedAt: "2026-04-28T13:00:00Z",
       },
+      {
+        author: "Diana Lopes",
+        body: "Voltei a esse fio depois de uma semana. O padrão que a Bea descreve, de pegar o ticket no calor, eu reconheço de um ângulo um pouco diferente. Abri em paralelo, vale ler junto:\n\n[[fio:4]]\n\nA raiz pode ser a mesma: dificuldade de confiar que a coisa segue sem a gente pôr a mão.",
+        postedAt: "2026-05-03T09:30:00Z",
+      },
     ],
   },
   {

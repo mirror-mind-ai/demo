@@ -122,6 +122,30 @@ export function getThread(id: number): Thread | undefined {
 }
 
 /**
+ * Returns the thread summary used by inline citations: title, author,
+ * and the first sentence of the opening message. Designed for a
+ * compact, sober card.
+ */
+export function getThreadSummary(
+  id: number
+): { id: number; title: string; author: string; opener: string } | undefined {
+  const row = db
+    .prepare(
+      `SELECT t.id, t.title, m.name AS author,
+              (SELECT body FROM messages
+                WHERE thread_id = t.id
+                ORDER BY posted_at ASC LIMIT 1) AS opener
+       FROM threads t
+       JOIN members m ON m.id = t.started_by
+       WHERE t.id = ?`
+    )
+    .get(id) as { id: number; title: string; author: string; opener: string | null } | undefined;
+  if (!row) return undefined;
+  const opener = (row.opener ?? "").split(/[.!?](\s|$)/)[0]?.trim() ?? "";
+  return { id: row.id, title: row.title, author: row.author, opener };
+}
+
+/**
  * Activity by a single member across the Conjunto: every message they
  * posted, joined to its thread, newest first. Used by the member page
  * to render a personal timeline — 'how do I know this person' before
