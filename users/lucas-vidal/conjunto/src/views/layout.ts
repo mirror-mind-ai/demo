@@ -112,15 +112,36 @@ const CSS = /* css */ `
     padding-left: 1rem;
   }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 1.2rem 1.4rem;
-    margin: 0 0 1rem;
+  /* Entries: no card chrome. The page is the canvas; rule lines do the
+     separating, not borders + drop-shadows. The .card class is kept as
+     a hook for backwards compatibility, but renders flat. */
+  .card,
+  .entry {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 1.4rem 0 1.6rem;
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .card:last-child,
+  .entry:last-child {
+    border-bottom: 0;
+  }
+  .card h3,
+  .entry h3 { margin-top: 0; }
+
+  /* Message blocks keep some interior breathing room but no border. */
+  .message {
+    padding: 1.8rem 0 2rem;
   }
 
-  .card h3 { margin-top: 0; }
+  /* Thin section separator usable inline. */
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 2.4rem 0;
+  }
 
   .meta {
     color: var(--ink-soft);
