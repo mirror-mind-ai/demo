@@ -1,40 +1,55 @@
-# Conjunto — Documentação
+# O Conjunto
 
-Esta é a documentação viva do Conjunto. Não é manual de uso, é o mapa
-do projeto: como pensamos sobre o produto, como organizamos o trabalho,
-e onde estamos no roadmap.
+Esta é a documentação de *O Conjunto*, uma comunidade fechada e curada
+para líderes técnicos. A estrutura desses documentos segue o princípio
+de **coerência produto-processo-projeto**.
 
-A estrutura segue o princípio de **coerência produto-processo-projeto**.
-Cada uma das três dimensões tem sua pasta:
-
-- [Produto](product/principles.md) — os princípios que orientam o que
-  construímos e o que recusamos construir. O **porquê**.
-- [Processo](process/development-guide.md) — o método pelo qual o
-  Conjunto é construído. O **como**.
-- [Projeto](project/briefing.md) — o estado atual: decisões já tomadas,
-  roadmap em curso, próximos passos. O **o quê** e o **agora**.
+- [Produto](product/index.md) — onde a comunidade aparece como
+  produto. Começa pelo problema que justifica sua existência,
+  descreve a solução que o materializa, e nomeia os princípios que a
+  sustentam:
+  - [O problema](product/problem.md) — a solidão do líder técnico e
+    por que os interlocutores naturais quase nunca servem.
+  - [A solução](product/solution.md) — como o desenho responde, e o
+    que o produto entrega hoje.
+  - [Princípios](product/principles.md) — as decisões de design que
+    mantêm o produto coerente com sua intenção.
+- [Processo](process/index.md) — o método pelo qual o Conjunto é
+  construído. Descreve o ciclo de uma story e mantém o log do
+  trabalho realizado:
+  - [Development guide](process/development-guide.md) — princípios,
+    hierarquia do roadmap, ciclo completo de uma story.
+  - [Worklog](process/worklog.md) — log diário do trabalho, com
+    observações sobre o que foi aprendido.
+- [Projeto](project/index.md) — o estado atual do Conjunto. Reúne as
+  decisões já tomadas e o roadmap em curso:
+  - [Briefing](project/briefing.md) — premissas, decisões
+    arquiteturais, e nosso glossário.
+  - [Decisions](project/decisions.md) — log de decisões incrementais
+    tomadas ao longo do caminho.
+  - [Roadmap](project/roadmap/index.md) — CVs, epics, stories. Onde
+    estamos e para onde estamos indo.
 
 E o histórico:
 
 - [Releases](releases/v0.1.0.md) — notas narrativas de cada versão.
 
----
+## Onde estamos
 
-## Para quem está chegando agora
+- **CV0 — Foundation**
+  - **[E1 — Tracer Bullet](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/index.md)** ✅ `v0.1.0`
+    - [S1 Tracer bullet servidor + health](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s1-server-health/index.md) ✅
+    - [S2 Membros listados e perfis lidos](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s2-members/index.md) ✅
+    - [S3 Auth simulada por cookie](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s3-cookie-auth/index.md) ✅
+    - [S4 Fios e mensagens persistentes](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s4-threads/index.md) ✅
+    - [S5 Documentação dentro do produto](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s5-docs-inline/index.md) ✅
+    - [S6 Seed reprodutível dos fundadores](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s6-seed/index.md) ✅
+  - **[E2 — Engajamento](project/roadmap/cv0-foundation/cv0-e2-engagement/index.md)** 🔵 `v0.1.1` em curso
+    - [S1 Indicador de última vez online](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/index.md) 🔵 próxima
+    - [S2 Indicador de leitura por mensagem](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s2-read-indicator/index.md) ⚪ planejada
+    - [S3 Lista de membros por atividade](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/index.md) ⚪ planejada
+- **CV1 — Encontros e biblioteca** ⚪ planejado
+- **CV2 — Abertura externa** ⚪ planejado
+- **v0.3.0+ — Migração para Next.js + tRPC + Prisma** ⚪ quando houver tração
 
-Comece pelo [briefing](project/briefing.md). Em quinze minutos de
-leitura você entende o projeto inteiro: por que ele existe, o que
-recusamos construir, qual o stack, onde estamos.
-
-Depois, leia o [development guide](process/development-guide.md) para
-entender o modelo de desenvolvimento. É um modelo opinativo, herdeiro
-de XP, adaptado para um construtor solo trabalhando com Mirror Mind.
-
-Finalmente, abra o [roadmap](project/roadmap/index.md) para ver o que
-está em curso e o que vem a seguir.
-
-## Para quem volta
-
-O [worklog](process/worklog.md) tem o resumo do que foi feito por dia.
-O [roadmap](project/roadmap/index.md) tem o estado atual de cada CV,
-Epic e Story.
+Detalhe e justificativa de cada item em [roadmap](project/roadmap/index.md).

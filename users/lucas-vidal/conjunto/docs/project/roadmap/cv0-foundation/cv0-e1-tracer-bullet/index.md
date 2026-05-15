@@ -13,12 +13,12 @@ biografia, abrir a documentação dentro do app.
 
 | Código | Story | Status |
 |--------|-------|--------|
-| S1 | Tracer bullet servidor + health | ✅ |
-| S2 | Membros listados e perfis lidos | ✅ |
-| S3 | Auth simulada por cookie | ✅ |
-| S4 | Fios e mensagens persistentes | ✅ |
-| S5 | Documentação dentro do produto | ✅ |
-| S6 | Seed reprodutível dos fundadores | ✅ |
+| [S1](cv0-e1-s1-server-health/) | Tracer bullet servidor + health | ✅ |
+| [S2](cv0-e1-s2-members/) | Membros listados e perfis lidos | ✅ |
+| [S3](cv0-e1-s3-cookie-auth/) | Auth simulada por cookie | ✅ |
+| [S4](cv0-e1-s4-threads/) | Fios e mensagens persistentes | ✅ |
+| [S5](cv0-e1-s5-docs-inline/) | Documentação dentro do produto | ✅ |
+| [S6](cv0-e1-s6-seed/) | Seed reprodutível dos fundadores | ✅ |
 
 ## Resultado
 

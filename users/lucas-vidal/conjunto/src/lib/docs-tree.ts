@@ -9,7 +9,7 @@
  *   - A entrada raiz é docs/index.md, acessível em /docs.
  */
 
-import { readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -68,6 +68,46 @@ function prettify(slug: string): string {
     .split("-")
     .map((part) => (part.length > 3 ? part[0].toUpperCase() + part.slice(1) : part))
     .join(" ");
+}
+
+export interface Breadcrumb {
+  url: string;       // empty string for the current page (not a link)
+  title: string;
+}
+
+/**
+ * Build the breadcrumb trail for a doc slug. Always starts with the
+ * docs root. The last segment has an empty URL to signal current page.
+ * Titles come from each document's H1, falling back to a prettified
+ * version of the slug segment.
+ */
+export function buildBreadcrumbs(slug: string): Breadcrumb[] {
+  if (!slug) return [];
+
+  const segments = slug.split("/").filter(Boolean);
+  const crumbs: Breadcrumb[] = [{ url: "/docs", title: "Docs" }];
+
+  let accumulated = "";
+  segments.forEach((segment, i) => {
+    accumulated = accumulated ? `${accumulated}/${segment}` : segment;
+    const isLast = i === segments.length - 1;
+    const path = resolveDocPath(accumulated);
+    const title = path ? readH1(path) ?? prettify(segment) : prettify(segment);
+    crumbs.push({ url: isLast ? "" : `/docs/${accumulated}`, title });
+  });
+
+  return crumbs;
+}
+
+function readH1(absPath: string): string | null {
+  const text = readFileSync(absPath, "utf-8");
+  // Skip YAML frontmatter if present.
+  const stripped = text.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, "");
+  for (const line of stripped.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("# ")) return trimmed.slice(2).trim();
+  }
+  return null;
 }
 
 /**

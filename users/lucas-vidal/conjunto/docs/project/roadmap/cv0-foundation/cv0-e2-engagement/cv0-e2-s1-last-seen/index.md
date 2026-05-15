@@ -3,6 +3,10 @@
 **Status:** 🔵 próxima
 **Epic:** [CV0.E2 — Engajamento](../)
 
+> **Como membro do Conjunto, eu quero ver "última vez online: há X" no
+> perfil de outro membro, para sentir o ritmo de vida da comunidade
+> sem precisar perguntar diretamente.**
+
 ## Problema
 
 Quando um membro abre o perfil de outro, não tem nenhuma pista de que

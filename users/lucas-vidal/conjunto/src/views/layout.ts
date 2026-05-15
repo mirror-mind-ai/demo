@@ -113,29 +113,27 @@ const CSS = /* css */ `
   }
   .who select { font-size: 0.9rem; padding: 0.2rem 0.4rem; }
 
-  .docs {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 2.5rem;
-    margin-top: 1rem;
-  }
-  .docs nav.tree {
+  .breadcrumb {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.9rem;
-    border-right: 1px solid var(--rule);
-    padding-right: 1rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
   }
-  .docs nav.tree ul {
-    list-style: none;
-    padding-left: 0.9rem;
-    margin: 0.3rem 0;
+  .breadcrumb a {
+    color: var(--ink-soft);
+    text-decoration: none;
   }
-  .docs nav.tree > ul { padding-left: 0; }
-  .docs nav.tree li { margin: 0.25rem 0; }
-  .docs nav.tree a { color: var(--ink-soft); text-decoration: none; }
-  .docs nav.tree a:hover { color: var(--ink); }
-  .docs nav.tree a.current { color: var(--ink); font-weight: 600; }
-  .docs nav.tree .folder { color: var(--ink); font-weight: 600; }
+  .breadcrumb a:hover { color: var(--ink); }
+  .breadcrumb .sep {
+    margin: 0 0.45rem;
+    opacity: 0.5;
+  }
+  .breadcrumb .current {
+    color: var(--ink);
+    font-weight: 600;
+  }
 
   article.markdown pre {
     background: #f3eee5;

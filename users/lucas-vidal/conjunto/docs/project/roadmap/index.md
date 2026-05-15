@@ -38,12 +38,12 @@ Próxima entrega planejada: **CV0.E2 — Engajamento**, em curso.
 
 | Código | Story | Status |
 |--------|-------|--------|
-| `CV0.E1.S1` | Tracer bullet servidor + health | ✅ |
-| `CV0.E1.S2` | Membros listados e perfis lidos | ✅ |
-| `CV0.E1.S3` | Auth simulada por cookie | ✅ |
-| `CV0.E1.S4` | Fios e mensagens persistentes | ✅ |
-| `CV0.E1.S5` | Documentação dentro do produto | ✅ |
-| `CV0.E1.S6` | Seed reprodutível dos fundadores | ✅ |
+| [`CV0.E1.S1`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s1-server-health/) | Tracer bullet servidor + health | ✅ |
+| [`CV0.E1.S2`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s2-members/) | Membros listados e perfis lidos | ✅ |
+| [`CV0.E1.S3`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s3-cookie-auth/) | Auth simulada por cookie | ✅ |
+| [`CV0.E1.S4`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s4-threads/) | Fios e mensagens persistentes | ✅ |
+| [`CV0.E1.S5`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s5-docs-inline/) | Documentação dentro do produto | ✅ |
+| [`CV0.E1.S6`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s6-seed/) | Seed reprodutível dos fundadores | ✅ |
 
 ### [CV0.E2 — Engajamento](cv0-foundation/cv0-e2-engagement/) `v0.1.1` (em curso)
 
@@ -56,8 +56,8 @@ Próxima entrega planejada: **CV0.E2 — Engajamento**, em curso.
 | Código | Story | Status |
 |--------|-------|--------|
 | [`CV0.E2.S1`](cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/) | Indicador de última vez online | 🔵 próxima |
-| `CV0.E2.S2` | Indicador de leitura por mensagem | ⚪ planejada |
-| `CV0.E2.S3` | Lista de membros ordenada por atividade | ⚪ planejada |
+| [`CV0.E2.S2`](cv0-foundation/cv0-e2-engagement/cv0-e2-s2-read-indicator/) | Indicador de leitura por mensagem | ⚪ planejada |
+| [`CV0.E2.S3`](cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/) | Lista de membros ordenada por atividade | ⚪ planejada |
 
 ---
 
