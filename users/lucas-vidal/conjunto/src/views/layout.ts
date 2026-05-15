@@ -247,6 +247,43 @@ const CSS = /* css */ `
   }
 
   /* Thin section separator usable inline. */
+  /* Theme chip: a tiny dot of theme color + small-caps label. Used in
+     thread listings and at the top of thread covers. Color comes from
+     the --theme CSS variable injected inline. */
+  .theme-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+  .theme-chip .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--theme, var(--rule));
+  }
+
+  /* Thread cover: a soft tinted banner at the top of a thread detail
+     page, derived from the thread's theme. Subtle (low alpha overlay
+     on the sepia background) so the page still reads as one
+     publication, not as a kanban board of colors. */
+  .thread-cover {
+    margin: 0 -1.5rem 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--theme) 22%, transparent),
+      color-mix(in srgb, var(--theme) 0%, transparent)
+    );
+    border-top: 3px solid var(--theme);
+  }
+  .thread-cover h1 { margin: 0.25rem 0 0; }
+
   hr.rule {
     border: 0;
     border-top: 1px solid var(--rule);

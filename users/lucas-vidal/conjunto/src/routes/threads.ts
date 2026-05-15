@@ -6,6 +6,7 @@ import {
   listMessages,
   listThreads,
   recordAndGetPreviousRead,
+  themeOf,
 } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { escapeHtml, layout } from "../views/layout.js";
@@ -18,13 +19,18 @@ threads.get("/", (c) => {
   const ts = listThreads();
 
   const html = ts
-    .map(
-      (t) => `
+    .map((t) => {
+      const th = themeOf(t.theme);
+      const chip = th
+        ? `<span class="theme-chip" style="--theme: ${th.hue}"><span class="dot"></span>${escapeHtml(th.label)}</span>`
+        : "";
+      return `
     <div class="card">
+      ${chip}
       <h3><a href="/threads/${t.id}">${escapeHtml(t.title)}</a></h3>
       <div class="meta">aberto por ${escapeHtml(t.author)} · ${t.message_count} ${t.message_count === 1 ? "mensagem" : "mensagens"}</div>
-    </div>`
-    )
+    </div>`;
+    })
     .join("");
 
   return c.html(
@@ -83,12 +89,20 @@ threads.get("/:id", (c) => {
     })
     .join("");
 
+  const th = themeOf(t.theme);
+  const header = th
+    ? `<div class="thread-cover" style="--theme: ${th.hue}">
+         <span class="theme-chip" style="--theme: ${th.hue}"><span class="dot"></span>${escapeHtml(th.label)}</span>
+         <h1>${escapeHtml(t.title)}</h1>
+       </div>`
+    : `<h1>${escapeHtml(t.title)}</h1>`;
+
   return c.html(
     layout({
       title: t.title,
       currentMember: current ? { id: current.id, name: current.name } : null,
       allMembers: all.map((m) => ({ id: m.id, name: m.name })),
-      body: `<h1>${escapeHtml(t.title)}</h1>${msgsHtml}`,
+      body: `${header}${msgsHtml}`,
     })
   );
 });

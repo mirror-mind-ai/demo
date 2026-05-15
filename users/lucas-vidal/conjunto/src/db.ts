@@ -40,6 +40,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     slug TEXT UNIQUE,
+    theme TEXT,
     started_by INTEGER NOT NULL REFERENCES members(id) ON DELETE CASCADE,
     started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
@@ -78,6 +79,9 @@ const threadCols = db.prepare(`PRAGMA table_info(threads)`).all() as { name: str
 if (!threadCols.some((c) => c.name === "slug")) {
   db.exec(`ALTER TABLE threads ADD COLUMN slug TEXT`);
 }
+if (!threadCols.some((c) => c.name === "theme")) {
+  db.exec(`ALTER TABLE threads ADD COLUMN theme TEXT`);
+}
 db.exec(`CREATE UNIQUE INDEX IF NOT EXISTS idx_threads_slug ON threads(slug)`);
 
 // ---------- Types ------------------------------------------------------------
@@ -96,6 +100,7 @@ export interface Thread {
   id: number;
   title: string;
   slug: string | null;
+  theme: string | null;
   started_by: number;
   started_at: string;
 }
@@ -128,6 +133,19 @@ export function listThreads(): (Thread & { author: string; message_count: number
        ORDER BY t.started_at DESC`
     )
     .all() as (Thread & { author: string; message_count: number })[];
+}
+
+/** Canonical theme metadata. Three columns mirroring the editorial
+ *  beats of the Conjunto: carreira, operação, autoconhecimento. */
+export const THEMES: Record<string, { label: string; hue: string }> = {
+  carreira: { label: "Carreira", hue: "#a8b58a" },        // moss
+  operacao: { label: "Operação", hue: "#8aa3b5" },         // slate blue
+  autoconhecimento: { label: "Autoconhecimento", hue: "#c9a76a" }, // ochre
+};
+
+export function themeOf(key: string | null | undefined): { label: string; hue: string } | undefined {
+  if (!key) return undefined;
+  return THEMES[key];
 }
 
 export function getThread(id: number): Thread | undefined {

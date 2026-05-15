@@ -97,7 +97,7 @@ console.log(`  ${members.length} membros inseridos.`);
 console.log("Inserindo fios e mensagens...");
 
 const insertThread = db.prepare(`
-  INSERT INTO threads (title, slug, started_by, started_at) VALUES (?, ?, ?, ?)
+  INSERT INTO threads (title, slug, theme, started_by, started_at) VALUES (?, ?, ?, ?, ?)
 `);
 const insertMsg = db.prepare(`
   INSERT INTO messages (thread_id, author_id, body, posted_at) VALUES (?, ?, ?, ?)
@@ -106,6 +106,7 @@ const insertMsg = db.prepare(`
 interface ThreadSeed {
   title: string;
   slug: string;
+  theme: "carreira" | "operacao" | "autoconhecimento";
   startedBy: string;
   startedAt: string;
   messages: { author: string; body: string; postedAt: string }[];
@@ -115,6 +116,7 @@ const threadSeeds: ThreadSeed[] = [
   {
     title: "Promoção a head adiada: como conduzir a conversa com meu CTO?",
     slug: "promocao-a-head-adiada",
+    theme: "carreira",
     startedBy: "André Lemos",
     startedAt: "2026-05-02T14:00:00Z",
     messages: [
@@ -138,6 +140,7 @@ const threadSeeds: ThreadSeed[] = [
   {
     title: "Delegar sem virar gargalo nem virar ausente",
     slug: "delegar-sem-virar-gargalo",
+    theme: "operacao",
     startedBy: "Beatriz Santos",
     startedAt: "2026-04-28T10:00:00Z",
     messages: [
@@ -166,6 +169,7 @@ const threadSeeds: ThreadSeed[] = [
   {
     title: "Sair de uma empresa que você ajudou a construir",
     slug: "sair-de-empresa-que-construiu",
+    theme: "carreira",
     startedBy: "Caio Furtado",
     startedAt: "2026-05-04T16:00:00Z",
     messages: [
@@ -184,6 +188,7 @@ const threadSeeds: ThreadSeed[] = [
   {
     title: "Imposter syndrome técnica num cargo de liderança",
     slug: "imposter-syndrome-tecnica",
+    theme: "autoconhecimento",
     startedBy: "Diana Lopes",
     startedAt: "2026-05-01T09:00:00Z",
     messages: [
@@ -202,6 +207,7 @@ const threadSeeds: ThreadSeed[] = [
   {
     title: "Reorganização de estrutura: de quatro squads para dois",
     slug: "reorg-quatro-squads-para-dois",
+    theme: "operacao",
     startedBy: "Felipe Andrade",
     startedAt: "2026-04-25T11:00:00Z",
     messages: [
@@ -221,7 +227,7 @@ const threadSeeds: ThreadSeed[] = [
 
 for (const t of threadSeeds) {
   const tid = Number(
-    insertThread.run(t.title, t.slug, memberIds[t.startedBy], t.startedAt).lastInsertRowid
+    insertThread.run(t.title, t.slug, t.theme, memberIds[t.startedBy], t.startedAt).lastInsertRowid
   );
   for (const msg of t.messages) {
     insertMsg.run(tid, memberIds[msg.author], msg.body, msg.postedAt);

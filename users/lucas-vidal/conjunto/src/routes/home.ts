@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { listThreads, listMembers } from "../db.js";
+import { listThreads, listMembers, themeOf } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
@@ -11,13 +11,18 @@ home.get("/", (c) => {
   const threads = listThreads().slice(0, 6);
 
   const threadsHtml = threads
-    .map(
-      (t) => `
+    .map((t) => {
+      const th = themeOf(t.theme);
+      const chip = th
+        ? `<span class="theme-chip" style="--theme: ${th.hue}"><span class="dot"></span>${escapeHtml(th.label)}</span>`
+        : "";
+      return `
     <div class="card">
+      ${chip}
       <h3><a href="/threads/${t.id}">${escapeHtml(t.title)}</a></h3>
       <div class="meta">aberto por ${escapeHtml(t.author)} · ${t.message_count} ${t.message_count === 1 ? "mensagem" : "mensagens"}</div>
-    </div>`
-    )
+    </div>`;
+    })
     .join("");
 
   const body = /* html */ `
