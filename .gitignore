@@ -1,15 +1,46 @@
 # Secrets and per-machine config
 .env
+.env.local
+.env.*.local
 
-# uv / Python
+# Python / uv
 .venv/
 __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
 
-# Mac
-.DS_Store
+# Node (covers any character app under users/<slug>/<app>/)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.*
 
-# uv lock file is committed (helps reproducibility)
-# uv.lock
+# Common JS build outputs
+dist/
+build/
+.next/
+.nuxt/
+.svelte-kit/
+.cache/
+.parcel-cache/
+
+# Databases (we never commit runtime DBs; sources are YAML/MD)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs and temp
+*.log
+.tmp/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
