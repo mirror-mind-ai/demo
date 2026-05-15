@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getMember, listMemberActivity, listMembers } from "../db.js";
+import { avatarUrlFor, getMember, listMemberActivity, listMembers } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
@@ -12,9 +12,14 @@ members.get("/", (c) => {
   const html = all
     .map(
       (m) => `
-    <div class="card">
-      <h3><a href="/members/${m.id}">${escapeHtml(m.name)}</a></h3>
-      <div class="meta">${escapeHtml(m.role)}${m.company ? ` · ${escapeHtml(m.company)}` : ""}</div>
+    <div class="card member-row">
+      <a class="avatar" href="/members/${m.id}" aria-hidden="true" tabindex="-1">
+        <img src="${avatarUrlFor(m, 120)}" alt="" loading="lazy">
+      </a>
+      <div class="member-row-body">
+        <h3><a href="/members/${m.id}">${escapeHtml(m.name)}</a></h3>
+        <div class="meta">${escapeHtml(m.role)}${m.company ? ` · ${escapeHtml(m.company)}` : ""}</div>
+      </div>
     </div>`
     )
     .join("");
@@ -55,10 +60,15 @@ members.get("/:id", (c) => {
     : `<p class="meta">Ainda não escreveu em fio algum.</p>`;
 
   const body = /* html */ `
-    <h1>${escapeHtml(member.name)}</h1>
-    <p class="meta">${escapeHtml(member.role)}${member.company ? ` · ${escapeHtml(member.company)}` : ""}</p>
-    ${member.bio ? `<p class="lede">${escapeHtml(member.bio)}</p>` : ""}
-    <p class="meta">No Conjunto desde ${formatDate(member.joined_at)}.</p>
+    <div class="member-header">
+      <img class="avatar avatar-lg" src="${avatarUrlFor(member, 320)}" alt="" loading="lazy">
+      <div class="member-header-text">
+        <h1>${escapeHtml(member.name)}</h1>
+        <p class="meta">${escapeHtml(member.role)}${member.company ? ` · ${escapeHtml(member.company)}` : ""}</p>
+        ${member.bio ? `<p class="lede">${escapeHtml(member.bio)}</p>` : ""}
+        <p class="meta">No Conjunto desde ${formatDate(member.joined_at)}.</p>
+      </div>
+    </div>
 
     <h2>O que ${escapeHtml(firstName(member.name))} escreveu</h2>
     ${activityHtml}

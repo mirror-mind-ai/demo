@@ -247,6 +247,50 @@ const CSS = /* css */ `
   }
 
   /* Thin section separator usable inline. */
+  /* Avatars: portraits, not Slack thumbnails. Pravatar URLs are
+     deterministic per email; the duotone effect comes from CSS
+     filters that drain saturation and lay a soft sepia tint, so
+     every face looks like it was photographed by the same
+     photographer for the same magazine. */
+  .avatar img,
+  img.avatar {
+    display: block;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--rule);
+    filter: grayscale(100%) contrast(0.92) sepia(0.18) brightness(1.02);
+  }
+  .avatar { display: inline-block; line-height: 0; }
+  img.avatar.avatar-lg {
+    width: 132px;
+    height: 132px;
+  }
+
+  /* Member listing row: avatar to the left of name + role. */
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+  .member-row .member-row-body { flex: 1; min-width: 0; }
+  .member-row h3 { margin: 0 0 0.2rem; }
+
+  /* Member detail header: avatar large to the left of name/bio. */
+  .member-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.8rem;
+    margin-bottom: 2.4rem;
+  }
+  .member-header .member-header-text { flex: 1; min-width: 0; }
+  .member-header h1 { margin: 0 0 0.4rem; }
+  .member-header .lede { margin: 0.6rem 0 0.6rem; }
+  @media (max-width: 600px) {
+    .member-header { flex-direction: column; gap: 1rem; }
+  }
+
   /* Editorial masthead on the home page: a small eyebrow line
      ('Edição de maio · 2026'), a generous wordmark title, and a
      dispatch paragraph signed by the curator. Borrowed grammar:

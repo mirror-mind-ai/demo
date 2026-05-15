@@ -119,6 +119,17 @@ export function listMembers(): Member[] {
   return db.prepare("SELECT * FROM members ORDER BY name").all() as Member[];
 }
 
+/**
+ * Avatar URL for a member, derived deterministically from the email.
+ * Uses pravatar.cc seeded by email so each member always gets the
+ * same face across reseeds. CSS-side duotone treatment lives in the
+ * layout stylesheet; the URL is plain.
+ */
+export function avatarUrlFor(member: { email: string }, size = 240): string {
+  const seed = encodeURIComponent(member.email);
+  return `https://i.pravatar.cc/${size}?u=${seed}`;
+}
+
 export function getMember(id: number): Member | undefined {
   return db.prepare("SELECT * FROM members WHERE id = ?").get(id) as Member | undefined;
 }
