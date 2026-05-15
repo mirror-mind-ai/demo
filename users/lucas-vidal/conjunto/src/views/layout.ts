@@ -1,0 +1,243 @@
+/**
+ * Layout HTML compartilhado. Server-rendered, sem framework de front-end.
+ *
+ * Estética seca: texto preto sobre fundo claro, uma serif para o corpo
+ * e uma sans para chrome. Suficiente para o Conjunto soar adulto sem
+ * passar de comunidade.
+ */
+
+const CSS = /* css */ `
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --ink: #1a1815;
+    --ink-soft: #5a544a;
+    --rule: #ddd4c6;
+    --accent: #8a3324;
+    --link: #8a3324;
+    --max-width: 760px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  header.site {
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 0.9rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  header.site .inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  header.site a.brand {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  header.site nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-left: 1.4rem;
+    font-size: 0.95rem;
+  }
+  header.site nav a:hover { color: var(--ink); }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2.4rem 1.5rem 4rem;
+  }
+  main.wide { max-width: 980px; }
+
+  h1, h2, h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+  h1 { font-size: 1.9rem; margin: 0 0 1rem; }
+  h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; }
+  h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+
+  a { color: var(--link); }
+  a:hover { color: var(--ink); }
+
+  .lede {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0 0 2rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin: 0 0 1rem;
+  }
+
+  .card h3 { margin-top: 0; }
+
+  .meta {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .who {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding: 0.55rem 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9rem;
+  }
+  .who select { font-size: 0.9rem; padding: 0.2rem 0.4rem; }
+
+  .docs {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2.5rem;
+    margin-top: 1rem;
+  }
+  .docs nav.tree {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9rem;
+    border-right: 1px solid var(--rule);
+    padding-right: 1rem;
+  }
+  .docs nav.tree ul {
+    list-style: none;
+    padding-left: 0.9rem;
+    margin: 0.3rem 0;
+  }
+  .docs nav.tree > ul { padding-left: 0; }
+  .docs nav.tree li { margin: 0.25rem 0; }
+  .docs nav.tree a { color: var(--ink-soft); text-decoration: none; }
+  .docs nav.tree a:hover { color: var(--ink); }
+  .docs nav.tree a.current { color: var(--ink); font-weight: 600; }
+  .docs nav.tree .folder { color: var(--ink); font-weight: 600; }
+
+  article.markdown pre {
+    background: #f3eee5;
+    padding: 0.9rem 1.1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+  }
+  article.markdown code {
+    background: #f3eee5;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+  article.markdown pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+  }
+  article.markdown blockquote {
+    border-left: 3px solid var(--rule);
+    margin: 1rem 0;
+    padding: 0.2rem 1rem;
+    color: var(--ink-soft);
+  }
+  article.markdown table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95em;
+  }
+  article.markdown th, article.markdown td {
+    border: 1px solid var(--rule);
+    padding: 0.45rem 0.7rem;
+    text-align: left;
+  }
+
+  .last-seen {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+`;
+
+export interface LayoutOpts {
+  title: string;
+  currentMember?: { id: number; name: string } | null;
+  allMembers?: { id: number; name: string }[];
+  wide?: boolean;
+  body: string;
+}
+
+export function layout(opts: LayoutOpts): string {
+  const whoBar = opts.allMembers
+    ? `
+      <div class="who">
+        Você está vendo o Conjunto como
+        <form method="post" action="/auth/switch" style="display:inline">
+          <select name="member_id" onchange="this.form.submit()">
+            ${opts.allMembers
+              .map(
+                (m) =>
+                  `<option value="${m.id}"${m.id === opts.currentMember?.id ? " selected" : ""}>${escapeHtml(m.name)}</option>`
+              )
+              .join("")}
+          </select>
+        </form>
+      </div>
+    `
+    : "";
+
+  return /* html */ `<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(opts.title)} · Conjunto</title>
+  <style>${CSS}</style>
+</head>
+<body>
+  <header class="site">
+    <div class="inner">
+      <a class="brand" href="/">Conjunto</a>
+      <nav>
+        <a href="/members">Membros</a>
+        <a href="/threads">Fios</a>
+        <a href="/docs">Docs</a>
+      </nav>
+    </div>
+  </header>
+  <main${opts.wide ? ' class="wide"' : ""}>
+    ${whoBar}
+    ${opts.body}
+  </main>
+</body>
+</html>`;
+}
+
+export function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
