@@ -247,6 +247,63 @@ const CSS = /* css */ `
   }
 
   /* Thin section separator usable inline. */
+  /* Editorial masthead on the home page: a small eyebrow line
+     ('Edição de maio · 2026'), a generous wordmark title, and a
+     dispatch paragraph signed by the curator. Borrowed grammar:
+     monthly magazine cover. */
+  .eyebrow {
+    font-family: var(--sans);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.6rem;
+  }
+  h1.masthead {
+    font-family: var(--serif);
+    font-size: 3.4rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin: 0 0 1.4rem;
+  }
+  .dispatch {
+    margin: 0 0 2.5rem;
+    padding: 1.4rem 1.6rem;
+    background: color-mix(in srgb, var(--accent) 4%, transparent);
+    border-left: 3px solid var(--accent);
+  }
+  .dispatch p {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  .dispatch p.byline {
+    margin-top: 0.8rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Featured thread entry: curator's italic note on top, then the
+     thread headline. Heavier vertical rhythm than a plain entry. */
+  .featured {
+    padding: 1.6rem 0 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .featured:last-of-type { border-bottom: 0; }
+  .featured .curator-note {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 0.7rem;
+    font-size: 0.98rem;
+  }
+  .featured h3 {
+    margin: 0.2rem 0 0.35rem;
+    font-size: 1.25rem;
+  }
+
   /* Theme chip: a tiny dot of theme color + small-caps label. Used in
      thread listings and at the top of thread covers. Color comes from
      the --theme CSS variable injected inline. */
