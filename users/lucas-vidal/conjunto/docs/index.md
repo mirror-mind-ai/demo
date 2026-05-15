@@ -1,6 +1,6 @@
-# O Conjunto
+# Documentação
 
-Esta é a documentação de *O Conjunto*, uma comunidade fechada e curada
+Esta é a documentação do **Conjunto**, uma comunidade fechada e curada
 para líderes técnicos. A estrutura desses documentos segue o princípio
 de **coerência produto-processo-projeto**.
 

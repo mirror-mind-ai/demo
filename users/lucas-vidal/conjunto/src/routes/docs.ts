@@ -26,7 +26,6 @@ function renderDoc(c: any, slug: string) {
         title: "Documento não encontrado",
         currentMember: current ? { id: current.id, name: current.name } : null,
         allMembers: all.map((m) => ({ id: m.id, name: m.name })),
-        wide: true,
         body: `<h1>Documento não encontrado</h1><p>O caminho <code>${escapeHtml(slug)}</code> não existe na documentação.</p><p><a href="/docs">Voltar para o índice</a></p>`,
       })
     );
@@ -49,7 +48,6 @@ function renderDoc(c: any, slug: string) {
       title: titleFromSlug(slug),
       currentMember: current ? { id: current.id, name: current.name } : null,
       allMembers: all.map((m) => ({ id: m.id, name: m.name })),
-      wide: true,
       sidebar,
       body,
     })

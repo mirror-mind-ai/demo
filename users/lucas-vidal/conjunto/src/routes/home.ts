@@ -12,7 +12,7 @@ export const home = new Hono();
  * Lucas can edit without redeploy.
  */
 const DISPATCH = {
-  edition: "Edição de maio · 2026",
+  edition: "Maio · 2026",
   body: `Este mês o Conjunto atravessa três tensões recorrentes entre líderes técnicos: a promoção que demora, o ticket que a gente pega no calor, e a empresa que ajudamos a construir e ainda não sabemos se vamos deixar. Os fios abaixo abrem cada uma com calma. Não é para responder em três horas, é para acompanhar por semanas.`,
   byline: "Lucas Vidal, curador",
   featured: [
@@ -73,8 +73,8 @@ home.get("/", (c) => {
     .join("");
 
   const body = /* html */ `
-    <p class="eyebrow">${escapeHtml(DISPATCH.edition)}</p>
-    <h1 class="masthead">Conjunto</h1>
+    <p class="eyebrow">Edição mensal</p>
+    <h1 class="masthead">${escapeHtml(DISPATCH.edition)}</h1>
     <p class="lede">Comunidade fechada para líderes técnicos brasileiros.
     Encontros mensais ao vivo, fios temáticos assíncronos, biblioteca curada.
     Sem feed, sem timeline, sem barulho.</p>
