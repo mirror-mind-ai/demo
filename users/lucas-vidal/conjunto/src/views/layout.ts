@@ -199,6 +199,20 @@ const CSS = /* css */ `
     text-align: left;
   }
 
+  /* Lead message of a thread: editorial drop cap on the very first
+     paragraph, à la livro. Applied only to the opening message so it
+     marks the entry, not every reply. */
+  .message.lead .body > p:first-of-type::first-letter {
+    font-family: var(--sans);
+    font-weight: 600;
+    float: left;
+    font-size: 3.6em;
+    line-height: 0.9;
+    padding: 0.35rem 0.6rem 0 0;
+    margin-top: 0.1rem;
+    color: var(--accent);
+  }
+
   .last-seen {
     font-size: 0.85rem;
     color: var(--ink-soft);

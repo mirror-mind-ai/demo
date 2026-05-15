@@ -43,10 +43,10 @@ threads.get("/:id", (c) => {
 
   const msgsHtml = msgs
     .map(
-      (m) => `
-    <div class="card">
+      (m, i) => `
+    <div class="card message${i === 0 ? " lead" : ""}">
       <div class="meta"><strong>${escapeHtml(m.author)}</strong> · ${formatDate(m.posted_at)}</div>
-      <div>${escapeHtml(m.body).replace(/\n/g, "<br>")}</div>
+      <div class="body">${renderBody(m.body)}</div>
     </div>`
     )
     .join("");
@@ -64,4 +64,16 @@ threads.get("/:id", (c) => {
 function formatDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleString("pt-BR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+}
+
+/**
+ * Convert plain-text message bodies into paragraph blocks. Blank lines
+ * separate paragraphs; single line breaks become <br>. Keeps the body
+ * server-rendered and safe (escapeHtml first).
+ */
+function renderBody(raw: string): string {
+  return raw
+    .split(/\n{2,}/)
+    .map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`)
+    .join("");
 }
