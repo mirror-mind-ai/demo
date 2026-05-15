@@ -157,6 +157,28 @@ const CSS = /* css */ `
     font-size: 0.95rem;
   }
 
+  /* Read marker: a hairline rule across the column with a short note
+     centered on it. Soft ink, sans, small caps. Never a badge or a
+     counter — the principle is 'helps resume, not compete'. */
+  .read-marker {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .read-marker::before,
+  .read-marker::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
   /* Thin section separator usable inline. */
   hr.rule {
     border: 0;

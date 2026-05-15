@@ -52,6 +52,20 @@ db.exec(`
   );
 
   CREATE INDEX IF NOT EXISTS idx_messages_thread ON messages(thread_id, posted_at);
+
+  /*
+   * Read marks: one row per (member, thread). Records the most recent
+   * timestamp at which the member opened that thread. Used to render
+   * a soft 'you read up to here' rule between messages — never a badge,
+   * never a counter. The principle is 'helps the member resume, not
+   * compete'.
+   */
+  CREATE TABLE IF NOT EXISTS read_marks (
+    member_id INTEGER NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+    thread_id INTEGER NOT NULL REFERENCES threads(id) ON DELETE CASCADE,
+    read_at   TEXT    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (member_id, thread_id)
+  );
 `);
 
 // ---------- Types ------------------------------------------------------------
@@ -143,6 +157,30 @@ export function listMemberActivity(
     posted_at: string;
     body: string;
   }[];
+}
+
+/**
+ * Returns the previous read_at for (member, thread), then upserts
+ * the mark to now. The previous value is what we render in the UI:
+ * 'you read up to here in 12/mai'. If this is the first visit, the
+ * previous value is undefined and no marker is drawn.
+ */
+export function recordAndGetPreviousRead(
+  memberId: number,
+  threadId: number
+): string | undefined {
+  const prev = db
+    .prepare(`SELECT read_at FROM read_marks WHERE member_id = ? AND thread_id = ?`)
+    .get(memberId, threadId) as { read_at: string } | undefined;
+
+  db.prepare(
+    `INSERT INTO read_marks (member_id, thread_id, read_at)
+     VALUES (?, ?, CURRENT_TIMESTAMP)
+     ON CONFLICT(member_id, thread_id)
+     DO UPDATE SET read_at = CURRENT_TIMESTAMP`
+  ).run(memberId, threadId);
+
+  return prev?.read_at;
 }
 
 export function listMessages(

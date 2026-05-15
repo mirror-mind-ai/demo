@@ -1,5 +1,11 @@
 import { Hono } from "hono";
-import { getThread, listMembers, listMessages, listThreads } from "../db.js";
+import {
+  getThread,
+  listMembers,
+  listMessages,
+  listThreads,
+  recordAndGetPreviousRead,
+} from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
@@ -41,13 +47,31 @@ threads.get("/:id", (c) => {
   const all = listMembers();
   const msgs = listMessages(id);
 
+  // Read mark: get previous read_at for this member+thread, then
+  // update to now. Marker is drawn before the first message posted
+  // after the previous visit.
+  const previousRead = current ? recordAndGetPreviousRead(current.id, id) : undefined;
+  const previousReadMs = previousRead ? new Date(previousRead).getTime() : undefined;
+  let markerDrawn = false;
+
   const msgsHtml = msgs
     .map((m, i) => {
       const affiliation = [m.author_role, m.author_company]
         .filter(Boolean)
         .map((s) => escapeHtml(s as string))
         .join(", ");
-      return `
+
+      let marker = "";
+      if (
+        !markerDrawn &&
+        previousReadMs !== undefined &&
+        new Date(m.posted_at).getTime() > previousReadMs
+      ) {
+        marker = `<div class="read-marker"><span>você leu até aqui em ${escapeHtml(formatReadMark(previousRead!))}</span></div>`;
+        markerDrawn = true;
+      }
+
+      return `${marker}
     <div class="card message${i === 0 ? " lead" : ""}">
       <div class="meta when">${formatDate(m.posted_at)}</div>
       <div class="body">${renderBody(m.body)}</div>
@@ -71,6 +95,11 @@ threads.get("/:id", (c) => {
 function formatDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleString("pt-BR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+}
+
+function formatReadMark(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
 }
 
 /**
