@@ -53,9 +53,23 @@ const CSS = /* css */ `
   header.site a.brand {
     color: var(--ink);
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  header.site a.brand .mark {
+    width: 18px;
+    height: 18px;
+    display: block;
+    flex-shrink: 0;
+  }
+  header.site a.brand .mark circle { fill: var(--accent); }
+  header.site a.brand .wordmark {
+    font-family: var(--serif);
     font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
+    font-size: 1.15rem;
+    letter-spacing: -0.015em;
+    line-height: 1;
   }
   header.site nav a {
     color: var(--ink-soft);
@@ -472,7 +486,16 @@ export function layout(opts: LayoutOpts): string {
 <body>
   <header class="site">
     <div class="inner">
-      <a class="brand" href="/">Conjunto</a>
+      <a class="brand" href="/" aria-label="Conjunto — início">
+        <svg class="mark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Três pontos em triângulo: o menor conjunto não-trivial.
+               Coerente com o princípio 'tamanho como restrição'. -->
+          <circle cx="12" cy="4.5" r="2.4"/>
+          <circle cx="4.5" cy="18" r="2.4"/>
+          <circle cx="19.5" cy="18" r="2.4"/>
+        </svg>
+        <span class="wordmark">Conjunto</span>
+      </a>
       <nav>
         <a href="/members">Membros</a>
         <a href="/threads">Fios</a>
