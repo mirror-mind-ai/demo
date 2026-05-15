@@ -107,6 +107,44 @@ export function getThread(id: number): Thread | undefined {
   return db.prepare("SELECT * FROM threads WHERE id = ?").get(id) as Thread | undefined;
 }
 
+/**
+ * Activity by a single member across the Conjunto: every message they
+ * posted, joined to its thread, newest first. Used by the member page
+ * to render a personal timeline — 'how do I know this person' before
+ * the monthly encounter.
+ */
+export function listMemberActivity(
+  memberId: number,
+  limit = 30
+): {
+  message_id: number;
+  thread_id: number;
+  thread_title: string;
+  posted_at: string;
+  body: string;
+}[] {
+  return db
+    .prepare(
+      `SELECT msg.id    AS message_id,
+              t.id      AS thread_id,
+              t.title   AS thread_title,
+              msg.posted_at,
+              msg.body
+       FROM messages msg
+       JOIN threads t ON t.id = msg.thread_id
+       WHERE msg.author_id = ?
+       ORDER BY msg.posted_at DESC
+       LIMIT ?`
+    )
+    .all(memberId, limit) as {
+    message_id: number;
+    thread_id: number;
+    thread_title: string;
+    posted_at: string;
+    body: string;
+  }[];
+}
+
 export function listMessages(
   threadId: number
 ): (Message & { author: string; author_role: string; author_company: string | null })[] {

@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getMember, listMembers } from "../db.js";
+import { getMember, listMemberActivity, listMembers } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
@@ -39,11 +39,29 @@ members.get("/:id", (c) => {
   const current = getCurrentMember(c);
   const all = listMembers();
 
+  const activity = listMemberActivity(member.id, 30);
+  const activityHtml = activity.length
+    ? activity
+        .map((a) => {
+          const excerpt = excerptOf(a.body, 220);
+          return `
+      <div class="entry timeline-entry">
+        <div class="meta when">${formatDateShort(a.posted_at)}</div>
+        <h3><a href="/threads/${a.thread_id}">${escapeHtml(a.thread_title)}</a></h3>
+        <p class="excerpt">${escapeHtml(excerpt)}</p>
+      </div>`;
+        })
+        .join("")
+    : `<p class="meta">Ainda não escreveu em fio algum.</p>`;
+
   const body = /* html */ `
     <h1>${escapeHtml(member.name)}</h1>
     <p class="meta">${escapeHtml(member.role)}${member.company ? ` · ${escapeHtml(member.company)}` : ""}</p>
-    ${member.bio ? `<p>${escapeHtml(member.bio)}</p>` : ""}
+    ${member.bio ? `<p class="lede">${escapeHtml(member.bio)}</p>` : ""}
     <p class="meta">No Conjunto desde ${formatDate(member.joined_at)}.</p>
+
+    <h2>O que ${escapeHtml(firstName(member.name))} escreveu</h2>
+    ${activityHtml}
   `;
 
   return c.html(
@@ -59,4 +77,18 @@ members.get("/:id", (c) => {
 function formatDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+}
+
+function formatDateShort(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+}
+
+function excerptOf(body: string, maxChars: number): string {
+  const flat = body.replace(/\s+/g, " ").trim();
+  return flat.length <= maxChars ? flat : flat.slice(0, maxChars).replace(/\s\S*$/, "") + "…";
+}
+
+function firstName(full: string): string {
+  return full.split(" ")[0] ?? full;
 }

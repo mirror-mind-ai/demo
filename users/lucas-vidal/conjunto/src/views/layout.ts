@@ -136,6 +136,27 @@ const CSS = /* css */ `
     padding: 1.8rem 0 2rem;
   }
 
+  /* Member timeline: a single column of past contributions, each
+     entry showing date, thread title, and an excerpt. No avatars,
+     no reactions — the writing is the surface. */
+  .timeline-entry .when {
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+  }
+  .timeline-entry h3 {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+  }
+  .timeline-entry .excerpt {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
   /* Thin section separator usable inline. */
   hr.rule {
     border: 0;
