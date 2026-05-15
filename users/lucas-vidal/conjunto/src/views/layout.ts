@@ -347,35 +347,30 @@ const CSS = /* css */ `
     margin: 2.4rem 0;
   }
 
-  /* Two-column layout with sticky table of contents. Folds to a
-     single column below 900px so the TOC never crowds the text on
-     narrow viewports. */
-  main.with-sidebar { max-width: 1100px; }
-  .main-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
+  /* Sticky table of contents lives in the right margin, OUTSIDE the
+     main column. The main column stays at 760px on every page; the
+     TOC only appears when the viewport has room for it without
+     overlapping the text. Hidden on narrow viewports, no fallback
+     in-flow rendering — the doc's headings remain readable in the
+     body, the TOC is a convenience for wide screens. */
+  aside.page-sidebar {
+    display: none;
   }
-  @media (min-width: 900px) {
-    .main-grid {
-      grid-template-columns: minmax(0, 1fr) 220px;
-    }
-  }
-  aside.sidebar {
-    font-family: var(--sans);
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-  @media (min-width: 900px) {
-    aside.sidebar {
-      position: sticky;
-      top: 1.5rem;
-      align-self: start;
-      max-height: calc(100vh - 3rem);
+  @media (min-width: 1140px) {
+    aside.page-sidebar {
+      display: block;
+      position: fixed;
+      top: 6rem;
+      left: calc(50% + var(--max-width) / 2 + 2.5rem);
+      width: 200px;
+      max-height: calc(100vh - 8rem);
       overflow-y: auto;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
   }
-  aside.sidebar .toc-label {
+  aside.page-sidebar .toc-label {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-size: 0.7rem;
@@ -384,14 +379,14 @@ const CSS = /* css */ `
     padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--rule);
   }
-  aside.sidebar ul {
+  aside.page-sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  aside.sidebar li { margin: 0.35rem 0; }
-  aside.sidebar li.level-3 { padding-left: 0.9rem; }
-  aside.sidebar a {
+  aside.page-sidebar li { margin: 0.35rem 0; }
+  aside.page-sidebar li.level-3 { padding-left: 0.9rem; }
+  aside.page-sidebar a {
     color: var(--ink-soft);
     text-decoration: none;
     border-left: 2px solid transparent;
@@ -399,7 +394,7 @@ const CSS = /* css */ `
     margin-left: -0.5rem;
     display: block;
   }
-  aside.sidebar a:hover {
+  aside.page-sidebar a:hover {
     color: var(--ink);
     border-left-color: var(--accent);
   }
@@ -597,14 +592,11 @@ export function layout(opts: LayoutOpts): string {
       </nav>
     </div>
   </header>
-  <main${opts.wide || opts.sidebar ? ` class="${[opts.wide ? "wide" : "", opts.sidebar ? "with-sidebar" : ""].filter(Boolean).join(" ")}"` : ""}>
+  <main${opts.wide ? ' class="wide"' : ""}>
     ${whoBar}
-    ${
-      opts.sidebar
-        ? `<div class="main-grid"><div class="main-col">${opts.body}</div><aside class="sidebar">${opts.sidebar}</aside></div>`
-        : opts.body
-    }
+    ${opts.body}
   </main>
+  ${opts.sidebar ? `<aside class="page-sidebar">${opts.sidebar}</aside>` : ""}
 </body>
 </html>`;
 }
