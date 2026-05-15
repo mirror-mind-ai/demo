@@ -34,6 +34,7 @@ db.exec(`
     company TEXT,
     bio TEXT,
     currently TEXT,                      -- first-person 'what I'm wrestling with right now'
+    avatar_img INTEGER,                  -- optional pravatar catalog id (1–70) to pin a specific portrait
     joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -89,6 +90,9 @@ const memberCols = db.prepare(`PRAGMA table_info(members)`).all() as { name: str
 if (!memberCols.some((c) => c.name === "currently")) {
   db.exec(`ALTER TABLE members ADD COLUMN currently TEXT`);
 }
+if (!memberCols.some((c) => c.name === "avatar_img")) {
+  db.exec(`ALTER TABLE members ADD COLUMN avatar_img INTEGER`);
+}
 
 // ---------- Types ------------------------------------------------------------
 
@@ -100,6 +104,7 @@ export interface Member {
   company: string | null;
   bio: string | null;
   currently: string | null;
+  avatar_img: number | null;
   joined_at: string;
 }
 
@@ -132,7 +137,16 @@ export function listMembers(): Member[] {
  * same face across reseeds. CSS-side duotone treatment lives in the
  * layout stylesheet; the URL is plain.
  */
-export function avatarUrlFor(member: { email: string }, size = 240): string {
+export function avatarUrlFor(
+  member: { email: string; avatar_img?: number | null },
+  size = 240
+): string {
+  // Pinned catalog id wins over email seed. Pravatar serves img=1..70
+  // as deterministic, hand-picked portraits — useful when the
+  // email-hashed seed collides or doesn't match the desired persona.
+  if (member.avatar_img != null) {
+    return `https://i.pravatar.cc/${size}?img=${member.avatar_img}`;
+  }
   const seed = encodeURIComponent(member.email);
   return `https://i.pravatar.cc/${size}?u=${seed}`;
 }

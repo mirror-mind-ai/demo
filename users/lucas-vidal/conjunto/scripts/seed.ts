@@ -15,14 +15,15 @@ db.exec("DELETE FROM sqlite_sequence WHERE name IN ('members','threads','message
 console.log("Inserindo membros...");
 
 const insertMember = db.prepare(`
-  INSERT INTO members (name, email, role, company, bio, currently, joined_at)
-  VALUES (@name, @email, @role, @company, @bio, @currently, @joined_at)
+  INSERT INTO members (name, email, role, company, bio, currently, avatar_img, joined_at)
+  VALUES (@name, @email, @role, @company, @bio, @currently, @avatar_img, @joined_at)
 `);
 
 const members = [
   {
     name: "Lucas Vidal",
-    email: "lucas@conjunto.dev",
+    email: "lucas.vidal@conjunto.dev",
+    avatar_img: 12,
     role: "Fundador",
     company: "Solo (Florianópolis)",
     bio: "Construtor da Conjunto. Consultor independente em engenharia e liderança técnica há dezessete meses, depois de quase seis anos como head of engineering em fintech.",
@@ -31,7 +32,7 @@ const members = [
   },
   {
     name: "André Lemos",
-    email: "andre@example.com",
+    email: "beatriz@example.com",
     role: "Engineering Manager",
     company: "Scale-up de saúde",
     bio: "Atravessando promoção a head pendente há quatro meses. Sente que a empresa está adiando.",
@@ -40,7 +41,7 @@ const members = [
   },
   {
     name: "Beatriz Santos",
-    email: "beatriz@example.com",
+    email: "andre@example.com",
     role: "Tech Lead",
     company: "Fintech em Floripa",
     bio: "Engenheira forte aprendendo a delegar. Tendência a fazer o trabalho em vez de cuidar de quem faz.",
@@ -49,7 +50,7 @@ const members = [
   },
   {
     name: "Caio Furtado",
-    email: "caio@example.com",
+    email: "diana@example.com",
     role: "Head of Platform",
     company: "B2B em Belo Horizonte",
     bio: "Time pequeno, pressão alta. Considerando sair.",
@@ -58,7 +59,7 @@ const members = [
   },
   {
     name: "Diana Lopes",
-    email: "diana@example.com",
+    email: "caio@example.com",
     role: "Engineering Manager",
     company: "SaaS em Curitiba",
     bio: "Veio do produto, única do grupo que não começou como engenheira. Carrega impostor síndrome técnica.",
@@ -76,7 +77,8 @@ const members = [
   },
   {
     name: "Felipe Andrade",
-    email: "felipe@example.com",
+    email: "felipe.andrade2@example.com",
+    avatar_img: 33,
     role: "Head of Engineering",
     company: "Scale-up de RH em São Paulo",
     bio: "Mais experiente do grupo. Atravessando reorganização de estrutura.",
@@ -96,7 +98,9 @@ const members = [
 
 const memberIds: Record<string, number> = {};
 for (const m of members) {
-  const result = insertMember.run(m);
+  // Normalize optional fields so better-sqlite3 binds NULL instead of
+  // raising on undefined for members without an avatar_img override.
+  const result = insertMember.run({ avatar_img: null, ...m });
   memberIds[m.name] = Number(result.lastInsertRowid);
 }
 
