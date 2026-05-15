@@ -68,26 +68,48 @@ const CSS = /* css */ `
   main {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 2.4rem 1.5rem 4rem;
+    padding: 3.2rem 1.5rem 5rem;
   }
   main.wide { max-width: 980px; }
 
   h1, h2, h3 {
     font-family: var(--sans);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
   }
-  h1 { font-size: 1.9rem; margin: 0 0 1rem; }
-  h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; }
-  h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+  h1 {
+    font-size: 2.4rem;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.03em;
+  }
+  h2 {
+    font-size: 1.05rem;
+    margin: 3rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-weight: 600;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin: 1.6rem 0 0.4rem;
+    font-weight: 600;
+  }
 
   a { color: var(--link); }
   a:hover { color: var(--ink); }
 
   .lede {
     color: var(--ink-soft);
-    font-size: 1.05rem;
-    margin: 0 0 2rem;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    margin: 0 0 2.4rem;
+    font-style: italic;
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
   }
 
   .card {
