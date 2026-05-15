@@ -33,6 +33,7 @@ db.exec(`
     role TEXT NOT NULL,                  -- e.g. tech lead, engineering manager
     company TEXT,
     bio TEXT,
+    currently TEXT,                      -- first-person 'what I'm wrestling with right now'
     joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -84,6 +85,11 @@ if (!threadCols.some((c) => c.name === "theme")) {
 }
 db.exec(`CREATE UNIQUE INDEX IF NOT EXISTS idx_threads_slug ON threads(slug)`);
 
+const memberCols = db.prepare(`PRAGMA table_info(members)`).all() as { name: string }[];
+if (!memberCols.some((c) => c.name === "currently")) {
+  db.exec(`ALTER TABLE members ADD COLUMN currently TEXT`);
+}
+
 // ---------- Types ------------------------------------------------------------
 
 export interface Member {
@@ -93,6 +99,7 @@ export interface Member {
   role: string;
   company: string | null;
   bio: string | null;
+  currently: string | null;
   joined_at: string;
 }
 

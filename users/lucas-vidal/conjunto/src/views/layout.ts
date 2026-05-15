@@ -268,6 +268,31 @@ const CSS = /* css */ `
     height: 132px;
   }
 
+  /* 'Atualmente' line: a first-person, single-sentence dispatch from
+     the member about what they're wrestling with right now. Italic
+     prose, small-caps label, soft ink. Editorial intimacy without
+     turning into status-update spam. */
+  .currently {
+    margin: 0.45rem 0 0;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .currently .label {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-right: 0.45rem;
+  }
+  .currently-detail {
+    margin-top: 0.7rem;
+    font-size: 1rem;
+  }
+
   /* Group portrait: a horizontal frieze of every member, first names
      below each portrait. Used at the top of /members. Reinforces
      'tamanho como restrição' visually — you see the entire room in

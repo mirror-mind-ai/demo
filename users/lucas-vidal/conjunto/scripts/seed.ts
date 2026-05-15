@@ -15,8 +15,8 @@ db.exec("DELETE FROM sqlite_sequence WHERE name IN ('members','threads','message
 console.log("Inserindo membros...");
 
 const insertMember = db.prepare(`
-  INSERT INTO members (name, email, role, company, bio, joined_at)
-  VALUES (@name, @email, @role, @company, @bio, @joined_at)
+  INSERT INTO members (name, email, role, company, bio, currently, joined_at)
+  VALUES (@name, @email, @role, @company, @bio, @currently, @joined_at)
 `);
 
 const members = [
@@ -26,6 +26,7 @@ const members = [
     role: "Fundador",
     company: "Solo (Florianópolis)",
     bio: "Construtor da Conjunto. Consultor independente em engenharia e liderança técnica há dezessete meses, depois de quase seis anos como head of engineering em fintech.",
+    currently: "Curando a edição de maio e reescrevendo a seção de princípios do Conjunto.",
     joined_at: "2026-04-01T10:00:00Z",
   },
   {
@@ -34,6 +35,7 @@ const members = [
     role: "Engineering Manager",
     company: "Scale-up de saúde",
     bio: "Atravessando promoção a head pendente há quatro meses. Sente que a empresa está adiando.",
+    currently: "Preparando a conversa de promoção com meu CTO. Quero chegar nela já com a resposta para 'e se for não'.",
     joined_at: "2026-04-10T10:00:00Z",
   },
   {
@@ -42,6 +44,7 @@ const members = [
     role: "Tech Lead",
     company: "Fintech em Floripa",
     bio: "Engenheira forte aprendendo a delegar. Tendência a fazer o trabalho em vez de cuidar de quem faz.",
+    currently: "Registrando, por uma semana, cada ticket que peguei e poderia ter delegado. Tentando ver o padrão antes de tentar resistir.",
     joined_at: "2026-04-12T10:00:00Z",
   },
   {
@@ -50,6 +53,7 @@ const members = [
     role: "Head of Platform",
     company: "B2B em Belo Horizonte",
     bio: "Time pequeno, pressão alta. Considerando sair.",
+    currently: "Separando o que é cuidado legítimo com o time do que é apego me prendendo num lugar que não serve mais.",
     joined_at: "2026-04-14T10:00:00Z",
   },
   {
@@ -58,6 +62,7 @@ const members = [
     role: "Engineering Manager",
     company: "SaaS em Curitiba",
     bio: "Veio do produto, única do grupo que não começou como engenheira. Carrega impostor síndrome técnica.",
+    currently: "Praticando opinar em decisões técnicas sem hesitar primeiro. Notando quantas vezes hesito por falta de credencial, não por falta de leitura.",
     joined_at: "2026-04-16T10:00:00Z",
   },
   {
@@ -66,6 +71,7 @@ const members = [
     role: "Tech Lead",
     company: "Cripto em Recife",
     bio: "Mais energia que método. Trabalho excelente, sustentação irregular.",
+    currently: "Tentando dar a uma semana de ritmo o que normalmente eu faço em três dias de sprint.",
     joined_at: "2026-04-18T10:00:00Z",
   },
   {
@@ -74,6 +80,7 @@ const members = [
     role: "Head of Engineering",
     company: "Scale-up de RH em São Paulo",
     bio: "Mais experiente do grupo. Atravessando reorganização de estrutura.",
+    currently: "Saindo da fase de 'comunicar a reorg' e entrando na fase mais longa de 'reconstruir referência para cada pessoa do time'.",
     joined_at: "2026-04-20T10:00:00Z",
   },
   {
@@ -82,6 +89,7 @@ const members = [
     role: "Engineering Manager",
     company: "Edtech em Porto Alegre",
     bio: "Construindo time do zero, contratou cinco em três meses. Exausta.",
+    currently: "Aprendendo a confiar que as cinco pessoas que contratei vão se levantar mesmo nos dias em que eu não estiver presente.",
     joined_at: "2026-04-22T10:00:00Z",
   },
 ];

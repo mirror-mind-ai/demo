@@ -19,6 +19,7 @@ members.get("/", (c) => {
       <div class="member-row-body">
         <h3><a href="/members/${m.id}">${escapeHtml(m.name)}</a></h3>
         <div class="meta">${escapeHtml(m.role)}${m.company ? ` · ${escapeHtml(m.company)}` : ""}</div>
+        ${m.currently ? `<p class="currently"><span class="label">Atualmente</span> ${escapeHtml(m.currently)}</p>` : ""}
       </div>
     </div>`
     )
@@ -78,6 +79,7 @@ members.get("/:id", (c) => {
       <div class="member-header-text">
         <h1>${escapeHtml(member.name)}</h1>
         <p class="meta">${escapeHtml(member.role)}${member.company ? ` · ${escapeHtml(member.company)}` : ""}</p>
+        ${member.currently ? `<p class="currently currently-detail"><span class="label">Atualmente</span> ${escapeHtml(member.currently)}</p>` : ""}
         ${member.bio ? `<p class="lede">${escapeHtml(member.bio)}</p>` : ""}
         <p class="meta">No Conjunto desde ${formatDate(member.joined_at)}.</p>
       </div>
