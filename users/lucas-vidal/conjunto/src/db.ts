@@ -107,14 +107,23 @@ export function getThread(id: number): Thread | undefined {
   return db.prepare("SELECT * FROM threads WHERE id = ?").get(id) as Thread | undefined;
 }
 
-export function listMessages(threadId: number): (Message & { author: string })[] {
+export function listMessages(
+  threadId: number
+): (Message & { author: string; author_role: string; author_company: string | null })[] {
   return db
     .prepare(
-      `SELECT msg.*, m.name AS author
+      `SELECT msg.*,
+              m.name    AS author,
+              m.role    AS author_role,
+              m.company AS author_company
        FROM messages msg
        JOIN members m ON m.id = msg.author_id
        WHERE msg.thread_id = ?
        ORDER BY msg.posted_at ASC`
     )
-    .all(threadId) as (Message & { author: string })[];
+    .all(threadId) as (Message & {
+    author: string;
+    author_role: string;
+    author_company: string | null;
+  })[];
 }

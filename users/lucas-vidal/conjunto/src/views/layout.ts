@@ -199,6 +199,37 @@ const CSS = /* css */ `
     text-align: left;
   }
 
+  /* Message timestamp sits small above the body, like a dateline. */
+  .message .when {
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Author signature lives at the foot of each post, like a column
+     byline: name in small-caps, role/company in soft ink. */
+  .message .signature {
+    margin-top: 1.4rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .message .signature .name {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .message .signature .role {
+    display: block;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
   /* Lead message of a thread: editorial drop cap on the very first
      paragraph, à la livro. Applied only to the opening message so it
      marks the entry, not every reply. */

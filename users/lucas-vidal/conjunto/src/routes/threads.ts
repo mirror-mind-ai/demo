@@ -42,13 +42,20 @@ threads.get("/:id", (c) => {
   const msgs = listMessages(id);
 
   const msgsHtml = msgs
-    .map(
-      (m, i) => `
+    .map((m, i) => {
+      const affiliation = [m.author_role, m.author_company]
+        .filter(Boolean)
+        .map((s) => escapeHtml(s as string))
+        .join(", ");
+      return `
     <div class="card message${i === 0 ? " lead" : ""}">
-      <div class="meta"><strong>${escapeHtml(m.author)}</strong> · ${formatDate(m.posted_at)}</div>
+      <div class="meta when">${formatDate(m.posted_at)}</div>
       <div class="body">${renderBody(m.body)}</div>
-    </div>`
-    )
+      <div class="signature">
+        <span class="name">${escapeHtml(m.author)}</span>${affiliation ? `<span class="role">${affiliation}</span>` : ""}
+      </div>
+    </div>`;
+    })
     .join("");
 
   return c.html(
