@@ -6,6 +6,11 @@ name: Conjunto
 status: active
 version: "1.0.0"
 
+# Caminho do projeto Builder mode, relativo ao home do personagem
+# (users/<slug>/). O install resolve para path absoluto e configura
+# no banco via JourneyService.set_project_path.
+project_path: conjunto
+
 description: >
   Travessia de construção da Conjunto, plataforma de comunidade fechada e curada
   para líderes técnicos brasileiros (tech leads, engineering managers, heads de

@@ -94,16 +94,29 @@ personagem responde a uma pergunta específica.
 
 Para conversas longas ou demonstrações ao vivo, abra o
 [Pi](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent)
-configurado para o personagem. A forma mais simples é criar um wrapper
-na sua máquina:
+**a partir do repositório do framework Mirror Mind**, com `MIRROR_HOME`
+apontando para o personagem desejado:
+
+```bash
+cd /caminho/para/mirror              # repositório do framework
+MIRROR_HOME=~/.mirror-demo/<slug> pi
+```
+
+O Pi precisa ser aberto no framework porque é lá que vive o
+`AGENTS.md` (com o roteamento automático de Mirror Mode) e as skills
+`.pi/skills/mm-*` (`/mm-mirror`, `/mm-journey`, `/mm-build`, etc.).
+Este repositório (o demo) contém só a matriz dos personagens.
+
+Um wrapper na sua máquina automatiza:
 
 ```bash
 #!/usr/bin/env bash
 # ~/mirror-demo.sh — abre o Pi como um personagem do demo
-cd /caminho/para/mirror-demo
-export MIRROR_HOME="$HOME/.mirror-demo/$1"
-unset MIRROR_USER
+SLUG="${1:?usage: mirror-demo.sh <slug>}"
 shift
+cd /caminho/para/mirror
+export MIRROR_HOME="$HOME/.mirror-demo/$SLUG"
+unset MIRROR_USER
 exec pi "$@"
 ```
 

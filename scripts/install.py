@@ -204,6 +204,37 @@ def first_h1(text: str) -> str | None:
     return None
 
 
+def configure_project_paths(user_dir: Path) -> int:
+    """For each journey YAML that declares project_path, resolve it
+    relative to the user dir and persist via the framework's API.
+    """
+    journeys_dir = user_dir / "identity" / "journeys"
+    if not journeys_dir.is_dir():
+        return 0
+
+    from memory import MemoryClient
+    client = MemoryClient()
+    configured = 0
+
+    for yaml_path in sorted(journeys_dir.glob("*.yaml")):
+        data = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            continue
+        rel = data.get("project_path")
+        if not rel:
+            continue
+        slug = data.get("journey_id") or yaml_path.stem
+        resolved = (user_dir / rel).resolve()
+        if not resolved.exists():
+            print(f"  ! project_path for '{slug}' does not exist: {resolved}")
+            continue
+        client.journeys.set_project_path(slug, str(resolved))
+        print(f"  ✓ project_path for '{slug}': {resolved}")
+        configured += 1
+
+    return configured
+
+
 def ingest_attachments(user_dir: Path) -> int:
     """Walk users/<slug>/attachments/<journey>/*.md and ingest each."""
     attachments_dir = user_dir / "attachments"
@@ -263,6 +294,10 @@ def install(slug: str, home: Path, keep: bool) -> None:
     seed_file = user_dir / "memories" / "seed.yaml"
     if seed_file.exists():
         plant_memories(seed_file)
+
+    project_paths_configured = configure_project_paths(user_dir)
+    if project_paths_configured:
+        print()
 
     attachments_total = ingest_attachments(user_dir)
 
