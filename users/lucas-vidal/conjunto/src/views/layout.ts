@@ -239,6 +239,67 @@ const CSS = /* css */ `
     margin: 2.4rem 0;
   }
 
+  /* Two-column layout with sticky table of contents. Folds to a
+     single column below 900px so the TOC never crowds the text on
+     narrow viewports. */
+  main.with-sidebar { max-width: 1100px; }
+  .main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  @media (min-width: 900px) {
+    .main-grid {
+      grid-template-columns: minmax(0, 1fr) 220px;
+    }
+  }
+  aside.sidebar {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  @media (min-width: 900px) {
+    aside.sidebar {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+    }
+  }
+  aside.sidebar .toc-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  aside.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  aside.sidebar li { margin: 0.35rem 0; }
+  aside.sidebar li.level-3 { padding-left: 0.9rem; }
+  aside.sidebar a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.5rem;
+    margin-left: -0.5rem;
+    display: block;
+  }
+  aside.sidebar a:hover {
+    color: var(--ink);
+    border-left-color: var(--accent);
+  }
+
+  html { scroll-behavior: smooth; }
+  article.markdown h2,
+  article.markdown h3 { scroll-margin-top: 1.5rem; }
+
   .meta {
     color: var(--ink-soft);
     font-size: 0.9rem;
@@ -373,6 +434,10 @@ export interface LayoutOpts {
   currentMember?: { id: number; name: string } | null;
   allMembers?: { id: number; name: string }[];
   wide?: boolean;
+  /** Optional sidebar HTML (e.g. table of contents). Renders as a
+   *  sticky column to the right of main on wide viewports; folds above
+   *  the content on narrow ones. */
+  sidebar?: string;
   body: string;
 }
 
@@ -415,9 +480,13 @@ export function layout(opts: LayoutOpts): string {
       </nav>
     </div>
   </header>
-  <main${opts.wide ? ' class="wide"' : ""}>
+  <main${opts.wide || opts.sidebar ? ` class="${[opts.wide ? "wide" : "", opts.sidebar ? "with-sidebar" : ""].filter(Boolean).join(" ")}"` : ""}>
     ${whoBar}
-    ${opts.body}
+    ${
+      opts.sidebar
+        ? `<div class="main-grid"><div class="main-col">${opts.body}</div><aside class="sidebar">${opts.sidebar}</aside></div>`
+        : opts.body
+    }
   </main>
 </body>
 </html>`;

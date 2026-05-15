@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { listMembers } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
 import { buildBreadcrumbs, resolveDocPath, type Breadcrumb } from "../lib/docs-tree.js";
-import { renderMarkdown } from "../lib/markdown.js";
+import { renderMarkdownWithToc, type TocEntry } from "../lib/markdown.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
 export const docs = new Hono();
@@ -34,12 +34,15 @@ function renderDoc(c: any, slug: string) {
 
   const breadcrumbs = buildBreadcrumbs(slug);
   const md = readFileSync(path, "utf-8");
-  const html = renderMarkdown(md, path);
+  const { html, toc } = renderMarkdownWithToc(md, path);
 
   const body = /* html */ `
     ${renderBreadcrumbs(breadcrumbs)}
     <article class="markdown">${html}</article>
   `;
+
+  // Only show TOC when the doc has enough structure to warrant one.
+  const sidebar = toc.length >= 3 ? renderToc(toc) : undefined;
 
   return c.html(
     layout({
@@ -47,9 +50,20 @@ function renderDoc(c: any, slug: string) {
       currentMember: current ? { id: current.id, name: current.name } : null,
       allMembers: all.map((m) => ({ id: m.id, name: m.name })),
       wide: true,
+      sidebar,
       body,
     })
   );
+}
+
+function renderToc(toc: TocEntry[]): string {
+  const items = toc
+    .map(
+      (e) =>
+        `<li class="level-${e.level}"><a href="#${e.slug}">${escapeHtml(e.text)}</a></li>`
+    )
+    .join("");
+  return `<p class="toc-label">Nesta página</p><ul>${items}</ul>`;
 }
 
 function renderBreadcrumbs(crumbs: Breadcrumb[]): string {
