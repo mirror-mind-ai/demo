@@ -1,10 +1,13 @@
 /**
  * Layout HTML compartilhado. Server-rendered, sem framework de front-end.
  *
- * Estética seca: texto preto sobre fundo claro, uma serif para o corpo
- * e uma sans para chrome. Suficiente para o Conjunto soar adulto sem
- * passar de comunidade.
+ * Estética editorial: serif emprestada (Source Serif 4) para corpo,
+ * sans humanista (Inter Tight) para chrome e títulos. Servidas por
+ * fonts.bunny.net (sem Google, GDPR-friendly).
  */
+
+const FONT_LINK =
+  '<link rel="stylesheet" href="https://fonts.bunny.net/css?family=source-serif-4:400,400i,600,700|inter-tight:400,500,600,700&display=swap">';
 
 const CSS = /* css */ `
   :root {
@@ -16,6 +19,8 @@ const CSS = /* css */ `
     --accent: #8a3324;
     --link: #8a3324;
     --max-width: 760px;
+    --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+    --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -24,16 +29,18 @@ const CSS = /* css */ `
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", serif;
-    font-size: 17px;
-    line-height: 1.55;
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   header.site {
     border-bottom: 1px solid var(--rule);
     background: var(--surface);
     padding: 0.9rem 1.5rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--sans);
   }
   header.site .inner {
     max-width: var(--max-width);
@@ -66,7 +73,7 @@ const CSS = /* css */ `
   main.wide { max-width: 980px; }
 
   h1, h2, h3 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--sans);
     line-height: 1.25;
     letter-spacing: -0.015em;
   }
@@ -96,7 +103,7 @@ const CSS = /* css */ `
   .meta {
     color: var(--ink-soft);
     font-size: 0.9rem;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--sans);
   }
 
   .who {
@@ -108,13 +115,13 @@ const CSS = /* css */ `
     background: var(--surface);
     border: 1px solid var(--rule);
     border-radius: 4px;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--sans);
     font-size: 0.9rem;
   }
   .who select { font-size: 0.9rem; padding: 0.2rem 0.4rem; }
 
   .breadcrumb {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--sans);
     font-size: 0.85rem;
     color: var(--ink-soft);
     margin: 0 0 1.5rem;
@@ -173,7 +180,7 @@ const CSS = /* css */ `
   .last-seen {
     font-size: 0.85rem;
     color: var(--ink-soft);
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--sans);
   }
 `;
 
@@ -210,6 +217,7 @@ export function layout(opts: LayoutOpts): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(opts.title)} · Conjunto</title>
+  ${FONT_LINK}
   <style>${CSS}</style>
 </head>
 <body>
