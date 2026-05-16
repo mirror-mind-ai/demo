@@ -175,6 +175,134 @@ Como eu descreveria o que aprendi nos dezessete meses fora da fintech, em uma fr
 
 ---
 
+## Personas adicionais (bonus)
+
+Seis personas extras carregadas no Mirror do Lucas além das cinco
+básicas (engineer, mentor, strategist, thinker, writer). Útil para a
+demo se a conversa for longe. Cada uma ativa por palavras-chave de
+routing; você pode também forçar explicitamente com "ativa a persona X".
+A persona ativa aparece no header da resposta (`◇ financial`, etc.).
+
+### `financial` — a estrela, usa dados ao vivo
+
+Ligada à extensão `finances` via o binding `financial_summary`.
+Quando essa persona está ativa, o prompt recebe automaticamente um
+bloco com saldos consolidados, fluxo de caixa, burn de boletos e
+runway projetado.
+
+```text
+Se eu recusar a renovação da Klar, quantos meses a reserva sustenta no ritmo atual?
+A faixa estudada pro Conjunto é R$ 290 a R$ 490 mensais. Com 12 assinantes pagantes a 390, o que isso muda no meu fluxo?
+Tatiana quer entrar com 30% da Conjunto. Olhando os números, isso faz sentido em que cenário?
+```
+
+O que esperar: respostas com números concretos (R$ 214k consolidados,
+17.3 meses de runway com semi-líquido, R$ 19.7k de burn histórico),
+não estimativas. Cita Marina, Olivia, contratos da Klar. Separa
+matemática de ansiedade.
+
+### `therapist`
+
+Lente para tensões identitárias, sombras e o pessoal-familiar.
+
+```text
+Reparei essa semana que abri o LinkedIn três vezes pra olhar o perfil de um ex-colega virou CTO de unicórnio. Por que isso ainda me pega?
+A Marina me disse no fim de semana que ela tá cansada do meu ritmo. Como eu separo o feedback dela do meu medo de estar errando de novo como em 2025?
+Tenho dificuldade de afirmar a Conjunto pra quem não é do meio. Encontrei amigos da Marina semana passada e desviei. Isso é vergonha ou é cuidado?
+```
+
+O que esperar: ressoa antes de analisar. Distingue camadas (sentimento
+vs. interpretação vs. fato) sem moralismo. Cita a crise familiar de
+2025 e a sombra registrada nas memórias (comparação compulsiva no
+LinkedIn).
+
+### `coach`
+
+Lente para o trabalho de mentoria no Sustentação.
+
+```text
+André é o mentorado mais maduro e o mais reativo no grupo. Como eu seguro a contribuição dele sem censurar e sem sufocar os outros sete?
+Bia tá presa no padrão de pegar ticket que ela poderia delegar. Já apontei duas vezes e ela reconhece, mas não muda. Que tipo de intervenção falta?
+Pretendo encerrar o Sustentação atual em três meses pra abrir o Conjunto pra pagantes externos. Como eu comunico isso aos sete sem que pareça abandono?
+```
+
+O que esperar: cita os mentorados pelo nome (André, Beatriz, Caio,
+Diana, Eduardo, Felipe, Gabriela) com o contexto que está no seed.
+Distingue reconhecimento intelectual de mudança comportamental.
+Propõe estrutura, não conselho genérico.
+
+### `designer`
+
+Lente para decisões visuais e editoriais, especialmente sobre o
+produto Conjunto.
+
+```text
+Olhei a página de membro e ainda parece formal demais. O 'Atualmente' tá bom, mas o resto fica seco. Onde tá faltando textura?
+Quero uma identidade visual pra divulgação externa do Conjunto que não pareça mais uma comunidade pra dev. Penso em referência editorial — Lapham's, Real Life, Bookforum. Faz sentido ou tô forçando?
+Sem dot verde, sem badge, sem timeline. O design tá negando muita coisa. Em algum momento isso vai virar 'esqueci de fazer' em vez de 'escolhi não fazer'?
+```
+
+O que esperar: pode abrir o código real das rotas `/members/:id` ou
+`/`. Distingue restrição editorial proativa de omissão preguiçosa.
+Cita a v0.2.0 Editorial e o que ela já entregou.
+
+### `doctor`
+
+Lente para corpo, sono, ritmo, saúde. Lucas não usa muito, mas a
+persona existe pro caso de a conversa puxar.
+
+```text
+Tenho dormido seis horas em vez de oito faz três semanas — entrei num ritmo de Klar + Conjunto + Sustentação que tá puxando. Que sinal o corpo me dá quando o débito de sono começa a comprometer trabalho?
+Voltei a treinar duas vezes por semana só. Antes de virar consultor solo eu corria quatro. Tem como manter ofício técnico longo no ritmo atual ou isso é insustentável?
+Marina mencionou que tô ficando mais irritado nos fins de semana. Pode ser sono, pode ser carga, pode ser ansiedade da decisão da Klar. Como diferencio?
+```
+
+O que esperar: relaciona carga cognitiva com corpo sem soar como coach
+de bem-estar. Sugere critérios de leitura objetivos (memória de curto
+prazo, decisão impulsiva, recuperação física). Sem misticismo.
+
+### `prompt-engineer`
+
+Lente para o trabalho com IA aplicado ao ofício dele.
+
+```text
+Tô pensando em montar um agente que conduz a triagem das mensagens dos sete mentorados antes da sessão mensal — gera resumo do que cada um tem trazido. O que penso de antemão pra não estragar a sessão com automação errada?
+Quero um prompt curto que dispara o Mirror em modo Builder específico pra Klar (NestJS, strangler, sem parar entregas). Onde isso mora — system prompt? slash command? persona dedicada?
+Quando eu peço refator e o agente entrega bem, mas eu não consigo explicar pro time por que aquela versão é melhor que a anterior, qual é o erro de prompt — meu ou do agente?
+```
+
+O que esperar: arquitetura clara (system prompt vs persona vs skill),
+trade-offs explicitamente nomeados, princípios de quando usar IA e
+quando não usar. Distingue o erro do prompt do erro do entendimento.
+
+---
+
+## Roteamento de personas
+
+Se a persona certa não entrar automaticamente pela pergunta, você pode
+forçar:
+
+```text
+Ativa a financial. [pergunta]
+Ativa a therapist. [pergunta]
+```
+
+Ou começar a frase com uma palavra-chave forte da persona:
+
+| Persona | Palavras-gatilho |
+|---|---|
+| `financial` | dinheiro, runway, burn, Klar (em sentido financeiro), reserva, fluxo, preço |
+| `therapist` | Marina (em tom afetivo), me pega, tô sentindo, difícil afirmar |
+| `coach` | Sustentação, mentorado, André/Beatriz/Caio..., como conduzo |
+| `designer` | design da, parece (visual), referência estética |
+| `doctor` | sono, treino, corpo, ritmo (de descanso), irritado |
+| `prompt-engineer` | agente, prompt, IA, automação |
+
+A persona ativa aparece no header da resposta (`◇ financial`, etc.),
+então se a roteamento errar, você vê na hora e corrige.
+
+---
+
 ## O que observar enquanto roda
 
 Voz em primeira pessoa o tempo todo. Nunca "Lucas pensa", "ele
