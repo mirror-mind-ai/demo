@@ -380,6 +380,47 @@ nome. Estrutura e convenções na próxima seção.
 
 ---
 
+## Disciplina de pausa
+
+O ciclo de 8 passos não se executa em sequência ininterrupta. Story
+é trabalho colaborativo, não autopilot. Existem **quatro checkpoints
+obrigatórios**, e em cada um o trabalho para de verdade e espera sinal
+explícito de quem decide antes de continuar:
+
+1. **Após o passo 1 (Plano).** O plano é apresentado em resumo —
+   alternativas consideradas, decisões, trade-offs aceitos, versão
+   pretendida. Código só começa depois da confirmação.
+2. **Após o passo 3 (Teste verde + smoke test).** Antes da
+   documentação e do review, a funcionalidade é validada manualmente.
+   Não se avança com testes verdes apenas; o critério é humano viu
+   funcionando.
+3. **Após o passo 5 (Ritual de Review + `refactoring.md`).** O que
+   saiu do review — decisões novas, refator feito, itens parqueados
+   — é apresentado antes do Check de Coerência. É a última janela
+   limpa para mudar de direção antes de fechar a story.
+4. **Antes do passo 8 (Commit + push).** A mensagem de commit é
+   apresentada e revisada antes de virar histórico.
+
+Entre checkpoints, o trabalho flui sem pedir confirmação a cada
+arquivo. **Nos checkpoints, para de verdade**. "Segue" ou "vá em
+frente" libera até o próximo checkpoint, não até o fim.
+
+### Por que pausar
+
+A pausa não é fricção, é onde o valor humano entra. No checkpoint 1,
+o plano pode estar tecnicamente correto e narrativamente errado para
+o produto. No checkpoint 2, o teste pode estar verde e a experiência
+ainda parecer um campo de formulário. No checkpoint 3, o review pode
+revelar que uma decisõo de design pede repensar antes de comitar. No
+checkpoint 4, a mensagem de commit consolida a narrativa do que
+foi feito.
+
+Pular pausa transforma o método em execução automática, e o agente
+em operador. O trabalho que importa acontece **na conversa entre
+passos**, não dentro deles.
+
+---
+
 ## Release notes
 
 Uma release note, para nós, não é changelog. É **storytelling +

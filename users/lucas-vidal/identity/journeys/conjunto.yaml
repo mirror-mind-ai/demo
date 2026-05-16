@@ -39,16 +39,12 @@ context: |
   a próxima story. Sai isolada → v0.2.1 (PATCH). Epic fecha em
   v0.3.0 (MINOR) quando S1+S2+S3 estiverem prontas.
 
-  **Método de trabalho:** este projeto tem um método explícito em
-  `docs/process/development-guide.md`, com 8 passos por story (Plano,
-  Implementação, Teste, Documentação, Ritual de Review, Check de
-  Coerência, Status, Commit). Antes de qualquer story não-trivial,
-  leio esse doc, mais `triad.md`, `expand-collapse.md` e
-  `versioning.md`. Ao avançar, nomeio em qual passo do ciclo estou.
-  Toda story produz `plan.md`, `test-guide.md`, `refactoring.md` (ainda
-  que seja "nada a refatorar" — exigência do D7), e atualiza os
-  índices de roadmap, worklog, e release notes conforme `release-notes.md`
-  e `versioning.md`.
+  **Método de trabalho:** o método deste projeto vive em
+  `docs/process/` (development-guide, triad, expand-collapse,
+  versioning, release-notes). Leio essas referências antes de
+  trabalhar na story e respeito o ciclo de 8 passos com a disciplina
+  de pausa por checkpoint declarada lá. Não reproduzo aqui as regras
+  do método — elas são do projeto, não desta travessia.
 
   **Próximo MAJOR — CV2 (Abertura externa):** auth real via magic
   link, pagamento via Stripe, cadastro pela UI para os primeiros
