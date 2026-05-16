@@ -116,7 +116,10 @@ if git ls-tree -r "$TAG" --name-only | grep -qx "$FINGERPRINT"; then
   echo "   Reset cancelado para não destruir o working tree."
   echo ""
   echo "   Para reconstruir o baseline automaticamente, rode:"
-  echo "     $0 --rebuild-baseline --yes"
+  echo ""
+  echo "     ~/reset-demo.sh --rebuild-baseline --yes"
+  echo ""
+  echo "   (Ou, sem o atalho: $0 --rebuild-baseline --yes)"
   echo ""
   exit 2
 fi
