@@ -41,7 +41,7 @@ tput civis  # esconde o cursor
 
 while true; do
   clear
-  printf "%sgit live — Conjunto%s   %s(Ctrl+C para sair)%s\n" "$BOLD" "$RESET" "$DIM" "$RESET"
+  printf "%sAssistindo Sessão Dev do Lucas%s   %s(Ctrl+C para sair)%s\n" "$BOLD" "$RESET" "$DIM" "$RESET"
   printf "%s%s%s\n\n" "$DIM" "──────────────────────────────────────────────" "$RESET"
 
   printf "%sHEAD%s\n" "$CYAN" "$RESET"
