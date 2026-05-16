@@ -129,3 +129,31 @@ O custo desta anomalia é puramente cognitivo: alguém lendo a
 sequência de releases vai precisar abrir esta decisão para entender
 por que o `0.2.0` não corresponde a um fechamento de epic. É um custo
 baixo e localizado. Preço justo pela honestidade do registro.
+
+## D9 — Versão atual exibida no colófon, sempre linkada
+
+**Data:** 16 de maio de 2026
+**Status:** firme
+
+O produto exibe a versão atual em um colófon discreto (`footer.version`)
+em todas as páginas, com o número da versão linkado para a release
+note correspondente dentro de `/docs/releases/`. Tipografia pequena,
+ink-soft, cor sutil, sem competir com nada visualmente.
+
+A motivação não é "informar o usuário sobre o número da versão". O
+número por si só não significa nada para um membro do Conjunto. A
+motivação é dar ao produto uma **âncora física** para a disciplina
+de citação declarada em
+[`release-notes.md`](../process/release-notes.md#disciplina-de-citação-e-links).
+Enquanto a regra existia só nos docs, não havia onde aplicá-la na
+superfície visível do produto; agora há.
+
+Consequência operacional: o passo 6 do ciclo (Check de Coerência)
+passa a verificar que `CURRENT_VERSION` em `src/views/layout.ts` está
+sincronizado com a release mais recente sempre que uma story fecha
+uma versão nova. Isso integra o próprio produto ao ciclo editorial
+— doc atualizada não substitui produto atualizado.
+
+Colófon vem de tipografia editorial: é o bloco no final de um livro
+que registra dados de impressão (edição, tiragem, gráfica). Coerente
+com o tom do Conjunto como residência editorial.

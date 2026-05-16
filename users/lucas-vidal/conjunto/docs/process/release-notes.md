@@ -250,9 +250,12 @@ Locais onde a regra se aplica, não exaustivo:
 - `plan.md`, `test-guide.md`, `refactoring.md` de cada story
 - Outras release notes (links pra trajetória anterior, "o que vem depois")
 - Identidade do personagem (journey YAML em `identity/journeys/`)
-- O próprio produto, quando exibir versões ao usuário (se houver
-  uma rota ou rodapé com "v0.X.Y", o número é um link clicável
-  para a release note pública)
+- O próprio produto, no colófon (`footer.version` em todas as páginas),
+  com o número linkando para a release note dentro de `/docs/releases/`.
+  A constante `CURRENT_VERSION` em `src/views/layout.ts` é o único ponto
+  a atualizar no código a cada release; o passo 6 do ciclo (Check de
+  Coerência) verifica essa sincronia. Decisão em
+  [`decisions.md` → D9](../project/decisions.md#d9--versão-atual-exibida-no-colófon-sempre-linkada).
 
 Forma canônica do link em prosa markdown:
 

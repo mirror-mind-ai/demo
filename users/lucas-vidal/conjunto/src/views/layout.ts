@@ -6,6 +6,23 @@
  * fonts.bunny.net (sem Google, GDPR-friendly).
  */
 
+/**
+ * Versão atual do produto exibida no colófon (footer.version) em
+ * todas as páginas. O número vira link para a release note pública.
+ *
+ * É a primitiva que ancora a disciplina de citação de releases (ver
+ * docs/process/release-notes.md § Disciplina de citação e links) no
+ * próprio produto: a cada vez que uma story fecha e gera nova release,
+ * o Check de Coerência (passo 6) atualiza estas duas linhas para
+ * apontar para o release note novo.
+ */
+const CURRENT_VERSION = {
+  tag: "v0.2.0",
+  label: "Editorial",
+  // Caminho dentro de /docs (a rota já sabe resolver releases/).
+  docPath: "releases/v0.2.0",
+};
+
 const FONT_LINK =
   '<link rel="stylesheet" href="https://fonts.bunny.net/css?family=source-serif-4:400,400i,600,700|inter-tight:400,500,600,700&display=swap">';
 
@@ -550,6 +567,31 @@ const CSS = /* css */ `
     padding: 0.1rem 0.2rem;
     cursor: pointer;
   }
+  /* Colófon: versão atual do produto, sutil, sempre presente em
+     todas as páginas. O número é link para a release note pública
+     dentro de /docs/releases/. Casa com a estética de publicação:
+     toda edição impressa tem um colófon. */
+  footer.version {
+    max-width: var(--max-width);
+    margin: 0 auto 2rem;
+    padding: 0.5rem 1.5rem 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-align: right;
+    opacity: 0.7;
+  }
+  footer.version a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-soft);
+  }
+  footer.version a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
   footer.session select:hover {
     color: var(--ink);
     border-bottom-color: var(--ink-soft);
@@ -730,6 +772,9 @@ export function layout(opts: LayoutOpts): string {
   </main>
   ${opts.sidebar ? `<aside class="page-sidebar">${opts.sidebar}</aside>` : ""}
   ${whoBar}
+  <footer class="version" aria-label="Versão atual">
+    Conjunto · <a href="/docs/${CURRENT_VERSION.docPath}">${CURRENT_VERSION.tag} — ${CURRENT_VERSION.label}</a>
+  </footer>
 </body>
 </html>`;
 }
