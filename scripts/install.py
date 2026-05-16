@@ -235,6 +235,116 @@ def configure_project_paths(user_dir: Path) -> int:
     return configured
 
 
+def install_extensions(user_dir: Path, home: Path) -> int:
+    """Instala extensões declaradas em users/<slug>/extensions.yaml.
+
+    Para cada entrada:
+      1. Verifica que o source existe (se não, pula com warning).
+      2. Roda `python -m memory extensions install <id> --extensions-root
+         <source-parent>`.
+      3. Se houver `seed`, executa o script Python correspondente com
+         MIRROR_HOME setado.
+      4. Se houver `bindings`, roda `python -m memory ext <id> bind
+         <capability> --persona <persona>` para cada um.
+
+    Idempotente: ambos `extensions install` e bindings são idempotentes
+    no framework; o script de seed é responsabilidade do autor.
+    """
+    import subprocess
+
+    manifest_path = user_dir / "extensions.yaml"
+    if not manifest_path.is_file():
+        return 0
+
+    data = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return 0
+    entries = data.get("extensions") or []
+    if not entries:
+        return 0
+
+    installed = 0
+    for entry in entries:
+        ext_id = entry.get("id")
+        source_raw = entry.get("source")
+        if not ext_id or not source_raw:
+            print(f"  ! entrada inválida em extensions.yaml: {entry}")
+            continue
+        source = Path(source_raw).expanduser()
+        if not source.is_dir():
+            print(f"  ! source da extensão '{ext_id}' não existe ({source}); pulando.")
+            continue
+
+        extensions_root = source.parent
+        print(f"Installing extension '{ext_id}' from {source}...")
+        # Limpa VIRTUAL_ENV pra não conflitar com o uv do framework e
+        # pinpoint MIRROR_USER além de MIRROR_HOME (resolve_mirror_home
+        # exige o casamento dos dois).
+        env = {k: v for k, v in os.environ.items() if k != "VIRTUAL_ENV"}
+        env["MIRROR_HOME"] = str(home)
+        env["MIRROR_USER"] = home.name
+        result = subprocess.run(
+            [
+                "uv", "run", "python", "-m", "memory", "extensions", "install",
+                ext_id, "--extensions-root", str(extensions_root),
+            ],
+            cwd=str(Path.home() / "Code" / "mirror"),
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            print(f"  ! falhou ao instalar '{ext_id}':")
+            print(result.stderr.strip())
+            continue
+        print(f"  ✓ {ext_id} instalado")
+
+        seed_rel = entry.get("seed")
+        if seed_rel:
+            seed_path = user_dir / seed_rel
+            if seed_path.is_file():
+                print(f"  Rodando seed: {seed_rel}")
+                seed_result = subprocess.run(
+                    ["uv", "run", "python", str(seed_path)],
+                    cwd=str(Path.home() / "Code" / "mirror"),
+                    env=env,  # mesmo env (sem VIRTUAL_ENV, com MIRROR_HOME e MIRROR_USER)
+                )
+                if seed_result.returncode != 0:
+                    print(f"  ! seed de '{ext_id}' falhou (continuando).")
+            else:
+                print(f"  ! seed declarado mas não encontrado: {seed_path}")
+
+        for binding in entry.get("bindings") or []:
+            cap = binding.get("capability")
+            persona = binding.get("persona")
+            if not cap or not persona:
+                print(f"  ! binding inválido em '{ext_id}': {binding}")
+                continue
+            bind_result = subprocess.run(
+                [
+                    "uv", "run", "python", "-m", "memory", "ext", ext_id,
+                    "bind", cap, "--persona", persona,
+                ],
+                cwd=str(Path.home() / "Code" / "mirror"),
+                env=env,
+                capture_output=True,
+                text=True,
+            )
+            if bind_result.returncode == 0:
+                print(f"  ✓ bind {cap} → persona/{persona}")
+            else:
+                err = (bind_result.stderr or bind_result.stdout).strip()
+                # 'already bound' não é erro fatal
+                if "already" in err.lower():
+                    print(f"  · bind {cap} → persona/{persona} (já existente)")
+                else:
+                    print(f"  ! bind falhou: {err}")
+
+        installed += 1
+
+    return installed
+
+
 def ingest_attachments(user_dir: Path) -> int:
     """Walk users/<slug>/attachments/<journey>/*.md and ingest each."""
     attachments_dir = user_dir / "attachments"
@@ -300,6 +410,10 @@ def install(slug: str, home: Path, keep: bool) -> None:
         print()
 
     attachments_total = ingest_attachments(user_dir)
+
+    extensions_installed = install_extensions(user_dir, home)
+    if extensions_installed:
+        print()
 
     print(f"Installed {slug}.")
     print(f"  Home: {home}")

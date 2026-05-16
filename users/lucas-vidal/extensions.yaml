@@ -1,0 +1,25 @@
+# extensions.yaml
+# Manifesto de extensões que devem ser instaladas no runtime do Lucas
+# durante o install.sh.
+#
+# Lido por scripts/install.py após o seed de identidade. Cada item:
+#
+#   id      — id da extensão (deve existir em <extensions_root>/<id>/)
+#   source  — caminho do código-fonte da extensão. ~ é expandido para
+#             HOME. Se o path não existir, a entrada é pulada com
+#             warning (instalação otimista; não quebra o install se o
+#             usuário não clonou as extensões).
+#   seed    — (opcional) script Python relativo ao diretório do user
+#             (users/lucas-vidal/) executado após a instalação. Recebe
+#             MIRROR_HOME no ambiente. Idempotente é responsabilidade
+#             do script.
+#   bindings — (opcional) lista de bindings entre capabilities da
+#              extensão e personas do user.
+
+extensions:
+  - id: finances
+    source: ~/Code/mirror-extensions/finances
+    seed: finances-seed.py
+    bindings:
+      - capability: financial_summary
+        persona: financial
