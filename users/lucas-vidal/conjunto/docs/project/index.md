@@ -13,6 +13,6 @@ o que vem a seguir.
 - **[Decisions](decisions.md)** — log das decisões incrementais
   tomadas ao longo do caminho (D1 a D7). Cada entrada com data,
   status e contexto.
-- **[Roadmap](roadmap/index.md)** — onde estamos (CV0 fechado, CV0.E2
-  em curso), e para onde estamos indo (CV1, CV2, e o salto para o
-  stack sofisticado em v0.3.0).
+- **[Roadmap](roadmap/index.md)** — onde estamos (CV0 em curso na E2),
+  e para onde estamos indo (CV1, CV2, e a migração futura para Next.js +
+  tRPC + Prisma quando houver tração validada).

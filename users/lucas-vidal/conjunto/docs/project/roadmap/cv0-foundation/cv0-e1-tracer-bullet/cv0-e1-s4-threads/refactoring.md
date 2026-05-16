@@ -19,6 +19,6 @@ Hoje tem em duas rotas. Mesmo critério: rule of three.
 **Modelo de dados para `messages`** — `author_id` apontando para
 `members(id)` significa que excluir um membro derruba o histórico
 das mensagens dele. Aceitável no MVP mas dolorido se acontecer:
-fios ficam com pedaços faltando. Em v0.2.0, considerar um padrão
-de soft delete ou um "membro deletado" placeholder. Não vale tocar
-agora.
+fios ficam com pedaços faltando. Quando entrar a abertura externa
+(CV2), considerar um padrão de soft delete ou um "membro deletado"
+placeholder. Não vale tocar agora.

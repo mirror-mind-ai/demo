@@ -28,9 +28,9 @@ Lançado em 12 de maio de 2026 como v0.1.0. Detalhes narrativos em
 ## Lições aprendidas
 
 A tentação de "fazer direito" foi forte. Quase aceitei o plano
-inicial de "subir com Next.js para já ficar pronto para
-v0.3.0". Resisti, e ganhei pelo menos quinze dias de trabalho que
-estavam virando dívida invisível.
+inicial de "subir com Next.js para já ficar pronto para a migração
+futura de stack". Resisti, e ganhei pelo menos quinze dias de
+trabalho que estavam virando dívida invisível.
 
 A documentação dentro do produto (S5) saiu mais simples do que eu
 projetava. 80 linhas resolveram o que eu estava prestes a gastar

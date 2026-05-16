@@ -54,8 +54,12 @@ ferramental é familiar e bem documentado. Construtor solo precisa
 manter tudo na cabeça em três meses. O custo de stack sofisticado em
 estágio MVP é alto e o benefício é zero até haver tração validada.
 
-**Consequência:** Next.js + tRPC + Prisma fica no plano [v0.3.0](roadmap/index.md),
-não no plano atual.
+**Consequência:** Next.js + tRPC + Prisma fica para uma
+[release futura](roadmap/index.md#migração-de-stack--release-futura-sem-número-fixo)
+quando houver tração validada (>12 assinantes pagantes por 6 meses
+contínuos), não no plano atual. A versão não está codificada —
+emerge da sequência de epics fechados, conforme
+[D8](decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento).
 
 ### D2. SQLite single-file
 
@@ -72,7 +76,8 @@ acesso é via repositório (helpers em `src/db.ts`), não SQL espalhado.
 
 **Justificativa:** auth real consome dias e não muda nada do que está
 sendo validado nesse estágio (modelo de oferta, qualidade do conteúdo,
-ritmo de encontros). Auth via magic link entra em [v0.2.0](roadmap/index.md)
+ritmo de encontros). Auth via magic link entra em
+[CV2 — Abertura externa](roadmap/index.md#cv2--abertura-externa)
 junto com o primeiro lançamento externo.
 
 **Consequência aceita:** qualquer membro pode encarnar qualquer outro
@@ -102,8 +107,8 @@ do produto. Edição em `docs/` aparece imediatamente.
 
 Cada item abaixo entra no roadmap quando sua ausência doer no uso.
 
-- **Auth real.** Magic link via email. Entra em v0.2.0.
-- **Pagamento.** Stripe. Entra em v0.2.0 junto com a abertura externa.
+- **Auth real.** Magic link via email. Entra no [CV2](roadmap/index.md#cv2--abertura-externa).
+- **Pagamento.** Stripe. Entra no [CV2](roadmap/index.md#cv2--abertura-externa) junto com a abertura externa.
 - **Notificações por email.** Entram quando o volume de fios passar a
   exigir.
 - **Busca.** A biblioteca cresce até precisar; antes disso, navegação

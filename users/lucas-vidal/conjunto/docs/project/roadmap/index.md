@@ -81,20 +81,35 @@ saindo isolada → **`v0.2.1` (PATCH)**. O epic CV0.E2 fecha em
 ## CV2 — Abertura externa
 
 > **Objetivo:** o Conjunto deixa de ser interno aos fundadores e abre
-> para os primeiros assinantes externos.
-> **Versões previstas:** v0.2.0 (auth real + pagamento), v0.2.1+
-> (refinamentos).
+> para os primeiros assinantes externos. Auth real via magic link,
+> pagamento via Stripe, cadastro de novo membro pela UI, criação de
+> fio pela UI, postagem em fio pela UI.
+>
+> **Versão de fechamento:** o próprio CV2 fechando é o primeiro
+> atravessamento de Valor do produto. Pela regra de
+> [`versioning.md`](../../process/versioning.md), MAJOR bump → **`v1.0.0`**.
+> Os epics intermediários do CV2, e quaisquer stories isoladas no
+> caminho, recebem MINOR/PATCH conforme a regra; o número exato
+> emerge da sequência de epics fechados, não de promessa prévia.
 
 (Detalhes serão escritos quando CV1 fechar.)
 
 ---
 
-## v0.3.0 e além — Stack sofisticado
+## Migração de stack — release futura, sem número fixo
 
 Quando houver mais de doze assinantes pagantes por mais de seis meses
 contínuos, considero migrar o backend para Next.js + tRPC + Prisma. A
 decisão é deliberadamente adiada (ver [D1](../briefing.md#d1-boring-stack-first)):
 sem volume validado, sofisticação de stack é gasto sem retorno.
+
+A migração **não** está codificada em uma versão específica. Quando o
+sinal aparecer (métricas em [D1](../briefing.md#d1-boring-stack-first)),
+a migração entra como próximo epic e a versão emerge da sequência.
+A antiga referência a "v0.3.0 = stack sofisticado" estava codificando
+roadmap em número — viola o princípio de
+[`versioning.md`](../../process/versioning.md#trabalho-em-paralelo-entre-cvs).
+A confusão foi resolvida em [`decisions.md` → D8](../decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento).
 
 Sinais que vou observar para essa decisão:
 

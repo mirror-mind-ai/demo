@@ -25,7 +25,7 @@ de entrada. Rotas `/members` (lista ordenada) e `/members/:id`
 JavaScript no cliente.
 
 Cadastro acontece via `npm run seed` (decisão D5). UI de cadastro
-real entra em v0.2.0 junto com auth real.
+real entra no [CV2 — Abertura externa](../../../../../project/roadmap/index.md#cv2--abertura-externa) junto com auth real.
 
 ## Notas
 

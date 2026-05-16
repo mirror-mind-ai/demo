@@ -20,7 +20,7 @@ fios com mensagens) seja reproduzível com um único comando. Script
 - **YAML / JSON de dados separado do código.** Permitiria que
   alguém não-dev editasse os fundadores. Recusado por
   prematuro — nenhum não-dev está editando o seed agora, e o custo
-  de "abrir o YAML" não vai aparecer até a v0.2.0.
+  de "abrir o YAML" não vai aparecer até cadastro real entrar (no CV2).
 
 ## Decisões
 

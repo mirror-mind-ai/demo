@@ -9,7 +9,7 @@ necessidade que já existia e estava sendo mal servida.
 
 Os [princípios de design](principles.md) detalham como essa intenção
 se materializa em decisões concretas. O que vem abaixo é o estado
-atual do produto em v0.1.0.
+atual do produto na release mais recente (`v0.2.0` Editorial).
 
 ---
 
@@ -19,8 +19,9 @@ Cada membro tem um perfil com nome, papel, empresa, biografia curta e
 data de entrada. A lista completa de membros é acessível em
 `/members`. Perfis individuais em `/members/:id`.
 
-No MVP, o cadastro acontece via script de seed (`npm run seed`). Em
-v0.2.0, entra cadastro real com magic link via email.
+No MVP, o cadastro acontece via script de seed (`npm run seed`).
+Cadastro real com magic link via email entra no
+[CV2 — Abertura externa](../project/roadmap/index.md#cv2--abertura-externa).
 
 ## Fios temáticos
 
@@ -29,15 +30,17 @@ Cada fio tem um título, um membro que o iniciou e uma sequência
 cronológica de mensagens. A lista de fios está em `/threads`. Cada fio
 é lido em `/threads/:id`.
 
-Em v0.1.0, os fios são plantados via seed. Criação e postagem pela UI
-entram em v0.1.x.
+No MVP, os fios são plantados via seed. Criação e postagem pela UI
+entram no [CV2 — Abertura externa](../project/roadmap/index.md#cv2--abertura-externa)
+junto com cadastro real.
 
 ## Identidade ativa
 
 Em qualquer página, o membro sabe sob qual identidade está navegando,
 e pode trocar via dropdown na home. No MVP, qualquer membro pode
-encarnar qualquer outro (auth simulada). Em v0.2.0, isso passa a ser
-sessão real com identidade única por dispositivo.
+encarnar qualquer outro (auth simulada). Sessão real com identidade
+única por dispositivo entra no
+[CV2 — Abertura externa](../project/roadmap/index.md#cv2--abertura-externa).
 
 ## Documentação dentro do produto
 
@@ -53,11 +56,11 @@ entender o Conjunto, entra no Conjunto.
 
 Para clareza, o que está consciente fora deste lançamento:
 
-- Auth real (magic link via email) — v0.2.0
-- Pagamento via Stripe — v0.2.0
-- Cadastro de novo membro pela UI — v0.2.0
-- Criação de fio pela UI — v0.1.x
-- Postagem em fio existente pela UI — v0.1.x
+- Auth real (magic link via email) — [CV2](../project/roadmap/index.md#cv2--abertura-externa)
+- Pagamento via Stripe — [CV2](../project/roadmap/index.md#cv2--abertura-externa)
+- Cadastro de novo membro pela UI — [CV2](../project/roadmap/index.md#cv2--abertura-externa)
+- Criação de fio pela UI — [CV2](../project/roadmap/index.md#cv2--abertura-externa)
+- Postagem em fio existente pela UI — [CV2](../project/roadmap/index.md#cv2--abertura-externa)
 - Markdown nas mensagens — quando alguém pedir explicitamente
 - Busca na biblioteca — quando o volume justificar
 - Notificações por email — quando o ritmo exigir

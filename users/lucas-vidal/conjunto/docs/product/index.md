@@ -12,7 +12,7 @@ entre membros tem um lugar onde aparecer.
   técnico e por que os interlocutores naturais quase nunca servem
   para o tipo de conversa que importa.
 - **[A solução](solution.md)** — como o desenho responde ao
-  problema e o que o produto entrega hoje em v0.1.0.
+  problema e o que o produto entrega na release mais recente.
 - **[Princípios](principles.md)** — as decisões de design que mantêm
   o produto coerente com sua intenção, em vez de derivar para "mais
   uma plataforma de comunidade".

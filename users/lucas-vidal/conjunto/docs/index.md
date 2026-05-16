@@ -50,6 +50,6 @@ E o histórico:
     - [S3 Lista de membros por atividade](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/index.md) ⚪ planejada
 - **CV1 — Encontros e biblioteca** ⚪ planejado
 - **CV2 — Abertura externa** ⚪ planejado
-- **v0.3.0+ — Migração para Next.js + tRPC + Prisma** ⚪ quando houver tração
+- **Migração para Next.js + tRPC + Prisma** ⚪ quando houver tração (release futura, sem número fixo — ver [D1](project/briefing.md#d1-boring-stack-first) e [D8](project/decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento))
 
 Detalhe e justificativa de cada item em [roadmap](project/roadmap/index.md).

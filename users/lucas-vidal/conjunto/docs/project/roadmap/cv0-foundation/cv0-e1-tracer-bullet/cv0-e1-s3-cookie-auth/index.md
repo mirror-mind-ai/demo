@@ -32,5 +32,5 @@ Decisão registrada em [D3](../../../decisions.md#d3-auth-como-cookie-de-demo).
 
 Qualquer membro pode encarnar qualquer outro. Aceitável em
 comunidade fechada de sete pessoas que se conhecem fora do produto;
-intolerável quando abrir externamente. Magic link via email entra em
-v0.2.0.
+intolerável quando abrir externamente. Magic link via email entra no
+[CV2 — Abertura externa](../../../../../project/roadmap/index.md#cv2--abertura-externa).

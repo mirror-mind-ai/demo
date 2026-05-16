@@ -37,5 +37,5 @@ da home.
   para o MVP. Registrada em
   [decisions.md → D3](../../../decisions.md#d3-auth-como-cookie-de-demo).
 - Sem expiração de sessão por inatividade. O cookie dura 30 dias
-  fixos. Em v0.2.0, expiração curta + refresh entra junto com auth
-  real.
+  fixos. No [CV2 — Abertura externa](../../../../../project/roadmap/index.md#cv2--abertura-externa),
+  expiração curta + refresh entra junto com auth real.

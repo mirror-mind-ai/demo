@@ -374,6 +374,30 @@ leitura:
   ao usuário (home, rodapé, página de membro), confirmar que essa
   superfície foi atualizada — doc atualizada não substitui produto
   atualizado.
+- **Sweep semantico quando uma decisão muda significado de versões.**
+  Se a story registrou uma decisão que reescreve o que um número
+  significa (ex: D8 ressignificou v0.2.0 como Editorial em vez de
+  Abertura externa), **toda menção a versões no projeto inteiro**
+  precisa ser revisitada. Não basta atualizar a doc da story atual.
+  Comando prático:
+
+  ```bash
+  grep -rn 'v[0-9]\+\.[0-9]\+\.[0-9]\+\|v[0-9]\+\.[0-9]\+' \
+    docs/ identity/ README.md --include='*.md' --include='*.yaml'
+  ```
+
+  Cada match é lido com a nova semantica em mente. Referências que
+  promet[em] feature para um número específico v[i]ram referências
+  a **CV/Epic** (ou a evento, como "quando houver tração"), seguindo
+  o princípio de
+  [`versioning.md` § Trabalho em paralelo entre CVs](versioning.md#trabalho-em-paralelo-entre-cvs):
+  *a versão não codifica o roadmap*. Referências históricas
+  ("lançada como v0.X.Y") ficam.
+
+  Saltar este sweep é a falha de coerência mais comum, e ela é
+  silenciosa: doc passa a mentir aos poucos, sessões futuras herdam
+  a mentira, agente carregando o briefing detecta a contradição e
+  questiona. O sweep cura na origem.
 
 Se algo aparecer, volta para o passo correspondente. Só quando o
 Check fecha sem pendências é que a story pode ser marcada como

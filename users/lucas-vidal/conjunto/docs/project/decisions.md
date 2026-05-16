@@ -13,8 +13,10 @@ entrada é uma decisão tomada, com o contexto que importava na hora.
 Stack do MVP: TypeScript + Hono + better-sqlite3 + HTML server-rendered.
 Sem Next.js, sem tRPC, sem Prisma, sem framework de front-end.
 
-Considerei Next.js + tRPC + Prisma porque é o que está no plano que
-desenhei para v0.3.0. Recusei para o MVP porque construtor solo paga
+Considerei Next.js + tRPC + Prisma porque é o que está no plano
+futuro de migração (quando houver tração validada — ver
+[roadmap](../project/roadmap/index.md#migração-de-stack--release-futura-sem-número-fixo)).
+Recusei para o MVP porque construtor solo paga
 caro por stack sofisticado. O custo é cognitivo (toda decisão técnica
 em estágio inicial multiplica), e o benefício só aparece quando há
 escala (que não tem ainda).
@@ -38,14 +40,15 @@ necessário.
 ## D3 — Auth como cookie de demo
 
 **Data:** 28 de abril de 2026
-**Status:** firme (revisita em v0.2.0)
+**Status:** firme (revisita no [CV2 — Abertura externa](../project/roadmap/index.md#cv2--abertura-externa))
 
 Cookie `conjunto_member` com o id do membro ativo. Troca aberta na
 home. Sem login, sem senha, sem session table.
 
 Aceitável para sete pessoas que se conhecem fora do produto.
-Intolerável quando abrir externamente. Magic link via email entra em
-v0.2.0 junto com o pagamento.
+Intolerável quando abrir externamente. Magic link via email entra
+no [CV2](../project/roadmap/index.md#cv2--abertura-externa) junto
+com o pagamento.
 
 ## D4 — Documentação dentro do produto
 
@@ -69,9 +72,10 @@ No MVP, o estado da comunidade vem do script de seed, não de cadastro
 real. Cada `npm run seed` reseta o banco e popula com sete membros e
 cinco fios.
 
-A entrada de novos membros vai exigir cadastro real em v0.2.0. Por
-enquanto, o seed é o "estado canônico" da comunidade, e isso vale para
-testes, demos, e qualquer reset.
+A entrada de novos membros vai exigir cadastro real no
+[CV2 — Abertura externa](../project/roadmap/index.md#cv2--abertura-externa).
+Por enquanto, o seed é o "estado canônico" da comunidade, e isso vale
+para testes, demos, e qualquer reset.
 
 ## D6 — Português no produto, inglês no código
 
