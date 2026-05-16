@@ -44,7 +44,7 @@ E o histórico:
     - [S4 Fios e mensagens persistentes](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s4-threads/index.md) ✅
     - [S5 Documentação dentro do produto](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s5-docs-inline/index.md) ✅
     - [S6 Seed reprodutível dos fundadores](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s6-seed/index.md) ✅
-  - **[E2 — Engajamento](project/roadmap/cv0-foundation/cv0-e2-engagement/index.md)** 🔵 `v0.1.1` em curso
+  - **[E2 — Engajamento](project/roadmap/cv0-foundation/cv0-e2-engagement/index.md)** 🔵 em curso — stories isoladas como PATCH (`v0.2.1`+), fechamento do epic → `v0.3.0`
     - [S1 Indicador de última vez online](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/index.md) 🔵 próxima
     - [S2 Indicador de leitura por mensagem](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s2-read-indicator/index.md) ⚪ planejada
     - [S3 Lista de membros por atividade](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/index.md) ⚪ planejada

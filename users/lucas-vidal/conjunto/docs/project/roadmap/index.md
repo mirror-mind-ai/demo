@@ -6,12 +6,20 @@ Onde o Conjunto está e para onde está indo.
 
 ## Onde estamos
 
-**v0.1.0 lançada em 12 de maio de 2026.** CV0 (Tracer Bullet)
-completo. Os sete fundadores podem entrar, ver os outros, abrir e ler
-fios, navegar a biblioteca. O produto existe rodável, ainda só
-localmente, ainda sem auth real, ainda sem pagamento.
+**v0.2.0 lançada em 15 de maio de 2026** (Editorial — refino
+tipográfico, retratos duotone, marca de leitura). Antes dela, a
+**v0.1.0** (12/05/2026) fechou o CV0.E1 (Tracer Bullet) com os sete
+fundadores cadastrados, fios abertos, biblioteca em estado mínimo.
 
-Próxima entrega planejada: **CV0.E2 — Engajamento**, em curso.
+> A `v0.2.0` saiu como MINOR para trabalho fora de roadmap que
+> pela regra de [`versioning.md`](../process/versioning.md) era
+> PATCH. Anomalia reconhecida e registrada em
+> [`decisions.md` → D8](../project/decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento).
+> A partir daqui, voltamos à regra.
+
+Próxima entrega: **CV0.E2.S1 — Indicador de última vez online**,
+saindo isolada → **`v0.2.1` (PATCH)**. O epic CV0.E2 fecha em
+`v0.3.0` quando S1+S2+S3 estiverem prontas.
 
 ## Estrutura
 
@@ -45,7 +53,7 @@ Próxima entrega planejada: **CV0.E2 — Engajamento**, em curso.
 | [`CV0.E1.S5`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s5-docs-inline/) | Documentação dentro do produto | ✅ |
 | [`CV0.E1.S6`](cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s6-seed/) | Seed reprodutível dos fundadores | ✅ |
 
-### [CV0.E2 — Engajamento](cv0-foundation/cv0-e2-engagement/) `v0.1.1` (em curso)
+### [CV0.E2 — Engajamento](cv0-foundation/cv0-e2-engagement/) — em curso (fecha em `v0.3.0`)
 
 > **Objetivo:** os membros começam a ter pistas de quem está ativo,
 > quem leu o quê, e como o grupo respira. Sem virar feed.

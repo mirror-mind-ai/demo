@@ -98,3 +98,34 @@ refatorar").
 Recusei o padrão "refatora quando incomodar" porque ele empurra dívida
 indefinidamente. Refatorar no ciclo custa minutos; refatorar depois
 custa horas e contexto perdido.
+
+## D8 — v0.2.0 reconhecida como anomalia de versionamento
+
+**Data:** 15 de maio de 2026
+**Status:** firme
+
+A `v0.2.0` (Editorial) saiu como MINOR bump para uma série de
+refinos editoriais que **não fecharam epic algum** no roadmap. Pela
+regra estrita de [`versioning.md`](../process/versioning.md), isso
+era trabalho fora de roadmap mudando comportamento observável do
+produto — ou seja, PATCH bump. A versão correta teria sido `v0.1.1`.
+
+Considerei reescrever a release. Recusei porque o histórico já está
+publicado, fundadores já leram a release note, e reescrever história
+custa mais do que reconhecer a anomalia.
+
+Decisão: manter `v0.2.0` como está no histórico, registrar esta
+decisão como marco de coerência, e **voltar à regra a partir daqui**.
+
+Consequências concretas para a sequência:
+
+- A próxima entrega é a **CV0.E2.S1 — last-seen**, saindo isolada
+  entre epics → **`v0.2.1` (PATCH)**.
+- Se S2 sair antes do fechamento do epic → **`v0.2.2` (PATCH)**.
+- Quando o epic **CV0.E2 fechar** (S1+S2+S3 prontas) → **`v0.3.0`
+  (MINOR)**, conforme a regra.
+
+O custo desta anomalia é puramente cognitivo: alguém lendo a
+sequência de releases vai precisar abrir esta decisão para entender
+por que o `0.2.0` não corresponde a um fechamento de epic. É um custo
+baixo e localizado. Preço justo pela honestidade do registro.

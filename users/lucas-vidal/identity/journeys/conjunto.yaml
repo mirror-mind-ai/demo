@@ -25,14 +25,36 @@ briefing: >
 context: |
   # Conjunto
 
-  **Etapa atual:** v0.1.0 lançada em 12/05/2026 (CV0.E1 — Tracer Bullet).
-  Sete fundadores cadastrados, fios iniciais abertos, documentação
-  navegada dentro do produto. CV0.E2 (Engajamento) em curso — indicador
-  de última vez online é a próxima story.
+  **Etapa atual:** v0.2.0 lançada em 15/05/2026 (Editorial — refino
+  tipográfico, retratos duotone, marca de leitura, sumário sticky em
+  docs longos). Antes dela, v0.1.0 (12/05/2026) fechou o CV0.E1 —
+  Tracer Bullet com os sete fundadores cadastrados e fios abertos.
 
-  **Próximo marco:** v0.2.0 — abertura externa (auth real via magic
-  link, pagamento via Stripe, cadastro pela UI) para os primeiros
-  assinantes além dos sete fundadores.
+  > A v0.2.0 saiu como MINOR para uma série editorial fora de
+  > roadmap que, pela regra estrita de versioning.md, era PATCH.
+  > Anomalia reconhecida e registrada em decisions.md → D8. A partir
+  > daqui voltamos à regra.
+
+  CV0.E2 (Engajamento) em curso — indicador de última vez online é
+  a próxima story. Sai isolada → v0.2.1 (PATCH). Epic fecha em
+  v0.3.0 (MINOR) quando S1+S2+S3 estiverem prontas.
+
+  **Método de trabalho:** este projeto tem um método explícito em
+  `docs/process/development-guide.md`, com 8 passos por story (Plano,
+  Implementação, Teste, Documentação, Ritual de Review, Check de
+  Coerência, Status, Commit). Antes de qualquer story não-trivial,
+  leio esse doc, mais `triad.md`, `expand-collapse.md` e
+  `versioning.md`. Ao avançar, nomeio em qual passo do ciclo estou.
+  Toda story produz `plan.md`, `test-guide.md`, `refactoring.md` (ainda
+  que seja "nada a refatorar" — exigência do D7), e atualiza os
+  índices de roadmap, worklog, e release notes conforme `release-notes.md`
+  e `versioning.md`.
+
+  **Próximo MAJOR — CV2 (Abertura externa):** auth real via magic
+  link, pagamento via Stripe, cadastro pela UI para os primeiros
+  assinantes além dos sete fundadores. Não mais codificado como
+  "v0.2.0" (já consumido pelo Editorial — ver D8). Pela regra de
+  versioning.md, será o primeiro MAJOR bump do produto (v1.0.0).
 
   ## O que é
 
@@ -52,7 +74,7 @@ context: |
 
   ## Stack técnico
 
-  **MVP atual (v0.1.0), por design:**
+  **MVP atual (v0.2.0), por design — stack inalterado desde v0.1.0:**
 
   - TypeScript em todo lugar.
   - Hono como framework HTTP, com HTML server-rendered (sem SPA, sem
@@ -70,13 +92,16 @@ context: |
   blog "boring stack ganha quando o builder é solo" registra o
   mesmo princípio.
 
-  **Plano para v0.2.0:** auth real (magic link via email) + pagamento
-  via Stripe + abertura externa para a primeira leva fora dos sete
-  fundadores. Stack continua o mesmo.
+  **Próximo MAJOR de produto (CV2 — Abertura externa):** auth real
+  (magic link via email) + pagamento via Stripe + abertura externa
+  para a primeira leva fora dos sete fundadores. Stack continua o
+  mesmo. Versão exata depende de quantos epics fecham antes; pela
+  regra de versioning.md, MAJOR bump (v1.0.0) marca o atravessamento
+  do primeiro CV inteiro entregue.
 
-  **Plano para v0.3.0+:** migração para Next.js + tRPC + Prisma +
-  PostgreSQL quando houver mais de doze assinantes pagantes por mais
-  de seis meses contínuos. Sinais que vou observar para tomar essa
+  **Plano para Next.js + tRPC + Prisma + PostgreSQL:** migração
+  considerada quando houver mais de doze assinantes pagantes por
+  mais de seis meses contínuos. Sinais que vou observar para tomar essa
   decisão: latência da rota /threads passando de 200ms com >5000
   mensagens, necessidade de tipos compartilhados front-back que HTML
   server-rendered não cobre, time crescendo (saindo de solo).
@@ -135,19 +160,22 @@ context: |
   Servidor rodável, sete fundadores cadastrados, fios persistentes,
   docs navegada dentro do app.
 
-  **v0.1.1 — CV0.E2 — Engajamento** 🔵 em curso. Indicador de última
-  vez online no perfil dos membros é a próxima story (S1).
-  Indicador de leitura por mensagem (S2) e lista de membros por
-  atividade (S3) seguem em planejado.
+  **v0.2.1 — CV0.E2.S1 — last-seen** 🔵 próxima. Indicador de última
+  vez online no perfil dos membros, saindo isolada como PATCH.
+  Indicador de leitura por mensagem (S2 → v0.2.2) e lista de membros
+  por atividade (S3) seguem em planejado. **Fechamento do epic
+  CV0.E2 → v0.3.0 (MINOR).**
 
-  **v0.2.0 — CV2 — Abertura externa.** Auth real via magic link,
-  pagamento via Stripe, cadastro de novo membro pela UI, criação de
-  fio pela UI, postagem em fio pela UI, abertura para a primeira
-  leva além dos sete fundadores.
+  **CV2 — Abertura externa.** Auth real via magic link, pagamento
+  via Stripe, cadastro de novo membro pela UI, criação de fio pela
+  UI, postagem em fio pela UI, abertura para a primeira leva além
+  dos sete fundadores. Versão exata segue a regra de versioning.md
+  (não mais codificada como "v0.2.0", que já foi consumida pelo
+  Editorial — ver D8).
 
-  **v0.3.0+ — Migração de stack.** Next.js + tRPC + Prisma +
-  PostgreSQL quando houver mais de doze assinantes pagantes por mais
-  de seis meses contínuos.
+  **Migração de stack futura.** Next.js + tRPC + Prisma + PostgreSQL
+  quando houver mais de doze assinantes pagantes por mais de seis
+  meses contínuos.
 
   Detalhe completo, com stories e indíces, em
   `docs/project/roadmap/index.md` dentro do projeto.

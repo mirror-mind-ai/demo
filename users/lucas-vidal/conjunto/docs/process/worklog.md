@@ -4,6 +4,22 @@ Resumo do trabalho por dia. Atualizado a cada story fechada.
 
 ---
 
+## 15 de maio de 2026
+
+**v0.2.0 — Editorial** lançada.
+
+Quatro direções de design aplicadas em sequência (refino editorial →
+funcional silencioso → identidade visual → membros vivos), dezenove
+commits, zero novas dependências de runtime, zero quebras de teste.
+Detalhe na release note `docs/releases/v0.2.0.md`.
+
+Registrei também a D8 em `decisions.md`: a v0.2.0 saiu como MINOR
+mas, pela regra de `versioning.md`, era PATCH (trabalho fora de
+roadmap). Anomalia reconhecida, histórico preservado, regra retomada
+a partir daqui — próxima entrega (S1 last-seen) sai como `v0.2.1`.
+
+---
+
 ## 12 de maio de 2026
 
 **v0.1.0 — Tracer Bullet** lançada.

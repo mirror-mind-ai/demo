@@ -1,7 +1,11 @@
 # CV0.E2 — Engajamento
 
 **Status:** 🔵 em curso
-**Versão prevista:** v0.1.1
+**Versão prevista do fechamento do epic:** `v0.3.0` (MINOR bump
+quando S1+S2+S3 estiverem prontas). Stories podem sair isoladas
+como PATCH no caminho: `v0.2.1` (S1), `v0.2.2` (S2) etc., conforme
+[`versioning.md`](../../../process/versioning.md) e
+[`decisions.md` → D8](../../decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento).
 
 ## Objetivo
 

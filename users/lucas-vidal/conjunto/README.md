@@ -33,4 +33,7 @@ Banco SQLite em `data/conjunto.db`. Apagado e recriado a cada `npm run seed`.
 
 ## Versão atual
 
-v0.1.0. Release notes em [`docs/releases/v0.1.0.md`](docs/releases/v0.1.0.md).
+**v0.2.0** — Editorial. Release notes em [`docs/releases/v0.2.0.md`](docs/releases/v0.2.0.md).
+Histórico anterior: [`v0.1.0`](docs/releases/v0.1.0.md) (Tracer Bullet).
+
+Próxima entrega: **CV0.E2.S1 — last-seen** → `v0.2.1` (PATCH).
