@@ -350,11 +350,30 @@ para depois entra no mesmo arquivo, com critério de revisita.
 pergunta: **"será que esquecemos alguma coisa?"**
 
 Não é o mesmo que o Review. O Review olha o que foi feito; o Check
-olha o que pode estar faltando. Atualização de docs derivados
-(briefing, decisions, índice de roadmap), consistência entre código
-e plano, links que apontam para lugares certos, status em todos os
-níveis (story, epic, CV), conteúdo do `test-guide.md` realmente
-suficiente, etc.
+olha o que pode estar faltando. Áreas que sempre passam por essa
+leitura:
+
+- **Docs derivados atualizados.** README, briefing, decisions,
+  `docs/index.md`, todos os índices de roadmap (CV, Epic, Story),
+  worklog.
+- **Status em todos os níveis.** Story marcada ✅, epic com a story
+  tirada da lista de pendentes, CV com a contagem certa.
+- **Disciplina de citação de releases.** Toda menção a uma versão
+  `v0.X.Y` em qualquer doc é um link markdown para o arquivo de
+  release note. Quando uma story fecha e gera uma nova release,
+  esse passo verifica que cada citação da nova versão ficou linkada.
+  Regra completa em [`release-notes.md`](release-notes.md#disciplina-de-citação-e-links).
+- **Consistência código ↔ plano.** O que foi implementado bate com
+  o `plan.md`. Onde divergiu, a divergeria está nomeada no
+  `refactoring.md` ou na release note.
+- **Links internos são reais.** Cada link relativo em docs novos
+  ou modificados aponta para um arquivo que existe.
+- **`test-guide.md` realmente suficiente.** Alguém com acesso ao repo
+  consegue validar a story só com o guide na mão.
+- **Páginas visíveis do produto.** Se a story muda algo que aparece
+  ao usuário (home, rodapé, página de membro), confirmar que essa
+  superfície foi atualizada — doc atualizada não substitui produto
+  atualizado.
 
 Se algo aparecer, volta para o passo correspondente. Só quando o
 Check fecha sem pendências é que a story pode ser marcada como

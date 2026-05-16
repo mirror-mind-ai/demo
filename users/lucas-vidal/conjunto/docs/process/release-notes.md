@@ -234,6 +234,50 @@ dois docs são complementares e devem ser lidos juntos.
 
 ---
 
+## Disciplina de citação e links
+
+Toda menção a uma versão (`v0.X.Y`) em qualquer documento do projeto
+**é um link markdown para o arquivo de release note correspondente**.
+Sem exceção de doc, sem exceção de contexto.
+
+Locais onde a regra se aplica, não exaustivo:
+
+- `README.md` (seção "Versão atual" e qualquer outra menção)
+- `docs/index.md`
+- `docs/project/roadmap/index.md` e os índices de cada CV/Epic/Story
+- `docs/process/worklog.md` (cada entrada que registra um lançamento)
+- `docs/project/decisions.md` (decisões que citam versões)
+- `plan.md`, `test-guide.md`, `refactoring.md` de cada story
+- Outras release notes (links pra trajetória anterior, "o que vem depois")
+- Identidade do personagem (journey YAML em `identity/journeys/`)
+- O próprio produto, quando exibir versões ao usuário (se houver
+  uma rota ou rodapé com "v0.X.Y", o número é um link clicável
+  para a release note pública)
+
+Forma canônica do link em prosa markdown:
+
+```
+... a [`v0.2.1`](../releases/v0.2.1.md) entregou o indicador ...
+```
+
+Em tabelas de roadmap, a célula da versão também é link. Em entradas
+de worklog, a frase de abertura cita a versão como link.
+
+**Por que.** Release note é onde a versão ganha sentido. Citar
+versão sem link faz o leitor cruzar referências mentalmente, abrir
+outra aba, perder o fio. O link converte menção em navegação, e
+navegação é o que mantém a documentação como **mapa vivo**, não como
+catálogo passivo.
+
+**Quando uma versão ainda não foi lançada** (planejada, em curso):
+ainda assim recebe link — apontando para a story/epic correspondente
+no roadmap, não para um release note inexistente. Quando o release
+sair, o link é atualizado para o `.md` da release. O Check de Coerência
+(passo 6 do ciclo) inclui essa atualização como pendente sempre que
+uma story fecha.
+
+---
+
 ## Anti-padrões a evitar
 
 Quatro modos de release note falhar mesmo quando está
