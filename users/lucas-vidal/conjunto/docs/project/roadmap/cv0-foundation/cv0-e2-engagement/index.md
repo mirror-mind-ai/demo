@@ -27,7 +27,7 @@ faz tempo.
 
 | Código | Story | Status |
 |--------|-------|--------|
-| [S1](cv0-e2-s1-last-seen/) | Indicador de última vez online | 🔵 próxima |
+| [S1](cv0-e2-s1-last-seen/) | Indicador de última vez online | ✅ `v0.2.1` |
 | [S2](cv0-e2-s2-read-indicator/) | Indicador de leitura por mensagem | ⚪ planejada |
 | [S3](cv0-e2-s3-active-members/) | Lista de membros ordenada por atividade | ⚪ planejada |
 

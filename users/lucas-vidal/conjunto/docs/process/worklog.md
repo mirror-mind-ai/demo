@@ -4,6 +4,21 @@ Resumo do trabalho por dia. Atualizado a cada story fechada.
 
 ---
 
+## 20 de maio de 2026
+
+**v0.2.1 — Last seen** lançada.
+
+CV0.E2.S1 completa. Coluna `last_seen_at` na tabela `members`,
+atualizada a cada request pelo middleware `ensureMember`. Exibição
+como tempo relativo em português no perfil e na listagem de membros.
+O próprio membro não vê o seu last-seen. Função pura
+`formatRelativeTime` em `src/lib/time.ts`, com 12 cenários de teste.
+15 testes novos, 23 no total, zero dependências novas.
+
+Release note em `docs/releases/v0.2.1.md`.
+
+---
+
 ## 15 de maio de 2026
 
 **v0.2.0 — Editorial** lançada.

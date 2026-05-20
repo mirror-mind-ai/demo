@@ -13,7 +13,7 @@
 
 import type { Context, MiddlewareHandler } from "hono";
 import { getCookie, setCookie } from "hono/cookie";
-import { getMember, listMembers, type Member } from "../db.js";
+import { db, getMember, listMembers, type Member } from "../db.js";
 
 const COOKIE = "conjunto_member";
 
@@ -46,6 +46,9 @@ export const ensureMember: MiddlewareHandler = async (c, next) => {
       current = all[0];
       setCurrentMember(c, current.id);
     }
+  }
+  if (current) {
+    db.prepare("UPDATE members SET last_seen_at = CURRENT_TIMESTAMP WHERE id = ?").run(current.id);
   }
   c.set("currentMember", current);
   await next();

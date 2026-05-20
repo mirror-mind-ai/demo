@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { avatarUrlFor, getMember, listMemberActivity, listMembers } from "../db.js";
 import { getCurrentMember } from "../lib/auth.js";
+import { formatRelativeTime } from "../lib/time.js";
 import { escapeHtml, layout } from "../views/layout.js";
 
 export const members = new Hono();
@@ -19,6 +20,7 @@ members.get("/", (c) => {
       <div class="member-row-body">
         <h3><a href="/members/${m.id}">${escapeHtml(m.name)}</a></h3>
         <div class="meta">${escapeHtml(m.role)}${m.company ? ` · ${escapeHtml(m.company)}` : ""}</div>
+        ${m.last_seen_at && current && current.id !== m.id ? `<div class="meta last-seen">Última vez online: ${escapeHtml(formatRelativeTime(m.last_seen_at))}</div>` : ""}
         ${m.currently ? `<p class="currently"><span class="label">Atualmente</span> ${escapeHtml(m.currently)}</p>` : ""}
       </div>
     </div>`
@@ -82,6 +84,7 @@ members.get("/:id", (c) => {
         ${member.currently ? `<p class="currently currently-detail"><span class="label">Atualmente</span> ${escapeHtml(member.currently)}</p>` : ""}
         ${member.bio ? `<p class="lede">${escapeHtml(member.bio)}</p>` : ""}
         <p class="meta">No Conjunto desde ${formatDate(member.joined_at)}.</p>
+        ${member.last_seen_at && current && current.id !== member.id ? `<p class="meta last-seen">Última vez online: ${escapeHtml(formatRelativeTime(member.last_seen_at))}</p>` : ""}
       </div>
     </div>
 

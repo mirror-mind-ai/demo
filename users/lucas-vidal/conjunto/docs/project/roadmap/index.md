@@ -17,8 +17,9 @@ fundadores cadastrados, fios abertos, biblioteca em estado mínimo.
 > [`decisions.md` → D8](../project/decisions.md#d8--v020-reconhecida-como-anomalia-de-versionamento).
 > A partir daqui, voltamos à regra.
 
-Próxima entrega: **CV0.E2.S1 — Indicador de última vez online**,
-saindo isolada → **`v0.2.1` (PATCH)**. O epic CV0.E2 fecha em
+**CV0.E2.S1 — last-seen** fechada → **`v0.2.1` (PATCH)**.
+Próxima: **CV0.E2.S2 — Indicador de leitura por mensagem**,
+saindo isolada → **`v0.2.2` (PATCH)**. O epic CV0.E2 fecha em
 `v0.3.0` quando S1+S2+S3 estiverem prontas.
 
 ## Estrutura
@@ -63,7 +64,7 @@ saindo isolada → **`v0.2.1` (PATCH)**. O epic CV0.E2 fecha em
 
 | Código | Story | Status |
 |--------|-------|--------|
-| [`CV0.E2.S1`](cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/) | Indicador de última vez online | 🔵 próxima |
+| [`CV0.E2.S1`](cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/) | Indicador de última vez online | ✅ `v0.2.1` |
 | [`CV0.E2.S2`](cv0-foundation/cv0-e2-engagement/cv0-e2-s2-read-indicator/) | Indicador de leitura por mensagem | ⚪ planejada |
 | [`CV0.E2.S3`](cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/) | Lista de membros ordenada por atividade | ⚪ planejada |
 

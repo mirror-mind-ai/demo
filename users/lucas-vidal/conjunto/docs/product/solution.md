@@ -9,7 +9,7 @@ necessidade que já existia e estava sendo mal servida.
 
 Os [princípios de design](principles.md) detalham como essa intenção
 se materializa em decisões concretas. O que vem abaixo é o estado
-atual do produto na release mais recente (`v0.2.0` Editorial).
+atual do produto na release mais recente ([`v0.2.1`](../releases/v0.2.1.md) Last seen).
 
 ---
 

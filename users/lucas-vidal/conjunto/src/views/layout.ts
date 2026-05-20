@@ -17,10 +17,10 @@
  * apontar para o release note novo.
  */
 const CURRENT_VERSION = {
-  tag: "v0.2.0",
-  label: "Editorial",
+  tag: "v0.2.1",
+  label: "Last seen",
   // Caminho dentro de /docs (a rota já sabe resolver releases/).
-  docPath: "releases/v0.2.0",
+  docPath: "releases/v0.2.1",
 };
 
 const FONT_LINK =

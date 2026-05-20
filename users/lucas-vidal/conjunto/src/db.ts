@@ -35,7 +35,8 @@ db.exec(`
     bio TEXT,
     currently TEXT,                      -- first-person 'what I'm wrestling with right now'
     avatar_img INTEGER,                  -- optional pravatar catalog id (1–70) to pin a specific portrait
-    joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_seen_at TEXT                     -- updated on every authenticated request
   );
 
   CREATE TABLE IF NOT EXISTS threads (
@@ -93,6 +94,9 @@ if (!memberCols.some((c) => c.name === "currently")) {
 if (!memberCols.some((c) => c.name === "avatar_img")) {
   db.exec(`ALTER TABLE members ADD COLUMN avatar_img INTEGER`);
 }
+if (!memberCols.some((c) => c.name === "last_seen_at")) {
+  db.exec(`ALTER TABLE members ADD COLUMN last_seen_at TEXT`);
+}
 
 // ---------- Types ------------------------------------------------------------
 
@@ -106,6 +110,7 @@ export interface Member {
   currently: string | null;
   avatar_img: number | null;
   joined_at: string;
+  last_seen_at: string | null;
 }
 
 export interface Thread {

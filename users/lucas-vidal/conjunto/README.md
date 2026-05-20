@@ -18,7 +18,7 @@ npm run dev            # sobe em http://localhost:3030
 ## Como testar
 
 ```bash
-npm test               # vitest, 8 testes hoje
+npm test               # vitest, 23 testes hoje
 ```
 
 ## Stack
@@ -33,7 +33,7 @@ Banco SQLite em `data/conjunto.db`. Apagado e recriado a cada `npm run seed`.
 
 ## Versão atual
 
-**v0.2.0** — Editorial. Release notes em [`docs/releases/v0.2.0.md`](docs/releases/v0.2.0.md).
-Histórico anterior: [`v0.1.0`](docs/releases/v0.1.0.md) (Tracer Bullet).
+**v0.2.1** — Last seen. Release notes em [`docs/releases/v0.2.1.md`](docs/releases/v0.2.1.md).
+Histórico: [`v0.2.0`](docs/releases/v0.2.0.md) (Editorial), [`v0.1.0`](docs/releases/v0.1.0.md) (Tracer Bullet).
 
-Próxima entrega: **CV0.E2.S1 — last-seen** → `v0.2.1` (PATCH).
+Próxima entrega: **CV0.E2.S2 — read indicator** → `v0.2.2` (PATCH).

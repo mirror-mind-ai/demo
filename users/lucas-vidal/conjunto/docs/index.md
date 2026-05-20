@@ -32,7 +32,10 @@ de **coerência produto-processo-projeto**.
 
 E o histórico:
 
-- [Releases](releases/v0.1.0.md) — notas narrativas de cada versão.
+- Releases — notas narrativas de cada versão:
+  [`v0.2.1`](releases/v0.2.1.md),
+  [`v0.2.0`](releases/v0.2.0.md),
+  [`v0.1.0`](releases/v0.1.0.md).
 
 ## Onde estamos
 
@@ -45,7 +48,7 @@ E o histórico:
     - [S5 Documentação dentro do produto](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s5-docs-inline/index.md) ✅
     - [S6 Seed reprodutível dos fundadores](project/roadmap/cv0-foundation/cv0-e1-tracer-bullet/cv0-e1-s6-seed/index.md) ✅
   - **[E2 — Engajamento](project/roadmap/cv0-foundation/cv0-e2-engagement/index.md)** 🔵 em curso — stories isoladas como PATCH (`v0.2.1`+), fechamento do epic → `v0.3.0`
-    - [S1 Indicador de última vez online](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/index.md) 🔵 próxima
+    - [S1 Indicador de última vez online](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s1-last-seen/index.md) ✅ `v0.2.1`
     - [S2 Indicador de leitura por mensagem](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s2-read-indicator/index.md) ⚪ planejada
     - [S3 Lista de membros por atividade](project/roadmap/cv0-foundation/cv0-e2-engagement/cv0-e2-s3-active-members/index.md) ⚪ planejada
 - **CV1 — Encontros e biblioteca** ⚪ planejado
